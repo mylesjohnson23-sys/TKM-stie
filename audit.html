@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Identity Audit — The King Maker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E2C47A;
+      --black: #000000;
+      --dark: #0A0A0A;
+      --dark-2: #111111;
+      --white: #FFFFFF;
+      --text-muted: rgba(255,255,255,0.45);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--dark);
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.4;
+    }
+
+    nav {
+      padding: 24px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .nav-back {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-back:hover { color: var(--gold); }
+
+    .audit-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 80px 24px 120px;
+    }
+
+    .audit-header {
+      text-align: center;
+      margin-bottom: 64px;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .audit-eyebrow {
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .audit-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .audit-title em { color: var(--gold); font-style: italic; }
+
+    .audit-subtitle {
+      font-size: 0.85rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.5);
+      font-weight: 300;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .progress-bar {
+      margin-bottom: 48px;
+      animation: fadeIn 1s ease 0.2s both;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 10px;
+    }
+
+    .progress-track {
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--gold);
+      transition: width 0.5s ease;
+    }
+
+    .question-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(201,168,76,0.12);
+      padding: 48px;
+      margin-bottom: 32px;
+      animation: fadeIn 0.6s ease forwards;
+      display: none;
+    }
+
+    .question-card.active { display: block; }
+
+    .question-pillar {
+      font-size: 0.55rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .question-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      font-weight: 300;
+      color: rgba(201,168,76,0.1);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .question-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 400;
+      line-height: 1.4;
+      margin-bottom: 40px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .option {
+      padding: 16px 24px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.6);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 300;
+    }
+
+    .option:hover {
+      border-color: var(--gold);
+      color: var(--white);
+      background: rgba(201,168,76,0.05);
+    }
+
+    .option.selected {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.1);
+      color: var(--white);
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 32px;
+    }
+
+    .btn-next {
+      background: var(--gold);
+      color: var(--black);
+      padding: 14px 36px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-left: auto;
+    }
+
+    .btn-next:hover { background: var(--gold-light); }
+    .btn-next:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    .btn-prev {
+      background: transparent;
+      color: rgba(255,255,255,0.4);
+      padding: 14px 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .btn-prev:hover { color: var(--gold); }
+
+    /* RESULTS */
+    .results-card {
+      display: none;
+      text-align: center;
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    .results-card.active { display: block; }
+
+    .results-score {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .results-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 32px;
+    }
+
+    .results-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 300;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .results-title em { color: var(--gold); font-style: italic; }
+
+    .results-message {
+      font-size: 0.88rem;
+      line-height: 1.9;
+      color: rgba(255,255,255,0.5);
+      font-weight: 300;
+      max-width: 500px;
+      margin: 0 auto 48px;
+    }
+
+    .results-pillars {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2px;
+      margin-bottom: 48px;
+    }
+
+    .result-pillar {
+      padding: 20px 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(201,168,76,0.1);
+    }
+
+    .result-pillar-name {
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .result-pillar-score {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--white);
+    }
+
+    .results-cta {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--black);
+      padding: 16px 40px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn-primary:hover { background: var(--gold-light); }
+
+    .btn-secondary {
+      background: transparent;
+      color: rgba(255,255,255,0.6);
+      padding: 16px 40px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.15);
+      transition: all 0.3s;
+    }
+
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      .question-card { padding: 32px 24px; }
+      .results-pillars { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">The King Maker</a>
+    <a href="/" class="nav-back">← Back to site</a>
+  </nav>
+
+  <div class="audit-container">
+
+    <div class="audit-header">
+      <p class="audit-eyebrow">The King Maker Code</p>
+      <h1 class="audit-title">Where do you <em>actually</em> stand?</h1>
+      <p class="audit-subtitle">Five questions across the five pillars of The King Maker Code. Scored and specific. Not a quiz — a mirror.</p>
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-label">
+        <span>Progress</span>
+        <span id="progressText">0 of 5</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <!-- Q1 Identity -->
+    <div class="question-card active" id="q1">
+      <div class="question-pillar">Pillar 01 — Identity</div>
+      <div class="question-number">01</div>
+      <div class="question-text">When no one is watching and nothing is required of you — who are you?</div>
+      <div class="options">
+        <button class="option" onclick="selectOption(1, 1, 'Lost — I honestly don\'t know')">Lost — I honestly don't know who I am outside of what others expect</button>
+        <button class="option" onclick="selectOption(1, 2, 'Searching — still figuring it out')">Searching — I have a sense of it but still figuring it out</button>
+        <button class="option" onclick="selectOption(1, 3, 'Developing — building clarity daily')">Developing — I\'m actively building a clear sense of identity</button>
+        <button class="option" onclick="selectOption(1, 4, 'Grounded — I know who I am')">Grounded — I know exactly who I am and act from that place consistently</button>
+      </div>
+      <div class="nav-buttons">
+        <button class="btn-next" id="next1" onclick="nextQuestion(1)" disabled>Next →</button>
+      </div>
+    </div>
+
+    <!-- Q2 Discipline -->
+    <div class="question-card" id="q2">
+      <div class="question-pillar">Pillar 02 — Discipline</div>
+      <div class="question-number">02</div>
+      <div class="question-text">How often do you do what you said you would do — even when you don't feel like it?</div>
+      <div class="options">
+        <button class="option" onclick="selectOption(2, 1, 'Rarely — feelings usually win')">Rarely — my feelings and circumstances usually decide</button>
+        <button class="option" onclick="selectOption(2, 2, 'Sometimes — hit or miss')">Sometimes — I follow through when it\'s convenient or easy</button>
+        <button class="option" onclick="selectOption(2, 3, 'Often — building the habit')">Often — I follow through most of the time, still building consistency</button>
+        <button class="option" onclick="selectOption(2, 4, 'Always — my word is my standard')">Always — my commitments to myself are non-negotiable</button>
+      </div>
+      <div class="nav-buttons">
+        <button class="btn-prev" onclick="prevQuestion(2)">← Back</button>
+        <button class="btn-next" id="next2" onclick="nextQuestion(2)" disabled>Next →</button>
+      </div>
+    </div>
+
+    <!-- Q3 Direction -->
+    <div class="question-card" id="q3">
+      <div class="question-pillar">Pillar 03 — Direction</div>
+      <div class="question-number">03</div>
+      <div class="question-text">Do you know where you are going — and do you have a plan to get there?</div>
+      <div class="options">
+        <button class="option" onclick="selectOption(3, 1, 'No vision, no plan')">No — I\'m reacting to life as it comes with no clear destination</button>
+        <button class="option" onclick="selectOption(3, 2, 'Vision but no plan')">I have a vague idea of what I want but no real plan to get there</button>
+        <button class="option" onclick="selectOption(3, 3, 'Plan in progress')">I have a direction and a plan — still refining and executing</button>
+        <button class="option" onclick="selectOption(3, 4, 'Clear vision, active plan')">Yes — I have a clear vision, a written plan, and I review it regularly</button>
+      </div>
+      <div class="nav-buttons">
+        <button class="btn-prev" onclick="prevQuestion(3)">← Back</button>
+        <button class="btn-next" id="next3" onclick="nextQuestion(3)" disabled>Next →</button>
+      </div>
+    </div>
+
+    <!-- Q4 Dominion -->
+    <div class="question-card" id="q4">
+      <div class="question-pillar">Pillar 04 — Dominion</div>
+      <div class="question-number">04</div>
+      <div class="question-text">Who controls your time, your energy, and your environment?</div>
+      <div class="options">
+        <button class="option" onclick="selectOption(4, 1, 'Everyone else does')">Everyone else — I\'m constantly reactive, pulled in every direction</button>
+        <button class="option" onclick="selectOption(4, 2, 'Mostly others, working on it')">Mostly others — I\'m aware of the problem but haven\'t solved it yet</button>
+        <button class="option" onclick="selectOption(4, 3, 'Mixed — taking back control')">Mixed — I\'ve reclaimed some areas, still working on others</button>
+        <button class="option" onclick="selectOption(4, 4, 'I do — by design')">I do — I protect my time, energy, and environment intentionally</button>
+      </div>
+      <div class="nav-buttons">
+        <button class="btn-prev" onclick="prevQuestion(4)">← Back</button>
+        <button class="btn-next" id="next4" onclick="nextQuestion(4)" disabled>Next →</button>
+      </div>
+    </div>
+
+    <!-- Q5 Legacy -->
+    <div class="question-card" id="q5">
+      <div class="question-pillar">Pillar 05 — Legacy</div>
+      <div class="question-number">05</div>
+      <div class="question-text">What will remain when you are gone — and are you building it now?</div>
+      <div class="options">
+        <button class="option" onclick="selectOption(5, 1, 'Haven\'t thought about it')">I haven\'t thought seriously about legacy — just focused on surviving</button>
+        <button class="option" onclick="selectOption(5, 2, 'Thinking about it, not building')">I think about it but haven\'t taken real action toward building it</button>
+        <button class="option" onclick="selectOption(5, 3, 'Building, not yet clear')">I\'m actively building but my legacy vision isn\'t fully defined yet</button>
+        <button class="option" onclick="selectOption(5, 4, 'Clear and actively building')">I have a clear legacy vision and every major decision points toward it</button>
+      </div>
+      <div class="nav-buttons">
+        <button class="btn-prev" onclick="prevQuestion(5)">← Back</button>
+        <button class="btn-next" id="next5" onclick="showResults()" disabled>See My Results →</button>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="results-card" id="results">
+      <div class="results-score" id="scoreDisplay">0</div>
+      <div class="results-label">out of 20</div>
+      <div class="results-title" id="resultsTitle">Your results</div>
+      <div class="results-pillars" id="resultsPillars"></div>
+      <p class="results-message" id="resultsMessage"></p>
+      <div class="results-cta">
+        <a href="https://the-kingmaker-weekly.beehiiv.com" target="_blank" class="btn-primary">Join The Newsletter</a>
+        <a href="/" class="btn-secondary">Back to Site</a>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const answers = {};
+    const pillars = ['Identity', 'Discipline', 'Direction', 'Dominion', 'Legacy'];
+
+    function selectOption(question, score, label) {
+      answers[question] = { score, label };
+      const card = document.getElementById('q' + question);
+      card.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+      event.target.classList.add('selected');
+      document.getElementById('next' + question).disabled = false;
+    }
+
+    function nextQuestion(current) {
+      document.getElementById('q' + current).classList.remove('active');
+      document.getElementById('q' + (current + 1)).classList.add('active');
+      updateProgress(current);
+    }
+
+    function prevQuestion(current) {
+      document.getElementById('q' + current).classList.remove('active');
+      document.getElementById('q' + (current - 1)).classList.add('active');
+      updateProgress(current - 2);
+    }
+
+    function updateProgress(completed) {
+      const pct = (completed / 5) * 100;
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('progressText').textContent = completed + ' of 5';
+    }
+
+    function showResults() {
+      updateProgress(5);
+      document.getElementById('q5').classList.remove('active');
+
+      let total = 0;
+      Object.values(answers).forEach(a => total += a.score);
+
+      document.getElementById('scoreDisplay').textContent = total;
+
+      let title, message;
+      if (total <= 8) {
+        title = 'The work <em>starts now.</em>';
+        message = 'You\'re at the beginning — and that\'s the most honest place to be. The King Maker framework exists for this moment. You know where you stand. Now decide who you\'re going to become.';
+      } else if (total <= 13) {
+        title = 'You\'re <em>moving.</em>';
+        message = 'You have awareness and some real momentum. The gap between where you are and where you want to be is closeable — but it requires consistent, deliberate action. The newsletter was built for this stage.';
+      } else if (total <= 17) {
+        title = 'You\'re <em>building.</em>';
+        message = 'Strong foundation. You operate with intention across most pillars. The work now is refinement — closing the gaps, eliminating inconsistency, and building toward legacy with clarity.';
+      } else {
+        title = 'You\'re <em>leading.</em>';
+        message = 'You operate at a high standard across all five pillars. The King Maker newsletter will sharpen what you\'ve already built and challenge you to go deeper. Kings don\'t stop building.';
+      }
+
+      document.getElementById('resultsTitle').innerHTML = title;
+      document.getElementById('resultsMessage').textContent = message;
+
+      const pillarsHtml = pillars.map((p, i) => `
+        <div class="result-pillar">
+          <div class="result-pillar-name">${p}</div>
+          <div class="result-pillar-score">${answers[i+1] ? answers[i+1].score : 0}/4</div>
+        </div>
+      `).join('');
+      document.getElementById('resultsPillars').innerHTML = pillarsHtml;
+
+      document.getElementById('results').classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
