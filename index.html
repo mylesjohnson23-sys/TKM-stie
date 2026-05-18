@@ -4,10 +4,425 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>The King Maker</title>
+  <style>
+    :root{
+      --bg:#080c10;
+      --surface:#0e1520;
+      --text:#f0ede8;
+      --muted:#8a9bae;
+      --accent:#c9a84c;
+      --line:rgba(255,255,255,.08);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      padding:24px;
+    }
+    .wrap{max-width:960px;margin:0 auto}
+    .card{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:24px;
+      margin-top:20px;
+    }
+    h1,h2,h3{margin-bottom:12px}
+    p{color:var(--muted);line-height:1.6}
+    .btn{
+      padding:12px 18px;
+      border-radius:10px;
+      border:0;
+      cursor:pointer;
+      font-weight:700;
+    }
+    .btn.primary{background:var(--accent);color:#111}
+    .btn.secondary{background:transparent;color:#fff;border:1px solid var(--line)}
+    .audit-header{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+    .progress{
+      height:4px;
+      background:#222;
+      border-radius:999px;
+      overflow:hidden;
+      margin:18px 0;
+    }
+    .progress-bar{
+      height:100%;
+      width:0%;
+      background:var(--accent);
+    }
+    .q-wrap{display:none}
+    .q-wrap.active{display:block}
+    .choices{display:grid;gap:10px;margin-top:18px}
+    .choice{
+      padding:14px 16px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:#111826;
+      color:#fff;
+      text-align:left;
+      cursor:pointer;
+    }
+    .choice.selected{
+      border-color:var(--accent);
+      background:#1a2230;
+    }
+    .audit-nav{
+      display:flex;
+      justify-content:space-between;
+      margin-top:20px;
+      gap:12px;
+    }
+    .results,.thankyou{
+      display:none;
+      margin-top:20px;
+      padding:20px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:#111826;
+    }
+    .results.show,.thankyou.show{display:block}
+    .form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:18px;
+    }
+    .input{
+      width:100%;
+      padding:12px;
+      border-radius:10px;
+      border:1px solid var(--line);
+      background:#0b1018;
+      color:#fff;
+    }
+    .result-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+    @media (max-width:700px){
+      .form-grid{grid-template-columns:1fr}
+    }
+  </style>
 </head>
-<body style="background:#000;color:#fff;font-family:Arial,sans-serif;padding:40px;">
-  <h1>The King Maker</h1>
-  <p>GitHub Pages is using index.html now.</p>
+<body>
+<div class="wrap">
+  <div class="card">
+    <h1>The King Maker</h1>
+    <p>Find your path with the 10-question audit.</p>
+  </div>
+
+  <div class="card" id="audit">
+    <div class="audit-header">
+      <div>
+        <h2>Find Your Path</h2>
+        <p>10 questions. Honest answers. Clear direction.</p>
+      </div>
+      <div id="stepLabel">Question 1 of 10</div>
+    </div>
+
+    <div class="progress">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <form id="auditForm">
+      <div class="q-wrap active" data-q="0">
+        <h3>1. Where are you right now?</h3>
+        <div class="choices">
+          <button type="button" class="choice" data-score='{"book":3}'>I am drifting.</button>
+          <button type="button" class="choice" data-score='{"code":3}'>I need a system.</button>
+          <button type="button" class="choice" data-score='{"coaching":3}'>I need direct support.</button>
+        </div>
+      </div>
+
+      <div class="q-wrap" data-q="1">
+        <h3>2. What breaks down most?</h3>
+        <div class="choices">
+          <button type="button" class="choice" data-score='{"book":3}'>Clarity</button>
+          <button type="button" class="choice" data-score='{"code":3}'>Structure</button>
+          <button type="button" class="choice" data-score='{"coaching":3}'>Accountability</button>
+        </div>
+      </div>
+
+      <div class="q-wrap" data-q="2">
+        <h3>3. How do you grow best?</h3>
+        <div class="choices">
+          <button type="button" class="choice" data-score='{"book":3}'>Reading and reflection</button>
+          <button type="button" class="choice" data-score='{"code":3}'>Systems and frameworks</button>
+          <button type="button" class="choice" data-score='{"coaching":3}'>Direct feedback</button>
+        </div>
+      </div>
+
+      <div class="q-wrap" data-q="3">
+        <h3>4. Do you have a written standard?</h3>
+        <div class="choices">
+          <button type="button" class="choice" data-score='{"book":3}'>No</button>
+          <button type="button" class="choice" data-score='{"code":3}'>Roughly</button>
+          <button type="button" class="choice" data-score='{"coaching":3}'>Yes</button>
+        </div>
+      </div>
+
+      <div class="q-wrap" data-q="4">
+        <h3>5. Relationship with discipline?</h3>
+        <div class="choices">
+          <button type="button" class="choice" data-score='{"book":3}'>Inconsistent</button>
+          <button type="button" class="choice" data-score='{"code":3}'>Patchy</button>
+          <button type="button" class="choice" data-score='{"coaching":3}'>Strong but needs accountability</button>
+        </div>
+      </div>
+
+      <div class="q-wrap" data-q="5">
+        <h3>6. Biggest need?</h3>
+        <div class="choices">
+          <button type="button" class="choice" data-score='{"book":3}'>Foundation</button>
+          <button type="button" class="choice" data-score='{"code":3}'>Operating system</button>
+          <button type="button" class="choice" data-score='{"coaching":3}'>Direct coaching</button>
+        </div>
+      </div>
+
+      <div class="q-wrap" data-q="6">
+        <h3>7. How do you handle setbacks?</h3>
+        <div class="choices">
+          <button type="button" class="choice" data-score='{"book":3}'>Poorly</button>
+          <button type="button" class="choice" data-score='{"code":3}'>Slow recovery</button>
+          <button type="button" class="choice" data-score='{"coaching":3}'>Need sharper performance</button>
+        </div>
+      </div>
+
+      <div class="q-wrap" data-q="7">
+        <h3>8. Investing in yourself?</h3>
+        <div class="choices">
+          <button type="button" class="choice" data-score='{"book":3}'>Just starting</button>
+          <button type="button" class="choice" data-score='{"code":3}'>Ready for structure</button>
+          <button type="button" class="choice" data-score='{"coaching":3}'>Ready for higher investment</button>
+        </div>
+      </div>
+
+      <div class="q-wrap" data-q="8">
+        <h3>9. Impact on others?</h3>
+        <div class="choices">
+          <button type="button" class="choice" data-score='{"book":3}'>Need to work on myself first</button>
+          <button type="button" class="choice" data-score='{"code":3}'>Growing influence</button>
+          <button type="button" class="choice" data-score='{"coaching":3}'>Core mission</button>
+        </div>
+      </div>
+
+      <div class="q-wrap" data-q="9">
+        <h3>10. 12 months from now?</h3>
+        <div class="choices">
+          <button type="button" class="choice" data-score='{"book":3}'>Clear standard</button>
+          <button type="button" class="choice" data-score='{"code":3}'>Real operating system</button>
+          <button type="button" class="choice" data-score='{"coaching":3}'>Done the hard work with support</button>
+        </div>
+      </div>
+
+      <div class="audit-nav">
+        <button type="button" class="btn secondary" id="prevBtn" disabled>Back</button>
+        <button type="button" class="btn primary" id="nextBtn">Next</button>
+      </div>
+
+      <div class="results" id="resultsBox">
+        <div id="resultTitle">Your Path</div>
+        <h2 id="resultHeadline"></h2>
+        <div id="resultScore"></div>
+        <p id="resultCopy"></p>
+
+        <div class="form-grid">
+          <input class="input" type="text" id="auditName" placeholder="Your name">
+          <input class="input" type="email" id="auditEmail" placeholder="Your email">
+        </div>
+
+        <div class="result-actions">
+          <button type="button" class="btn primary" id="submitBtn">Get My Path</button>
+          <a class="btn secondary" href="#audit">Retake the Audit</a>
+        </div>
+      </div>
+
+      <div class="thankyou" id="thankYouBox">
+        <h2>Thank you. Your audit is in.</h2>
+        <p>We have received your answers and your result. Check your email for the next step.</p>
+        <a class="btn primary" href="#audit" id="returnToAudit">Return to Audit</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+(function () {
+  console.log('NEW APPS SCRIPT VERSION LIVE');
+
+  const qs = document.querySelectorAll('.q-wrap');
+  const bar = document.getElementById('progressBar');
+  const label = document.getElementById('stepLabel');
+  const prev = document.getElementById('prevBtn');
+  const next = document.getElementById('nextBtn');
+  const resultsBox = document.getElementById('resultsBox');
+  const thankYouBox = document.getElementById('thankYouBox');
+  const form = document.getElementById('auditForm');
+  const resultTitle = document.getElementById('resultTitle');
+  const resultHeadline = document.getElementById('resultHeadline');
+  const resultScore = document.getElementById('resultScore');
+  const resultCopy = document.getElementById('resultCopy');
+  const submitBtn = document.getElementById('submitBtn');
+  const returnToAudit = document.getElementById('returnToAudit');
+
+  let current = 0;
+  let scores = { book: 0, code: 0, coaching: 0 };
+  let selected = Array(qs.length).fill(null);
+
+  function updateUI() {
+    qs.forEach((q, i) => q.classList.toggle('active', i === current));
+    label.textContent = 'Question ' + (Math.min(current + 1, qs.length)) + ' of ' + qs.length;
+    bar.style.width = ((current / qs.length) * 100) + '%';
+    prev.disabled = current === 0;
+    next.textContent = current === qs.length - 1 ? 'See My Result' : 'Next';
+  }
+
+  function applyChoice(btn) {
+    const wrap = btn.closest('.q-wrap');
+    const idx = Number(wrap.dataset.q);
+    wrap.querySelectorAll('.choice').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    selected[idx] = JSON.parse(btn.dataset.score);
+  }
+
+  function calcResult() {
+    scores = { book: 0, code: 0, coaching: 0 };
+    selected.forEach(item => {
+      if (item) Object.keys(item).forEach(k => scores[k] += item[k]);
+    });
+    const top = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+    const map = {
+      book: {
+        badge: 'Book Path',
+        headline: 'Start with the Book.',
+        copy: 'You need foundation and clarity first.'
+      },
+      code: {
+        badge: 'Code Path',
+        headline: 'You are ready for The Code.',
+        copy: 'You need systems and implementation.'
+      },
+      coaching: {
+        badge: 'Coaching Path',
+        headline: 'You are ready for coaching.',
+        copy: 'You are ready for direct, high-touch support.'
+      }
+    };
+    return map[top] || map.book;
+  }
+
+  function showResults() {
+    const r = calcResult();
+    resultTitle.textContent = r.badge;
+    resultHeadline.textContent = r.headline;
+    resultScore.textContent = 'Profile - Book: ' + scores.book + ' | Code: ' + scores.code + ' | Coaching: ' + scores.coaching;
+    resultCopy.textContent = r.copy;
+    resultsBox.classList.add('show');
+    bar.style.width = '100%';
+    label.textContent = 'Audit complete';
+    next.style.display = 'none';
+    prev.style.display = 'none';
+    qs.forEach(q => q.classList.remove('active'));
+    resultsBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  qs.forEach(q => {
+    q.querySelectorAll('.choice').forEach(btn => {
+      btn.addEventListener('click', function () {
+        applyChoice(btn);
+        if (current < qs.length - 1) {
+          current++;
+          updateUI();
+        } else {
+          showResults();
+        }
+      });
+    });
+  });
+
+  prev.addEventListener('click', function () {
+    if (current > 0) {
+      current--;
+      updateUI();
+    }
+  });
+
+  next.addEventListener('click', function () {
+    if (!selected[current]) return;
+    if (current < qs.length - 1) {
+      current++;
+      updateUI();
+    } else {
+      showResults();
+    }
+  });
+
+  submitBtn.addEventListener('click', function () {
+    const name = document.getElementById('auditName').value.trim();
+    const email = document.getElementById('auditEmail').value.trim();
+
+    if (!name) {
+      alert('Please enter your name.');
+      return;
+    }
+
+    if (!email || !email.includes('@')) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+
+    const payload = {
+      name: name,
+      email: email,
+      result: resultTitle.textContent,
+      score: resultScore.textContent
+    };
+
+    resultsBox.classList.remove('show');
+    thankYouBox.classList.add('show');
+    thankYouBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    fetch('https://script.google.com/macros/s/AKfycbwxgSyveSCSKXtqQNhVJVvA79VLII5lue0zI1hI-JmEea3NcLXObb-pxB-XOIbwiSsbJg/exec', {
+      method: 'POST',
+      mode: 'no-cors',
+      body: JSON.stringify(payload)
+    }).catch(function () {});
+  });
+
+  returnToAudit.addEventListener('click', function (e) {
+    e.preventDefault();
+    current = 0;
+    scores = { book: 0, code: 0, coaching: 0 };
+    selected = Array(qs.length).fill(null);
+    qs.forEach(q => q.querySelectorAll('.choice').forEach(b => b.classList.remove('selected')));
+    thankYouBox.classList.remove('show');
+    resultsBox.classList.remove('show');
+    next.style.display = '';
+    prev.style.display = '';
+    submitBtn.textContent = 'Get My Path';
+    submitBtn.disabled = false;
+    form.reset();
+    updateUI();
+    document.getElementById('audit').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  updateUI();
+})();
+</script>
 </body>
 </html>
+
 
