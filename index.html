@@ -866,7 +866,8 @@ input[name="_gotcha"]{position:absolute;left:-9999px}
         result: document.getElementById('resultTitle').textContent,
         scores: document.getElementById('resultScore').textContent
       });
-      await fetch('https://script.google.com/macros/s/AKfycbxrVRbxtujx0I7gb0Gjbl1-Bm8UDP240ObWo1Z6UJn1LVj0bdinIdRBbUI80kWP-qmulA/exec?' + params.toString(), {
+      await fetch('https://script.google.com/macros/s/AKfycbxrVRbxtujx0I7gb0Gjbl1-Bm8UDP240ObWo1Z6UJn1LVj0bdinIdRBbUI80kWP-qmulA/exec
+' + params.toString(), {
         method: 'GET',
         mode: 'no-cors'
       });
@@ -920,7 +921,56 @@ input[name="_gotcha"]{position:absolute;left:-9999px}
   });
 
   updateUI();
-})();
+})();<script>
+// ===============================
+// RESTORED AUDIT SUBMISSION LOGIC
+// ===============================
+
+async function submitAudit() {
+    try {
+        // 1. Collect email
+        const email = document.getElementById("email").value;
+
+        // 2. Collect audit answers
+        const answers = [];
+        const questionElements = document.querySelectorAll(".audit-question");
+
+        questionElements.forEach((q, index) => {
+            const selected = q.querySelector("input[type='radio']:checked");
+            answers.push({
+                question: index + 1,
+                answer: selected ? selected.value : null
+            });
+        });
+
+        // 3. Show "Sending…" screen
+        document.getElementById("audit-container").style.display = "none";
+        document.getElementById("sending-screen").style.display = "block";
+
+        // 4. SEND TO GOOGLE APPS SCRIPT
+        await fetch("https://script.google.com/macros/s/AKfycbxrVRbxtujx0I7gb0Gjbl1-Bm8UDP240ObWo1Z6UJn1LVj0bdinIdRBbUI80kWP-qmulA/exec", {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: email,
+                answers: answers
+            })
+        });
+
+        // 5. Show thank-you screen
+        document.getElementById("sending-screen").style.display = "none";
+        document.getElementById("thankyou-screen").style.display = "block";
+
+    } catch (error) {
+        console.error("Submission error:", error);
+        alert("There was an issue submitting your audit. Please try again.");
+    }
+}
+</script>
+
 </script>
 </body>
 </html>
