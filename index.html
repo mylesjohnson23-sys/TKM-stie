@@ -176,16 +176,6 @@ h1 em{color:var(--accent);font-style:normal}
 }
 .stat span{color:var(--muted);font-size:12px;font-family:'Barlow Condensed',sans-serif;letter-spacing:.1em;text-transform:uppercase}
 
-.divider{
-  display:flex;align-items:center;gap:16px;
-  margin:40px 0 0;
-}
-.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--line-soft)}
-.divider span{
-  font-family:'Barlow Condensed',sans-serif;
-  color:var(--muted);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
-}
-
 .section{margin-top:20px;padding:32px 36px}
 .section-label{
   font-family:'Barlow Condensed',sans-serif;
@@ -202,7 +192,6 @@ h2{
 .section > p{color:var(--muted);line-height:1.75;max-width:72ch;font-size:16px}
 
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .feature{
   padding:22px;border:1px solid var(--line-soft);border-radius:16px;
   background:rgba(255,255,255,.025);
@@ -236,45 +225,6 @@ h2{
   color:var(--text);font-weight:700;margin-bottom:6px;
 }
 .pillar p{color:var(--muted);font-size:13px;line-height:1.5}
-
-.steps{padding:0;list-style:none;display:grid;gap:12px;margin-top:16px}
-.steps li{
-  display:flex;gap:16px;align-items:flex-start;
-  padding:16px 18px;border:1px solid var(--line-soft);
-  border-radius:16px;background:rgba(255,255,255,.025);
-}
-.num{
-  width:30px;height:30px;border-radius:50%;
-  background:var(--accent);color:#0a0a0a;
-  display:grid;place-items:center;font-weight:900;
-  font-family:'Barlow Condensed',sans-serif;font-size:15px;
-  flex:0 0 30px;
-}
-.steps strong{font-size:16px;font-weight:600}
-.small{font-size:13px;color:var(--muted)}
-
-.stack{display:grid;gap:14px}
-.tier{
-  display:flex;align-items:flex-start;gap:20px;
-  padding:22px;border:1px solid var(--line-soft);
-  border-radius:16px;background:rgba(255,255,255,.025);
-  transition:border-color .2s;
-}
-.tier:hover{border-color:var(--accent)}
-.tier-badge{
-  flex:0 0 auto;
-  padding:6px 12px;border-radius:8px;
-  background:rgba(201,168,76,.12);
-  color:var(--accent);
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  white-space:nowrap;margin-top:2px;
-}
-.tier h3{
-  font-family:'Cormorant Garamond',serif;
-  font-size:22px;font-weight:600;margin-bottom:6px;
-}
-.tier p{color:var(--muted);font-size:14px;line-height:1.6}
 
 .quote-banner{
   margin-top:20px;
@@ -401,16 +351,12 @@ h2{
 }
 .footer-cta h2{margin-bottom:6px}
 
-.hidden{display:none!important}
-input[name="_gotcha"]{position:absolute;left:-9999px}
-
 @media (max-width:980px){
   .hero{grid-template-columns:1fr}
   .hero-copy{padding:36px 28px}
   .side{padding:24px}
   .pillars-grid{grid-template-columns:repeat(3,1fr)}
   .grid3{grid-template-columns:1fr 1fr}
-  .grid2,.bullets{grid-template-columns:1fr}
   .section,.footer-cta,.audit-header,.audit-body{padding-left:24px;padding-right:24px}
   .quote-banner{padding:32px 28px}
 }
@@ -489,10 +435,6 @@ input[name="_gotcha"]{position:absolute;left:-9999px}
     <div class="section-label">The Entry Point</div>
     <h2>The King Maker</h2>
     <p>The book is where it all starts. It introduces the standard, names the problem clearly, and makes every next step feel natural. Before a man can be coached or given a system, he needs to see himself clearly. The King Maker does that work.</p>
-    <div style="margin-top:24px;display:inline-flex;align-items:center;gap:12px;padding:14px 20px;border:1px solid var(--line);border-radius:14px;background:rgba(201,168,76,.06);">
-      <span style="color:var(--accent);font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;">Coming Soon</span>
-      <span style="color:var(--muted);font-size:14px;">Purchase link will be available here at launch.</span>
-    </div>
   </div>
 
   <div class="card section" id="code">
@@ -500,54 +442,22 @@ input[name="_gotcha"]{position:absolute;left:-9999px}
     <h2>Five Pillars.<br>One Standard.</h2>
     <p>The King Maker Code is the operational framework at the heart of the book. Five pillars - not as inspiration, but as a system you can live by, measure, and improve every single day.</p>
     <div class="pillars-grid" style="margin-top:28px">
-      <div class="pillar">
-        <div class="pillar-num">I</div>
-        <h4>Identity</h4>
-        <p>Know who you are before the world tries to define you.</p>
-      </div>
-      <div class="pillar">
-        <div class="pillar-num">II</div>
-        <h4>Integrity</h4>
-        <p>Align your actions with your stated values - no exceptions.</p>
-      </div>
-      <div class="pillar">
-        <div class="pillar-num">III</div>
-        <h4>Intention</h4>
-        <p>Live by design, not by default. Purpose before every action.</p>
-      </div>
-      <div class="pillar">
-        <div class="pillar-num">IV</div>
-        <h4>Investment</h4>
-        <p>Commit time, money, and energy to what actually matters.</p>
-      </div>
-      <div class="pillar">
-        <div class="pillar-num">V</div>
-        <h4>Impact</h4>
-        <p>Leave people and places better than you found them.</p>
-      </div>
+      <div class="pillar"><div class="pillar-num">I</div><h4>Identity</h4><p>Know who you are before the world tries to define you.</p></div>
+      <div class="pillar"><div class="pillar-num">II</div><h4>Integrity</h4><p>Align your actions with your stated values - no exceptions.</p></div>
+      <div class="pillar"><div class="pillar-num">III</div><h4>Intention</h4><p>Live by design, not by default. Purpose before every action.</p></div>
+      <div class="pillar"><div class="pillar-num">IV</div><h4>Investment</h4><p>Commit time, money, and energy to what actually matters.</p></div>
+      <div class="pillar"><div class="pillar-num">V</div><h4>Impact</h4><p>Leave people and places better than you found them.</p></div>
     </div>
   </div>
 
   <div class="card section" id="coaching">
     <div class="section-label">The Premium Step</div>
     <h2>Personal Coaching</h2>
-    <p>Coaching is not for everyone - it's for the man who has done the reading, felt the shift, and is ready for direct, high-touch support. Application only.</p>
+    <p>Coaching is not for everyone - it is for the man who has done the reading, felt the shift, and is ready for direct, high-touch support. Application only.</p>
     <div class="grid3" style="margin-top:24px">
-      <div class="feature">
-        <div class="feature-icon">1</div>
-        <h3>1:1 Coaching</h3>
-        <p>Direct support built around your specific situation, goals, and challenges. No templates - only real work.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">2</div>
-        <h3>Application Only</h3>
-        <p>Reserved for serious clients who are ready to commit fully. This is not a passive offer.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">3</div>
-        <h3>Outcome-Focused</h3>
-        <p>Built for visible, measurable progress - not motivation. Accountability that creates real change.</p>
-      </div>
+      <div class="feature"><div class="feature-icon">1</div><h3>1:1 Coaching</h3><p>Direct support built around your specific situation, goals, and challenges. No templates - only real work.</p></div>
+      <div class="feature"><div class="feature-icon">2</div><h3>Application Only</h3><p>Reserved for serious clients who are ready to commit fully. This is not a passive offer.</p></div>
+      <div class="feature"><div class="feature-icon">3</div><h3>Outcome-Focused</h3><p>Built for visible, measurable progress - not motivation. Accountability that creates real change.</p></div>
     </div>
   </div>
 
@@ -565,11 +475,11 @@ input[name="_gotcha"]{position:absolute;left:-9999px}
       <form id="auditForm">
 
         <div class="q-wrap active" data-q="0">
-          <h3 class="q-title">1. If you're honest with yourself - where are you right now?</h3>
+          <h3 class="q-title">1. If you are honest with yourself, where are you right now?</h3>
           <p class="q-sub">No performance. Just truth.</p>
           <div class="choices">
-            <button type="button" class="choice" data-score='{"book":3}'>I'm drifting. I know something needs to change but I haven't started.</button>
-            <button type="button" class="choice" data-score='{"code":3}'>I've started, but I don't have a real system - it's inconsistent.</button>
+            <button type="button" class="choice" data-score='{"book":3}'>I am drifting. I know something needs to change but I have not started.</button>
+            <button type="button" class="choice" data-score='{"code":3}'>I have started, but I do not have a real system. It is inconsistent.</button>
             <button type="button" class="choice" data-score='{"coaching":3}'>I have awareness and some structure, but I need direct support to go further.</button>
           </div>
         </div>
@@ -578,18 +488,18 @@ input[name="_gotcha"]{position:absolute;left:-9999px}
           <h3 class="q-title">2. How would you describe your relationship with discipline?</h3>
           <p class="q-sub">Where does it break down?</p>
           <div class="choices">
-            <button type="button" class="choice" data-score='{"book":3}'>I know what to do but I don't do it consistently.</button>
-            <button type="button" class="choice" data-score='{"code":2,"book":1}'>I'm disciplined in some areas but completely lacking in others.</button>
-            <button type="button" class="choice" data-score='{"coaching":3}'>I have discipline - what I need is accountability to match it.</button>
+            <button type="button" class="choice" data-score='{"book":3}'>I know what to do but I do not do it consistently.</button>
+            <button type="button" class="choice" data-score='{"code":2,"book":1}'>I am disciplined in some areas but completely lacking in others.</button>
+            <button type="button" class="choice" data-score='{"coaching":3}'>I have discipline. What I need is accountability to match it.</button>
           </div>
         </div>
 
         <div class="q-wrap" data-q="2">
           <h3 class="q-title">3. Do you have a clear, written standard for how you live?</h3>
-          <p class="q-sub">Not goals - a standard. A code you measure yourself against.</p>
+          <p class="q-sub">Not goals. A standard. A code you measure yourself against.</p>
           <div class="choices">
-            <button type="button" class="choice" data-score='{"book":3}'>No. I've never done that kind of work.</button>
-            <button type="button" class="choice" data-score='{"code":3}'>I have a rough idea but it's not written or structured.</button>
+            <button type="button" class="choice" data-score='{"book":3}'>No. I have never done that kind of work.</button>
+            <button type="button" class="choice" data-score='{"code":3}'>I have a rough idea but it is not written or structured.</button>
             <button type="button" class="choice" data-score='{"coaching":2,"code":1}'>Yes, and I want help holding myself to it at a higher level.</button>
           </div>
         </div>
@@ -598,9 +508,9 @@ input[name="_gotcha"]{position:absolute;left:-9999px}
           <h3 class="q-title">4. What is the biggest gap in your life right now?</h3>
           <p class="q-sub">Pick the one that stings most.</p>
           <div class="choices">
-            <button type="button" class="choice" data-score='{"book":3}'>Clarity - I don't know who I'm becoming or what I actually want.</button>
-            <button type="button" class="choice" data-score='{"code":3}'>Structure - I know what I want, I just don't have the system to execute.</button>
-            <button type="button" class="choice" data-score='{"coaching":3}'>Accountability - I have clarity and some structure, I just need someone in my corner.</button>
+            <button type="button" class="choice" data-score='{"book":3}'>Clarity. I do not know who I am becoming or what I actually want.</button>
+            <button type="button" class="choice" data-score='{"code":3}'>Structure. I know what I want, I just do not have the system to execute.</button>
+            <button type="button" class="choice" data-score='{"coaching":3}'>Accountability. I have clarity and some structure, I just need someone in my corner.</button>
           </div>
         </div>
 
@@ -618,9 +528,9 @@ input[name="_gotcha"]{position:absolute;left:-9999px}
           <h3 class="q-title">6. When you think about self-love, what comes up first?</h3>
           <p class="q-sub">The King Maker is built on making men whole through self love.</p>
           <div class="choices">
-            <button type="button" class="choice" data-score='{"book":3}'>Confusion - I don't fully understand what self-love means for a man.</button>
-            <button type="button" class="choice" data-score='{"code":2,"book":1}'>I understand it, but I don't have practices that reinforce it daily.</button>
-            <button type="button" class="choice" data-score='{"coaching":3}'>I've done the inner work - I want to build on a strong foundation now.</button>
+            <button type="button" class="choice" data-score='{"book":3}'>Confusion. I do not fully understand what self-love means for a man.</button>
+            <button type="button" class="choice" data-score='{"code":2,"book":1}'>I understand it, but I do not have practices that reinforce it daily.</button>
+            <button type="button" class="choice" data-score='{"coaching":3}'>I have done the inner work. I want to build on a strong foundation now.</button>
           </div>
         </div>
 
@@ -628,29 +538,29 @@ input[name="_gotcha"]{position:absolute;left:-9999px}
           <h3 class="q-title">7. How do you handle pressure, setbacks, or failure?</h3>
           <p class="q-sub">No right or wrong. Just where you actually are.</p>
           <div class="choices">
-            <button type="button" class="choice" data-score='{"book":3}'>I go quiet, retreat, or distract myself - I don't have a real process.</button>
-            <button type="button" class="choice" data-score='{"code":3}'>I recover but it takes too long - I don't have a system for bouncing back.</button>
+            <button type="button" class="choice" data-score='{"book":3}'>I go quiet, retreat, or distract myself. I do not have a real process.</button>
+            <button type="button" class="choice" data-score='{"code":3}'>I recover but it takes too long. I do not have a system for bouncing back.</button>
             <button type="button" class="choice" data-score='{"coaching":3}'>I manage it reasonably well but I want to perform better under real pressure.</button>
           </div>
         </div>
 
         <div class="q-wrap" data-q="7">
           <h3 class="q-title">8. What is your relationship with investing in yourself?</h3>
-          <p class="q-sub">Time, money, and energy - all three count.</p>
+          <p class="q-sub">Time, money, and energy all count.</p>
           <div class="choices">
-            <button type="button" class="choice" data-score='{"book":3}'>I haven't really made it a priority - the book would be a real first step.</button>
-            <button type="button" class="choice" data-score='{"code":3}'>I've invested in learning - now I want something that gives me a real system to use.</button>
-            <button type="button" class="choice" data-score='{"coaching":3}'>I invest in myself consistently and I'm ready to invest at a higher level.</button>
+            <button type="button" class="choice" data-score='{"book":3}'>I have not really made it a priority. The book would be a real first step.</button>
+            <button type="button" class="choice" data-score='{"code":3}'>I have invested in learning. Now I want something that gives me a real system to use.</button>
+            <button type="button" class="choice" data-score='{"coaching":3}'>I invest in myself consistently and I am ready to invest at a higher level.</button>
           </div>
         </div>
 
         <div class="q-wrap" data-q="8">
           <h3 class="q-title">9. How important is it to you to be a model for others?</h3>
-          <p class="q-sub">Sons, brothers, communities - the King Maker ripple effect.</p>
+          <p class="q-sub">Sons, brothers, communities, the King Maker ripple effect.</p>
           <div class="choices">
-            <button type="button" class="choice" data-score='{"book":2,"code":1}'>Very important - but I haven't done enough on myself yet to really model it.</button>
-            <button type="button" class="choice" data-score='{"code":2,"book":1}'>Important - I'm working on myself and starting to have an impact on others.</button>
-            <button type="button" class="choice" data-score='{"coaching":3}'>It's my mission - I want coaching so I can show up fully for the people around me.</button>
+            <button type="button" class="choice" data-score='{"book":2,"code":1}'>Very important, but I have not done enough on myself yet to really model it.</button>
+            <button type="button" class="choice" data-score='{"code":2,"book":1}'>Important. I am working on myself and starting to have an impact on others.</button>
+            <button type="button" class="choice" data-score='{"coaching":3}'>It is my mission. I want coaching so I can show up fully for the people around me.</button>
           </div>
         </div>
 
@@ -658,9 +568,9 @@ input[name="_gotcha"]{position:absolute;left:-9999px}
           <h3 class="q-title">10. What do you want to be true about your life 12 months from now?</h3>
           <p class="q-sub">Your answer reveals your starting point.</p>
           <div class="choices">
-            <button type="button" class="choice" data-score='{"book":3}'>I want to understand myself and have a clear standard - I need the foundation first.</button>
-            <button type="button" class="choice" data-score='{"code":3}'>I want a real operating system - a proven method I can use to build the life I want.</button>
-            <button type="button" class="choice" data-score='{"coaching":3}'>I want to have done the hardest work with someone who pushed me to my best - no shortcuts.</button>
+            <button type="button" class="choice" data-score='{"book":3}'>I want to understand myself and have a clear standard. I need the foundation first.</button>
+            <button type="button" class="choice" data-score='{"code":3}'>I want a real operating system, a proven method I can use to build the life I want.</button>
+            <button type="button" class="choice" data-score='{"coaching":3}'>I want to have done the hardest work with someone who pushed me to my best. No shortcuts.</button>
           </div>
         </div>
 
@@ -687,7 +597,7 @@ input[name="_gotcha"]{position:absolute;left:-9999px}
         <div class="thankyou" id="thankYouBox">
           <div class="ty-eyebrow">The King Maker</div>
           <h2 class="ty-headline">Thank you. Your audit is in.</h2>
-          <p class="ty-body">We've received your answers and your result. Check your email for the next step, or continue into the TKM Challenge when you're ready.</p>
+          <p class="ty-body">We have received your answers and your result. Check your email for the next step.</p>
           <a class="btn primary" href="#audit" id="returnToAudit">Return to Audit</a>
         </div>
       </form>
@@ -697,7 +607,7 @@ input[name="_gotcha"]{position:absolute;left:-9999px}
   <div class="card footer-cta">
     <div>
       <h2>Hold the standard.</h2>
-      <div class="small">Let the world adjust.</div>
+      <div style="color:var(--muted);font-size:13px;">Let the world adjust.</div>
     </div>
     <div style="display:flex;gap:12px;flex-wrap:wrap">
       <a class="btn primary" href="#audit">Take the Audit</a>
@@ -764,6 +674,7 @@ input[name="_gotcha"]{position:absolute;left:-9999px}
 
   function calcResult() {
     scores = { book: 0, code: 0, coaching: 0 };
+
     selected.forEach(function (item) {
       if (item) {
         Object.keys(item).forEach(function (k) {
@@ -780,17 +691,17 @@ input[name="_gotcha"]{position:absolute;left:-9999px}
       book: {
         badge: 'Book Path',
         headline: 'Start with the Book.',
-        copy: 'Your answers show a man who is ready to build the foundation. The King Maker gives you the framework, the language, and the clarity to finally name your standard and commit to it. This is where the work begins, and it begins with you reading, reflecting, and deciding what kind of man you intend to become. The next step will be waiting in your inbox.'
+        copy: 'Your answers show a man who is ready to build the foundation. The King Maker gives you the framework, the language, and the clarity to finally name your standard and commit to it.'
       },
       code: {
         badge: 'Code Path',
         headline: 'You are ready for The Code.',
-        copy: 'You have awareness and some momentum. What you need now is a system. The King Maker Code is the bridge from inspiration to implementation. Five pillars. A daily operating system. Practical, paid, and built for men who are done consuming and ready to execute. Your path is clear.'
+        copy: 'You have awareness and some momentum. What you need now is a system. The King Maker Code is the bridge from inspiration to implementation.'
       },
       coaching: {
         badge: 'Coaching Path',
         headline: 'You are ready for coaching.',
-        copy: 'Your answers reveal a man who has done the inner work and is ready for direct, high-touch support. Personal coaching is the premium tier, application only, outcome-focused, and built for visible progress. You already recognize the value. Now it is time to invest at the level that matches your ambition. Let us talk.'
+        copy: 'Your answers reveal a man who has done the inner work and is ready for direct, high-touch support.'
       }
     };
 
@@ -863,38 +774,22 @@ input[name="_gotcha"]{position:absolute;left:-9999px}
     submitBtn.disabled = true;
 
     try {
-      const params = new URLSearchParams({
+      const payload = {
         name: name,
         email: email,
         result: resultTitle.textContent,
-        scores: resultScore.textContent
-      });
+        score: resultScore.textContent
+      };
 
-      await fetch(
-        'https://script.google.com/macros/s/AKfycbxrVRbxtujx0I7gb0Gjbl1-Bm8UDP240ObWo1Z6UJn1LVj0bdinIdRBbUI80kWP-qmulA/exec?' + params.toString(),
-        {
-          method: 'GET',
-          mode: 'no-cors'
-        }
-      );
-
-      fetch('https://api.beehiiv.com/v2/publications/a55b1716-72c3-46f4-9f5d-7a06ee15a528/subscriptions', {
+      const zapResponse = await fetch('https://hooks.zapier.com/hooks/catch/26980106/uv2nm60/', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer KBwOhDnCVtimgpuj75NRj6gMqaHzXZo4cA3TqkfQCSM3WrTzv76Pl0b70EW09n4t'
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          email: email,
-          first_name: name.split(' ')[0] || name,
-          last_name: name.split(' ').slice(1).join(' ') || '',
-          reactivate_existing: true,
-          send_welcome_email: true,
-          utm_source: 'tkm-homepage',
-          utm_medium: 'audit',
-          utm_campaign: resultTitle.textContent.toLowerCase().replace(/\s+/g, '-')
-        })
-      }).catch(function () {});
+        body: JSON.stringify(payload)
+      });
+
+      console.log('Zapier status:', zapResponse.status);
 
       resultsBox.classList.remove('show');
       thankYouBox.classList.add('show');
