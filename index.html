@@ -699,6 +699,7 @@ input[name="_gotcha"]{position:absolute;left:-9999px}
             <button type="button" class="choice" data-score='{"coaching":3}'>I want to have done the hardest work with someone who pushed me to my best — no shortcuts.</button>
           </div>
         </div>
+        <button type="button" class="btn primary" onclick="submitAudit()">Submit Audit</button>
 
         <!-- NAV -->
         <div class="audit-nav">
@@ -967,9 +968,11 @@ async function submitAudit() {
     } catch (error) {
         console.error("Submission error:", error);
         alert("There was an issue submitting your audit. Please try again.");
-    }
+    }    
+      function submitAudit() {
+      showResults();
+      document.getElementById('resultsBox').scrollIntoView({behavior:'smooth'});
 }
-</script>
 
 </script>
 </body>
