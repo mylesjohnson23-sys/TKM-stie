@@ -18,7 +18,6 @@
   --accent2:#e8c86e;
   --line:rgba(201,168,76,.18);
   --line-soft:rgba(255,255,255,.07);
-  --good:#4db87a;
   --radius:20px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -756,7 +755,7 @@ h2{
     }
   });
 
-  submitBtn.addEventListener('click', async function () {
+  submitBtn.addEventListener('click', function () {
     const name = document.getElementById('auditName').value.trim();
     const email = document.getElementById('auditEmail').value.trim();
 
@@ -773,34 +772,30 @@ h2{
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
 
-    try {
-      const payload = {
-        name: name,
-        email: email,
-        result: resultTitle.textContent,
-        score: resultScore.textContent
-      };
+    const payload = {
+      name: name,
+      email: email,
+      result: resultTitle.textContent,
+      score: resultScore.textContent
+    };
 
-      const zapResponse = await fetch('https://hooks.zapier.com/hooks/catch/26980106/uv2nm60/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
+    resultsBox.classList.remove('show');
+    thankYouBox.classList.add('show');
+    thankYouBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-      console.log('Zapier status:', zapResponse.status);
-
-      resultsBox.classList.remove('show');
-      thankYouBox.classList.add('show');
-      thankYouBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-    } catch (err) {
-      console.error('Submission error:', err);
-      submitBtn.innerHTML = 'Get My Path &rarr;';
-      submitBtn.disabled = false;
-      alert('Submission failed. Please try again.');
-    }
+    fetch('https://hooks.zapier.com/hooks/catch/26980106/uv2nm60/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    })
+    .then(function (response) {
+      console.log('Zapier status:', response.status);
+    })
+    .catch(function (error) {
+      console.log('Webhook send attempted.', error);
+    });
   });
 
   returnToAudit.addEventListener('click', function (e) {
@@ -817,6 +812,8 @@ h2{
     resultsBox.classList.remove('show');
     next.style.display = '';
     prev.style.display = '';
+    submitBtn.textContent = 'Get My Path →';
+    submitBtn.disabled = false;
     form.reset();
     updateUI();
     document.getElementById('audit').scrollIntoView({ behavior: 'smooth' });
