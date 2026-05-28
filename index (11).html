@@ -1,0 +1,827 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>The King Maker | Hold the Standard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#080c10;
+  --surface:#0e1520;
+  --panel:#111d2a;
+  --text:#f0ede8;
+  --muted:#8a9bae;
+  --accent:#c9a84c;
+  --accent2:#e8c86e;
+  --line:rgba(201,168,76,.18);
+  --line-soft:rgba(255,255,255,.07);
+  --radius:20px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Barlow',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:.45;
+}
+
+.wrap{max-width:1260px;margin:0 auto;padding:0 24px 80px;position:relative;z-index:1}
+
+.nav{
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:18px 0;
+  position:sticky;top:0;
+  background:rgba(8,12,16,.72);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line-soft);
+  z-index:50;
+}
+.brand{
+  font-family:'Barlow Condensed',sans-serif;
+  letter-spacing:.24em;font-weight:800;
+  color:var(--accent);font-size:15px;
+  text-transform:uppercase;
+}
+.navlinks{display:flex;gap:20px;color:var(--muted);font-size:14px;font-weight:500}
+.navlinks a{transition:color .2s}
+.navlinks a:hover{color:var(--accent)}
+.nav-cta{
+  padding:9px 18px;border-radius:10px;
+  background:var(--accent);color:#0a0a0a;
+  font-weight:700;font-size:13px;
+  font-family:'Barlow Condensed',sans-serif;
+  letter-spacing:.1em;text-transform:uppercase;
+  transition:background .2s;
+}
+.nav-cta:hover{background:var(--accent2)}
+
+.hero{
+  display:grid;
+  grid-template-columns:1.3fr .7fr;
+  gap:20px;
+  align-items:stretch;
+  margin-top:32px;
+}
+.card{
+  background:var(--surface);
+  border:1px solid var(--line-soft);
+  border-radius:var(--radius);
+  box-shadow:0 24px 80px rgba(0,0,0,.5);
+}
+.hero-copy{padding:54px 50px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Barlow Condensed',sans-serif;
+  color:var(--accent);text-transform:uppercase;
+  letter-spacing:.22em;font-size:12px;font-weight:700;
+  margin-bottom:20px;
+}
+.eyebrow::before{
+  content:'';display:block;width:24px;height:1px;background:var(--accent);
+}
+h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(52px,6.5vw,88px);
+  line-height:.97;
+  letter-spacing:-.03em;
+  font-weight:700;
+  margin-bottom:16px;
+}
+h1 em{color:var(--accent);font-style:normal}
+.sub{
+  font-size:18px;line-height:1.75;
+  color:var(--muted);max-width:54ch;
+  margin-bottom:30px;
+  font-weight:400;
+}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:15px 26px;border-radius:12px;
+  font-weight:700;border:1px solid transparent;cursor:pointer;
+  font-family:'Barlow Condensed',sans-serif;
+  letter-spacing:.08em;text-transform:uppercase;font-size:15px;
+  transition:all .2s;
+}
+.btn.primary{background:var(--accent);color:#0a0a0a}
+.btn.primary:hover{background:var(--accent2);transform:translateY(-1px)}
+.btn.secondary{background:transparent;color:var(--text);border-color:rgba(255,255,255,.2)}
+.btn.secondary:hover{border-color:var(--accent);color:var(--accent)}
+
+.bullets{
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;
+  margin:30px 0 0;padding:0;list-style:none;
+}
+.bullets li{
+  padding:14px 16px;
+  border:1px solid var(--line-soft);
+  border-radius:14px;
+  background:rgba(255,255,255,.025);
+  color:#cdd5de;
+  font-size:15px;
+  line-height:1.5;
+  position:relative;
+  padding-left:24px;
+}
+.bullets li::before{
+  content:'';
+  position:absolute;left:10px;top:21px;
+  width:6px;height:6px;border-radius:50%;
+  background:var(--accent);
+}
+
+.side{
+  padding:28px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  gap:14px;
+}
+.panel{
+  padding:20px;border:1px solid var(--line-soft);border-radius:16px;
+  background:rgba(255,255,255,.025);flex:1;
+}
+.panel-label{
+  font-family:'Barlow Condensed',sans-serif;
+  color:var(--accent);text-transform:uppercase;
+  letter-spacing:.14em;font-size:11px;font-weight:700;
+  margin-bottom:8px;
+}
+.panel h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:600;margin-bottom:8px;
+}
+.panel p{color:var(--muted);line-height:1.6;font-size:15px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{
+  padding:16px;border:1px solid var(--line-soft);border-radius:16px;
+  background:rgba(255,255,255,.025);text-align:center;
+}
+.stat b{
+  display:block;font-size:28px;color:var(--accent);
+  font-family:'Cormorant Garamond',serif;font-weight:700;
+}
+.stat span{color:var(--muted);font-size:12px;font-family:'Barlow Condensed',sans-serif;letter-spacing:.1em;text-transform:uppercase}
+
+.section{margin-top:20px;padding:32px 36px}
+.section-label{
+  font-family:'Barlow Condensed',sans-serif;
+  color:var(--accent);text-transform:uppercase;
+  letter-spacing:.18em;font-size:11px;font-weight:700;
+  margin-bottom:12px;display:flex;align-items:center;gap:10px;
+}
+.section-label::after{content:'';flex:1;height:1px;background:var(--line)}
+h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(32px,4vw,48px);font-weight:700;
+  line-height:1.1;margin-bottom:12px;
+}
+.section > p{color:var(--muted);line-height:1.75;max-width:72ch;font-size:16px}
+
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.feature{
+  padding:22px;border:1px solid var(--line-soft);border-radius:16px;
+  background:rgba(255,255,255,.025);
+}
+.feature-icon{
+  width:40px;height:40px;border-radius:10px;
+  background:rgba(201,168,76,.12);
+  display:grid;place-items:center;
+  margin-bottom:14px;
+  font-size:20px;
+}
+.feature h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:600;margin-bottom:8px;
+}
+.feature p{color:var(--muted);font-size:14px;line-height:1.6}
+
+.pillars-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:8px}
+.pillar{
+  padding:20px 16px;border:1px solid var(--line-soft);border-radius:16px;
+  background:rgba(255,255,255,.025);text-align:center;
+}
+.pillar-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:36px;color:var(--accent);font-weight:700;
+  line-height:1;margin-bottom:10px;
+}
+.pillar h4{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:14px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text);font-weight:700;margin-bottom:6px;
+}
+.pillar p{color:var(--muted);font-size:13px;line-height:1.5}
+
+.quote-banner{
+  margin-top:20px;
+  padding:40px 50px;
+  background:linear-gradient(135deg,rgba(201,168,76,.06) 0%,rgba(201,168,76,.02) 100%);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  text-align:center;
+}
+.quote-banner blockquote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(22px,3vw,34px);
+  line-height:1.45;font-style:italic;color:var(--text);
+  max-width:700px;margin:0 auto 16px;
+  font-weight:400;
+}
+.quote-banner cite{
+  color:var(--accent);
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:13px;letter-spacing:.18em;text-transform:uppercase;
+  font-style:normal;font-weight:600;
+}
+
+.audit-wrap{margin-top:20px}
+.audit-header{
+  padding:32px 36px 0;
+  display:flex;justify-content:space-between;align-items:flex-start;
+  gap:16px;flex-wrap:wrap;
+}
+.audit-header h2{margin-bottom:6px}
+.audit-header .sub-text{color:var(--muted);font-size:15px;max-width:48ch;line-height:1.6}
+.step-counter{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:13px;color:var(--muted);letter-spacing:.1em;
+  white-space:nowrap;padding-top:8px;
+}
+.progress{
+  margin:20px 36px 0;
+  height:4px;background:rgba(255,255,255,.07);
+  border-radius:999px;overflow:hidden;
+}
+.progress-bar{
+  height:100%;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  width:0%;transition:width .4s ease;
+}
+.audit-body{padding:28px 36px 36px}
+.q-wrap{display:none}
+.q-wrap.active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.q-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(24px,3vw,32px);line-height:1.25;
+  margin-bottom:10px;font-weight:600;
+}
+.q-sub{margin-bottom:20px;color:var(--muted);line-height:1.6;font-size:15px}
+.choices{display:grid;gap:10px}
+.choice{
+  width:100%;text-align:left;padding:16px 20px;
+  border-radius:14px;border:1px solid var(--line-soft);
+  background:rgba(255,255,255,.025);color:var(--text);
+  cursor:pointer;font-size:15px;line-height:1.5;
+  font-family:'Barlow',sans-serif;
+  transition:all .18s;
+}
+.choice:hover{border-color:rgba(201,168,76,.4);background:rgba(201,168,76,.06)}
+.choice.selected{border-color:var(--accent);background:rgba(201,168,76,.1);color:var(--text)}
+.audit-nav{
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  margin-top:24px;
+}
+.audit-nav .btn{min-width:140px}
+
+.results,.thankyou{
+  display:none;margin-top:20px;
+  padding:28px;border-radius:18px;
+  border:1px solid var(--line);
+  background:rgba(201,168,76,.04);
+}
+.results.show,.thankyou.show{display:block;animation:fadeIn .4s ease}
+.result-badge{
+  display:inline-flex;align-items:center;padding:8px 14px;
+  border-radius:999px;background:rgba(201,168,76,.14);
+  color:var(--accent);font-weight:800;font-size:12px;
+  letter-spacing:.1em;text-transform:uppercase;
+  font-family:'Barlow Condensed',sans-serif;margin-bottom:14px;
+}
+.result-headline{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(26px,3vw,38px);font-weight:700;
+  line-height:1.1;margin-bottom:10px;
+}
+.result-score{font-size:14px;color:var(--muted);margin-bottom:10px;font-family:'Barlow Condensed',sans-serif;letter-spacing:.06em}
+.result-copy{color:var(--text);font-size:16px;line-height:1.75;margin-bottom:24px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.input{
+  width:100%;padding:14px 16px;border-radius:12px;
+  border:1px solid var(--line-soft);
+  background:#090d13;color:var(--text);
+  font-size:15px;font-family:'Barlow',sans-serif;
+  transition:border-color .2s;
+}
+.input:focus{outline:none;border-color:var(--accent)}
+.result-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.ty-eyebrow{
+  font-family:'Barlow Condensed',sans-serif;
+  color:var(--accent);text-transform:uppercase;
+  letter-spacing:.22em;font-size:12px;font-weight:700;
+  margin-bottom:14px;
+}
+.ty-headline{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(36px,5vw,58px);font-weight:800;
+  line-height:1.05;margin-bottom:14px;color:var(--text);
+  letter-spacing:-.01em;
+}
+.ty-body{color:var(--muted);line-height:1.7;font-size:16px;max-width:52ch;margin-bottom:24px}
+
+.footer-cta{
+  margin-top:20px;padding:36px 44px;
+  display:flex;justify-content:space-between;align-items:center;
+  gap:18px;flex-wrap:wrap;
+  background:linear-gradient(135deg,rgba(201,168,76,.08) 0%,transparent 60%);
+}
+.footer-cta h2{margin-bottom:6px}
+
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr}
+  .hero-copy{padding:36px 28px}
+  .side{padding:24px}
+  .pillars-grid{grid-template-columns:repeat(3,1fr)}
+  .grid3{grid-template-columns:1fr 1fr}
+  .section,.footer-cta,.audit-header,.audit-body{padding-left:24px;padding-right:24px}
+  .quote-banner{padding:32px 28px}
+}
+@media (max-width:600px){
+  .pillars-grid{grid-template-columns:1fr 1fr}
+  .grid3{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(3,1fr)}
+  .form-grid{grid-template-columns:1fr}
+  .navlinks{display:none}
+  .footer-cta{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="nav">
+    <div class="brand">The King Maker</div>
+    <div class="navlinks">
+      <a href="#book">Book</a>
+      <a href="#code">The Code</a>
+      <a href="#coaching">Coaching</a>
+      <a href="#audit">Take the Audit</a>
+    </div>
+    <a class="nav-cta" href="#audit">Find Your Path</a>
+  </div>
+
+  <div class="hero">
+    <div class="card hero-copy">
+      <div class="eyebrow">The King Maker</div>
+      <h1>Not a niche.<br><em>A standard.</em></h1>
+      <p class="sub">Most men are not failing because they lack talent. They are drifting because they lack a standard. The King Maker gives you the framework, the system, and the direct support to build yours.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#audit">Take the 10-Question Audit</a>
+        <a class="btn secondary" href="#book">About the Book</a>
+      </div>
+      <ul class="bullets">
+        <li>Book builds trust and frames the standard.</li>
+        <li>The Code gives structure and implementation.</li>
+        <li>Coaching creates accountability and acceleration.</li>
+        <li>The audit routes you to the right first step.</li>
+      </ul>
+    </div>
+    <div class="card side">
+      <div>
+        <div class="panel">
+          <div class="panel-label">Tier 1</div>
+          <h3>The Book</h3>
+          <p>Lead with the written framework. Low friction, high trust, and a clear introduction to the standard.</p>
+        </div>
+        <div class="panel">
+          <div class="panel-label">Tier 2</div>
+          <h3>The King Maker Code</h3>
+          <p>A paid system that turns the book into immediate practice. The bridge from inspiration to implementation.</p>
+        </div>
+        <div class="panel" style="margin-bottom:0">
+          <div class="panel-label">Tier 3</div>
+          <h3>Personal Coaching</h3>
+          <p>Direct guidance, accountability, and deeper change - reserved for men ready to go all the way.</p>
+        </div>
+      </div>
+      <div class="stats" style="margin-top:16px">
+        <div class="stat"><b>3</b><span>Tiers</span></div>
+        <div class="stat"><b>1</b><span>Standard</span></div>
+        <div class="stat"><b>INF</b><span>Potential</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-banner">
+    <blockquote>"Most men are not failing because they lack talent. They are drifting because they lack a standard."</blockquote>
+    <cite>- The King Maker | Myles Johnson</cite>
+  </div>
+
+  <div class="card section" id="book">
+    <div class="section-label">The Entry Point</div>
+    <h2>The King Maker</h2>
+    <p>The book is where it all starts. It introduces the standard, names the problem clearly, and makes every next step feel natural. Before a man can be coached or given a system, he needs to see himself clearly. The King Maker does that work.</p>
+  </div>
+
+  <div class="card section" id="code">
+    <div class="section-label">The King Maker Code</div>
+    <h2>Five Pillars.<br>One Standard.</h2>
+    <p>The King Maker Code is the operational framework at the heart of the book. Five pillars - not as inspiration, but as a system you can live by, measure, and improve every single day.</p>
+    <div class="pillars-grid" style="margin-top:28px">
+      <div class="pillar"><div class="pillar-num">I</div><h4>Identity</h4><p>Know who you are before the world tries to define you.</p></div>
+      <div class="pillar"><div class="pillar-num">II</div><h4>Integrity</h4><p>Align your actions with your stated values - no exceptions.</p></div>
+      <div class="pillar"><div class="pillar-num">III</div><h4>Intention</h4><p>Live by design, not by default. Purpose before every action.</p></div>
+      <div class="pillar"><div class="pillar-num">IV</div><h4>Investment</h4><p>Commit time, money, and energy to what actually matters.</p></div>
+      <div class="pillar"><div class="pillar-num">V</div><h4>Impact</h4><p>Leave people and places better than you found them.</p></div>
+    </div>
+  </div>
+
+  <div class="card section" id="coaching">
+    <div class="section-label">The Premium Step</div>
+    <h2>Personal Coaching</h2>
+    <p>Coaching is not for everyone - it is for the man who has done the reading, felt the shift, and is ready for direct, high-touch support. Application only.</p>
+    <div class="grid3" style="margin-top:24px">
+      <div class="feature"><div class="feature-icon">1</div><h3>1:1 Coaching</h3><p>Direct support built around your specific situation, goals, and challenges. No templates - only real work.</p></div>
+      <div class="feature"><div class="feature-icon">2</div><h3>Application Only</h3><p>Reserved for serious clients who are ready to commit fully. This is not a passive offer.</p></div>
+      <div class="feature"><div class="feature-icon">3</div><h3>Outcome-Focused</h3><p>Built for visible, measurable progress - not motivation. Accountability that creates real change.</p></div>
+    </div>
+  </div>
+
+  <div class="card audit-wrap" id="audit">
+    <div class="audit-header">
+      <div>
+        <div class="eyebrow" style="margin-bottom:10px">King Maker Readiness Audit</div>
+        <h2>Find Your Path.</h2>
+        <p class="sub-text">10 questions. Honest answers. A clear direction - your next best step in the TKM ecosystem.</p>
+      </div>
+      <div class="step-counter" id="stepLabel">Question 1 of 10</div>
+    </div>
+    <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="audit-body">
+      <form id="auditForm">
+
+        <div class="q-wrap active" data-q="0">
+          <h3 class="q-title">1. If you are honest with yourself, where are you right now?</h3>
+          <p class="q-sub">No performance. Just truth.</p>
+          <div class="choices">
+            <button type="button" class="choice" data-score='{"book":3}'>I am drifting. I know something needs to change but I have not started.</button>
+            <button type="button" class="choice" data-score='{"code":3}'>I have started, but I do not have a real system. It is inconsistent.</button>
+            <button type="button" class="choice" data-score='{"coaching":3}'>I have awareness and some structure, but I need direct support to go further.</button>
+          </div>
+        </div>
+
+        <div class="q-wrap" data-q="1">
+          <h3 class="q-title">2. How would you describe your relationship with discipline?</h3>
+          <p class="q-sub">Where does it break down?</p>
+          <div class="choices">
+            <button type="button" class="choice" data-score='{"book":3}'>I know what to do but I do not do it consistently.</button>
+            <button type="button" class="choice" data-score='{"code":2,"book":1}'>I am disciplined in some areas but completely lacking in others.</button>
+            <button type="button" class="choice" data-score='{"coaching":3}'>I have discipline. What I need is accountability to match it.</button>
+          </div>
+        </div>
+
+        <div class="q-wrap" data-q="2">
+          <h3 class="q-title">3. Do you have a clear, written standard for how you live?</h3>
+          <p class="q-sub">Not goals. A standard. A code you measure yourself against.</p>
+          <div class="choices">
+            <button type="button" class="choice" data-score='{"book":3}'>No. I have never done that kind of work.</button>
+            <button type="button" class="choice" data-score='{"code":3}'>I have a rough idea but it is not written or structured.</button>
+            <button type="button" class="choice" data-score='{"coaching":2,"code":1}'>Yes, and I want help holding myself to it at a higher level.</button>
+          </div>
+        </div>
+
+        <div class="q-wrap" data-q="3">
+          <h3 class="q-title">4. What is the biggest gap in your life right now?</h3>
+          <p class="q-sub">Pick the one that stings most.</p>
+          <div class="choices">
+            <button type="button" class="choice" data-score='{"book":3}'>Clarity. I do not know who I am becoming or what I actually want.</button>
+            <button type="button" class="choice" data-score='{"code":3}'>Structure. I know what I want, I just do not have the system to execute.</button>
+            <button type="button" class="choice" data-score='{"coaching":3}'>Accountability. I have clarity and some structure, I just need someone in my corner.</button>
+          </div>
+        </div>
+
+        <div class="q-wrap" data-q="4">
+          <h3 class="q-title">5. How do you typically learn and grow best?</h3>
+          <p class="q-sub">Be honest about how you actually operate.</p>
+          <div class="choices">
+            <button type="button" class="choice" data-score='{"book":3}'>Through reading, reflection, and thinking deeply on ideas.</button>
+            <button type="button" class="choice" data-score='{"code":3}'>Through frameworks, systems, and step-by-step implementation.</button>
+            <button type="button" class="choice" data-score='{"coaching":3}'>Through direct feedback, conversation, and someone pushing me.</button>
+          </div>
+        </div>
+
+        <div class="q-wrap" data-q="5">
+          <h3 class="q-title">6. When you think about self-love, what comes up first?</h3>
+          <p class="q-sub">The King Maker is built on making men whole through self love.</p>
+          <div class="choices">
+            <button type="button" class="choice" data-score='{"book":3}'>Confusion. I do not fully understand what self-love means for a man.</button>
+            <button type="button" class="choice" data-score='{"code":2,"book":1}'>I understand it, but I do not have practices that reinforce it daily.</button>
+            <button type="button" class="choice" data-score='{"coaching":3}'>I have done the inner work. I want to build on a strong foundation now.</button>
+          </div>
+        </div>
+
+        <div class="q-wrap" data-q="6">
+          <h3 class="q-title">7. How do you handle pressure, setbacks, or failure?</h3>
+          <p class="q-sub">No right or wrong. Just where you actually are.</p>
+          <div class="choices">
+            <button type="button" class="choice" data-score='{"book":3}'>I go quiet, retreat, or distract myself. I do not have a real process.</button>
+            <button type="button" class="choice" data-score='{"code":3}'>I recover but it takes too long. I do not have a system for bouncing back.</button>
+            <button type="button" class="choice" data-score='{"coaching":3}'>I manage it reasonably well but I want to perform better under real pressure.</button>
+          </div>
+        </div>
+
+        <div class="q-wrap" data-q="7">
+          <h3 class="q-title">8. What is your relationship with investing in yourself?</h3>
+          <p class="q-sub">Time, money, and energy all count.</p>
+          <div class="choices">
+            <button type="button" class="choice" data-score='{"book":3}'>I have not really made it a priority. The book would be a real first step.</button>
+            <button type="button" class="choice" data-score='{"code":3}'>I have invested in learning. Now I want something that gives me a real system to use.</button>
+            <button type="button" class="choice" data-score='{"coaching":3}'>I invest in myself consistently and I am ready to invest at a higher level.</button>
+          </div>
+        </div>
+
+        <div class="q-wrap" data-q="8">
+          <h3 class="q-title">9. How important is it to you to be a model for others?</h3>
+          <p class="q-sub">Sons, brothers, communities, the King Maker ripple effect.</p>
+          <div class="choices">
+            <button type="button" class="choice" data-score='{"book":2,"code":1}'>Very important, but I have not done enough on myself yet to really model it.</button>
+            <button type="button" class="choice" data-score='{"code":2,"book":1}'>Important. I am working on myself and starting to have an impact on others.</button>
+            <button type="button" class="choice" data-score='{"coaching":3}'>It is my mission. I want coaching so I can show up fully for the people around me.</button>
+          </div>
+        </div>
+
+        <div class="q-wrap" data-q="9">
+          <h3 class="q-title">10. What do you want to be true about your life 12 months from now?</h3>
+          <p class="q-sub">Your answer reveals your starting point.</p>
+          <div class="choices">
+            <button type="button" class="choice" data-score='{"book":3}'>I want to understand myself and have a clear standard. I need the foundation first.</button>
+            <button type="button" class="choice" data-score='{"code":3}'>I want a real operating system, a proven method I can use to build the life I want.</button>
+            <button type="button" class="choice" data-score='{"coaching":3}'>I want to have done the hardest work with someone who pushed me to my best. No shortcuts.</button>
+          </div>
+        </div>
+
+        <div class="audit-nav">
+          <button type="button" class="btn secondary" id="prevBtn" disabled>&larr; Back</button>
+          <button type="button" class="btn primary" id="nextBtn">Next &rarr;</button>
+        </div>
+
+        <div class="results" id="resultsBox">
+          <div class="result-badge" id="resultTitle">Your Path</div>
+          <h2 class="result-headline" id="resultHeadline"></h2>
+          <div class="result-score" id="resultScore"></div>
+          <div class="result-copy" id="resultCopy"></div>
+          <div class="form-grid" style="margin-top:24px">
+            <input class="input" type="text" id="auditName" placeholder="Your name"/>
+            <input class="input" type="email" id="auditEmail" placeholder="Your email"/>
+          </div>
+          <div class="result-actions">
+            <button type="button" class="btn primary" id="submitBtn">Get My Path &rarr;</button>
+            <a class="btn secondary" href="#audit">Retake the Audit</a>
+          </div>
+        </div>
+
+        <div class="thankyou" id="thankYouBox">
+          <div class="ty-eyebrow">The King Maker</div>
+          <h2 class="ty-headline">Thank you. Your audit is in.</h2>
+          <p class="ty-body">We have received your answers and your result. Check your email for the next step.</p>
+          <a class="btn primary" href="#audit" id="returnToAudit">Return to Audit</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="card footer-cta">
+    <div>
+      <h2>Hold the standard.</h2>
+      <div style="color:var(--muted);font-size:13px;">Let the world adjust.</div>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a class="btn primary" href="#audit">Take the Audit</a>
+      <a class="btn secondary" href="#code">The King Maker Code</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  console.log('GAS PROXY VERSION LIVE');
+
+  const qs = document.querySelectorAll('.q-wrap');
+  const bar = document.getElementById('progressBar');
+  const label = document.getElementById('stepLabel');
+  const prev = document.getElementById('prevBtn');
+  const next = document.getElementById('nextBtn');
+  const resultsBox = document.getElementById('resultsBox');
+  const thankYouBox = document.getElementById('thankYouBox');
+  const form = document.getElementById('auditForm');
+  const resultTitle = document.getElementById('resultTitle');
+  const resultHeadline = document.getElementById('resultHeadline');
+  const resultScore = document.getElementById('resultScore');
+  const resultCopy = document.getElementById('resultCopy');
+  const submitBtn = document.getElementById('submitBtn');
+  const returnToAudit = document.getElementById('returnToAudit');
+
+  if (
+    !qs.length || !bar || !label || !prev || !next || !resultsBox ||
+    !thankYouBox || !form || !resultTitle || !resultHeadline ||
+    !resultScore || !resultCopy || !submitBtn || !returnToAudit
+  ) {
+    console.error('Audit init failed: missing required elements.');
+    return;
+  }
+
+  let current = 0;
+  let scores = { book: 0, code: 0, coaching: 0 };
+  let selected = Array(qs.length).fill(null);
+
+  function updateUI() {
+    qs.forEach(function (q, i) {
+      q.classList.toggle('active', i === current);
+    });
+    label.textContent = 'Question ' + (Math.min(current + 1, qs.length)) + ' of ' + qs.length;
+    bar.style.width = ((current / qs.length) * 100) + '%';
+    prev.disabled = current === 0;
+    next.innerHTML = current === qs.length - 1 ? 'See My Result &rarr;' : 'Next &rarr;';
+  }
+
+  function applyChoice(btn) {
+    const wrap = btn.closest('.q-wrap');
+    if (!wrap) return;
+    const idx = Number(wrap.dataset.q);
+    wrap.querySelectorAll('.choice').forEach(function (b) {
+      b.classList.remove('selected');
+    });
+    btn.classList.add('selected');
+    try {
+      selected[idx] = JSON.parse(btn.dataset.score);
+    } catch (e) {
+      console.error('Invalid score JSON:', btn.dataset.score, e);
+    }
+  }
+
+  function calcResult() {
+    scores = { book: 0, code: 0, coaching: 0 };
+
+    selected.forEach(function (item) {
+      if (item) {
+        Object.keys(item).forEach(function (k) {
+          scores[k] += item[k];
+        });
+      }
+    });
+
+    const top = Object.entries(scores).sort(function (a, b) {
+      return b[1] - a[1];
+    })[0][0];
+
+    const map = {
+      book: {
+        badge: 'Book Path',
+        headline: 'Start with the Book.',
+        copy: 'Your answers show a man who is ready to build the foundation. The King Maker gives you the framework, the language, and the clarity to finally name your standard and commit to it.'
+      },
+      code: {
+        badge: 'Code Path',
+        headline: 'You are ready for The Code.',
+        copy: 'You have awareness and some momentum. What you need now is a system. The King Maker Code is the bridge from inspiration to implementation.'
+      },
+      coaching: {
+        badge: 'Coaching Path',
+        headline: 'You are ready for coaching.',
+        copy: 'Your answers reveal a man who has done the inner work and is ready for direct, high-touch support.'
+      }
+    };
+
+    return map[top] || map.book;
+  }
+
+  function showResults() {
+    const r = calcResult();
+    resultTitle.textContent = r.badge;
+    resultHeadline.textContent = r.headline;
+    resultScore.textContent = 'Profile - Book: ' + scores.book + ' | Code: ' + scores.code + ' | Coaching: ' + scores.coaching;
+    resultCopy.textContent = r.copy;
+    resultsBox.classList.add('show');
+    bar.style.width = '100%';
+    label.textContent = 'Audit complete';
+    next.style.display = 'none';
+    prev.style.display = 'none';
+    qs.forEach(function (q) {
+      q.classList.remove('active');
+    });
+    resultsBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  qs.forEach(function (q) {
+    q.querySelectorAll('.choice').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        applyChoice(btn);
+        if (current < qs.length - 1) {
+          current++;
+          updateUI();
+        } else {
+          showResults();
+        }
+      });
+    });
+  });
+
+  prev.addEventListener('click', function () {
+    if (current > 0) {
+      current--;
+      updateUI();
+    }
+  });
+
+  next.addEventListener('click', function () {
+    if (!selected[current]) return;
+    if (current < qs.length - 1) {
+      current++;
+      updateUI();
+    } else {
+      showResults();
+    }
+  });
+
+  submitBtn.addEventListener('click', function () {
+    const name = document.getElementById('auditName').value.trim();
+    const email = document.getElementById('auditEmail').value.trim();
+
+    if (!name) {
+      alert('Please enter your name.');
+      return;
+    }
+
+    if (!email || !email.includes('@')) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+
+    const payload = {
+      name: name,
+      email: email,
+      result: resultTitle.textContent,
+      score: resultScore.textContent
+    };
+
+    resultsBox.classList.remove('show');
+    thankYouBox.classList.add('show');
+    thankYouBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // ── UPDATED: posts to Google Apps Script proxy, which forwards JSON to Zapier ──
+    fetch('https://script.google.com/macros/d/AKfycbwxgSyveSCSKXtqQNhVJVvA79VLII5lue0zI1hI-JmEea3NcLXObb-pxB-XOIbwiSsbJg/userweb', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function (response) {
+      console.log('GAS proxy status:', response.status);
+    })
+    .catch(function (error) {
+      console.log('GAS proxy send attempted.', error);
+    });
+  });
+
+  returnToAudit.addEventListener('click', function (e) {
+    e.preventDefault();
+    current = 0;
+    scores = { book: 0, code: 0, coaching: 0 };
+    selected = Array(qs.length).fill(null);
+    qs.forEach(function (q) {
+      q.querySelectorAll('.choice').forEach(function (b) {
+        b.classList.remove('selected');
+      });
+    });
+    thankYouBox.classList.remove('show');
+    resultsBox.classList.remove('show');
+    next.style.display = '';
+    prev.style.display = '';
+    submitBtn.innerHTML = 'Get My Path &rarr;';
+    submitBtn.disabled = false;
+    form.reset();
+    updateUI();
+    document.getElementById('audit').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  updateUI();
+})();
+</script>
+</body>
+</html>
