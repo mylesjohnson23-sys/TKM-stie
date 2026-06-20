@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KingMaker — Myles Johnson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0d0c09;
+    --panel: #161410;
+    --panel-2: #1c1914;
+    --rule: #38332a;
+    --rule-soft: #2a261f;
+    --gold: #c9a84c;
+    --gold-deep: #8a6f2e;
+    --gold-bright: #ddc274;
+    --ink: #ece6d6;
+    --ink-soft: #b9b2a0;
+    --ink-dim: #837c6c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .display {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  a { color: inherit; }
+
+  img { max-width: 100%; display: block; }
+
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ============ NAV ============ */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(13,12,9,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+  .nav-mark {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
+    color: var(--gold);
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    font-size: 0.84rem;
+    color: var(--ink-soft);
+  }
+  .nav-links a { text-decoration: none; transition: color 0.15s ease; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--black);
+    padding: 10px 20px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: background 0.15s ease;
+  }
+  .nav-cta:hover { background: var(--gold-bright); }
+
+  @media (max-width: 760px) {
+    .nav-links { display: none; }
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    padding: 88px 0 96px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 900px 500px at 75% 15%, rgba(201,168,76,0.07), transparent 60%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 64px;
+    align-items: center;
+    position: relative;
+  }
+  .hero-copy .eyebrow { margin-bottom: 22px; display: block; }
+  .hero-title {
+    font-size: clamp(3.4rem, 7vw, 5.6rem);
+    line-height: 0.92;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+  }
+  .hero-title .king { color: var(--ink); display: block; }
+  .hero-title .maker { color: var(--gold); display: block; }
+  .hero-rule {
+    width: 56px;
+    height: 2px;
+    background: var(--gold);
+    margin: 28px 0 24px;
+  }
+  .hero-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.32rem;
+    color: var(--ink-soft);
+    line-height: 1.45;
+    max-width: 460px;
+  }
+  .hero-buy {
+    margin-top: 40px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--black);
+    padding: 16px 32px;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 0.92rem;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .btn-primary:hover { background: var(--gold-bright); transform: translateY(-1px); }
+  .hero-buy-note {
+    font-size: 0.78rem;
+    color: var(--ink-dim);
+    letter-spacing: 0.02em;
+  }
+
+  .hero-cover-frame {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .cover-shadow {
+    position: absolute;
+    width: 78%;
+    height: 90%;
+    bottom: -18px;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0.65), transparent 70%);
+    filter: blur(8px);
+    z-index: 0;
+  }
+  .book-cover {
+    position: relative;
+    width: 340px;
+    aspect-ratio: 0.66/1;
+    background: linear-gradient(155deg, #131110 0%, #0d0c09 55%, #0a0908 100%);
+    border: 1px solid #2c2820;
+    border-radius: 2px;
+    box-shadow: 0 30px 70px -20px rgba(0,0,0,0.85), 0 0 0 1px rgba(201,168,76,0.06);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 36px 28px;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .king-mark {
+    position: absolute;
+    font-size: 15rem;
+    opacity: 0.05;
+    color: var(--gold);
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    text-align: center;
+    letter-spacing: 0.12em;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-title .l1 { font-size: 2.5rem; color: var(--ink); display: block; }
+  .cover-title .l2 { font-size: 2.5rem; color: var(--gold); display: block; margin-top: 2px; }
+  .cover-subtitle {
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    text-align: center;
+    margin-top: 18px;
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+    max-width: 220px;
+    line-height: 1.5;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-author {
+    position: absolute;
+    bottom: 28px;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    z-index: 1;
+  }
+
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-copy { order: 2; text-align: center; }
+    .hero-subtitle { margin: 0 auto; }
+    .hero-buy { justify-content: center; }
+    .hero-rule { margin-left: auto; margin-right: auto; }
+    .hero-cover-frame { order: 1; }
+  }
+
+  /* ============ SECTION SHARED ============ */
+  section { padding: 96px 0; }
+  .section-rule {
+    border: none;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .section-head {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 56px;
+  }
+  .section-head .eyebrow { display: block; margin-bottom: 16px; }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+    color: var(--ink);
+  }
+
+  /* ============ THE BOOK / BACK COVER COPY ============ */
+  .book-copy {
+    max-width: 680px;
+    margin: 0 auto;
+    font-size: 1.18rem;
+    line-height: 1.85;
+    color: var(--ink-soft);
+  }
+  .book-copy p { margin-bottom: 26px; }
+  .book-copy strong { color: var(--ink); font-weight: 700; }
+  .book-copy .standalone {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--gold);
+    font-size: 1.3rem;
+    text-align: center;
+    margin: 44px 0;
+    line-height: 1.5;
+  }
+  .book-copy .closer {
+    text-align: center;
+    font-style: italic;
+    color: var(--ink-dim);
+    margin-top: 40px;
+  }
+  .book-copy .sign {
+    text-align: center;
+    margin-top: 16px;
+    font-family: 'Playfair Display', serif;
+    color: var(--ink);
+    letter-spacing: 0.04em;
+  }
+
+  /* ============ EXCERPT (signature element) ============ */
+  .excerpt-section { background: var(--panel); position: relative; }
+  .excerpt-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+    padding-left: 36px;
+  }
+  .excerpt-wrap::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    bottom: 4px;
+    width: 3px;
+    background: linear-gradient(180deg, var(--gold), var(--gold-deep));
+  }
+  .excerpt-label {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.92rem;
+    color: var(--ink-dim);
+    margin-bottom: 28px;
+  }
+  .excerpt-body p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.32rem;
+    line-height: 1.75;
+    color: var(--ink);
+    margin-bottom: 22px;
+  }
+  .excerpt-body strong {
+    font-style: normal;
+    color: var(--gold-bright);
+    font-weight: 700;
+  }
+  .your-move {
+    margin-top: 40px;
+    background: var(--panel-2);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--gold);
+    padding: 24px 28px;
+    border-radius: 0 4px 4px 0;
+  }
+  .your-move .ym-label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .your-move p {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-size: 1.02rem;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+
+  /* ============ AUTHOR ============ */
+  .author-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .author-photo-frame {
+    position: relative;
+  }
+  .author-photo-frame img {
+    border-radius: 4px;
+    filter: grayscale(15%) contrast(1.05);
+    border: 1px solid var(--rule);
+  }
+  .author-photo-frame::after {
+    content: '';
+    position: absolute;
+    inset: -10px;
+    border: 1px solid var(--rule-soft);
+    border-radius: 6px;
+    z-index: -1;
+  }
+  .author-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .author-role {
+    font-size: 0.84rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 22px;
+  }
+  .author-bio p {
+    color: var(--ink-soft);
+    line-height: 1.8;
+    margin-bottom: 16px;
+    font-size: 1.02rem;
+  }
+
+  @media (max-width: 760px) {
+    .author-grid { grid-template-columns: 1fr; text-align: center; }
+    .author-photo-frame { max-width: 240px; margin: 0 auto; }
+  }
+
+  /* ============ NBBF EVENT STRIP ============ */
+  .event-strip {
+    background: var(--panel);
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .event-grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .event-info .eyebrow { margin-bottom: 12px; display: block; }
+  .event-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .event-detail {
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+  }
+  .event-detail strong { color: var(--gold); }
+  .event-cta {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 14px 26px;
+    border-radius: 3px;
+    font-size: 0.86rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+  }
+  .event-cta:hover { background: var(--gold); color: var(--black); }
+
+  /* ============ FINAL CTA ============ */
+  .final-cta {
+    text-align: center;
+  }
+  .final-cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    margin-bottom: 18px;
+  }
+  .final-cta-title .gold { color: var(--gold); }
+  .final-cta-sub {
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+    max-width: 480px;
+    margin: 0 auto 36px;
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    border-top: 1px solid var(--rule-soft);
+    padding: 40px 0;
+    text-align: center;
+  }
+  footer .nav-mark { margin-bottom: 8px; display: inline-block; }
+  footer p {
+    color: var(--ink-dim);
+    font-size: 0.8rem;
+  }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-mark">KINGMAKER</div>
+    <ul class="nav-links">
+      <li><a href="#book">The Book</a></li>
+      <li><a href="#excerpt">Excerpt</a></li>
+      <li><a href="#author">Author</a></li>
+      <li><a href="#nbbf">Meet Myles</a></li>
+    </ul>
+    <a href="#buy" class="nav-cta">Get the Book</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">A First-Person Blueprint for Men</span>
+      <h1 class="hero-title">
+        <span class="king">KING</span>
+        <span class="maker">MAKER</span>
+      </h1>
+      <div class="hero-rule"></div>
+      <p class="hero-subtitle">The Blueprint for Men Who Are Done Being Managed by Their Own Life.</p>
+      <div class="hero-buy">
+        <a href="#buy" class="btn-primary">Get the Book on Amazon →</a>
+      </div>
+      <p class="hero-buy-note" style="margin-top:14px;">Launching October 2026 · Paperback &amp; Kindle</p>
+    </div>
+
+    <div class="hero-cover-frame">
+      <div class="cover-shadow"></div>
+      <div class="book-cover">
+        <div class="king-mark">♔</div>
+        <div class="cover-title">
+          <span class="l1">KING</span>
+          <span class="l2">MAKER</span>
+        </div>
+        <p class="cover-subtitle">The Blueprint for Men Who Are Done Being Managed by Their Own Life</p>
+        <div class="cover-author">Myles Johnson</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<hr class="section-rule">
+
+<!-- BOOK / BACK COVER COPY -->
+<section id="book">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The Book</span>
+      <h2 class="section-title">Knowing Better. Doing Nothing.<br>That's the Trap.</h2>
+    </div>
+    <div class="book-copy">
+      <p>I built a business and lost myself in it. I led a family and forgot to lead myself first. I knew exactly what I should be doing — and did the opposite, for years.</p>
+      <p>That's the trap. Knowing better. Doing nothing.</p>
+      <p><strong>KingMaker</strong> is what I learned getting out. Career. Fatherhood. Discipline. Identity. All of it, laid out raw — no filter, no self-help script.</p>
+      <p>Every chapter ends with <strong>Your Move</strong>: the one thing you do next, today, before you close the book and go back to managing everyone else's life but your own.</p>
+      <p class="standalone">This isn't motivation. Motivation fades.<br>This is a blueprint. Blueprints get followed.</p>
+      <p class="closer">"Stop being managed. Start building."</p>
+      <p class="sign">— Myles Johnson</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXCERPT SECTION — OPTION A -->
+<section id="excerpt" class="excerpt-section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">From the Book</span>
+      <h2 class="section-title">A Passage From KingMaker</h2>
+    </div>
+    <div class="excerpt-wrap">
+      <p class="excerpt-label">Chapter excerpt</p>
+      <div class="excerpt-body">
+        <p>When my son was born, I was lost. Not lost like I didn't know the road — lost like I didn't know I was supposed to be going anywhere.</p>
+        <p>I grew up with no blueprint. No map. No compass for what the standard looked like. Just survival, dressed up as living.</p>
+        <p>Then I held him.</p>
+        <p>And I knew: <strong>if I build the man I'm supposed to be, he inherits that. If I drift, he inherits that too.</strong></p>
+        <p>I didn't become perfect. I became consistent. I became a man who holds a standard — not because life got easier, but because the standard is what makes the hard seasons worth something.</p>
+      </div>
+      <div class="your-move">
+        <span class="ym-label">Your Move</span>
+        <p>Stop waiting for the moment that forces your hand. Pick one standard you're not currently holding. Hold it today — before life makes you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-rule">
+
+<!-- AUTHOR -->
+<section id="author">
+  <div class="wrap author-grid">
+    <div class="author-photo-frame">
+      <img src="images/author-photo.png" alt="Myles Johnson, author of KingMaker">
+    </div>
+    <div class="author-bio">
+      <div class="author-name">Myles Johnson</div>
+      <div class="author-role">Author · KingMaker</div>
+      <p>Myles Johnson built and lost and rebuilt — in business, in fatherhood, and in himself. KingMaker is the blueprint he wishes someone had handed him: no theory, no filler, just the standard it takes to stop being managed by your own life and start building one on purpose.</p>
+      <p>He lives by one rule: hold the standard, and let the world adjust.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NBBF EVENT STRIP -->
+<section id="nbbf" class="event-strip">
+  <div class="wrap event-grid">
+    <div class="event-info">
+      <span class="eyebrow">Meet the Author</span>
+      <div class="event-title">National Black Book Festival</div>
+      <div class="event-detail">Houston, TX &nbsp;·&nbsp; <strong>October 22–24, 2026</strong> &nbsp;·&nbsp; Fallbrook Church Sports Facility</div>
+    </div>
+    <a href="#" class="event-cta">Festival Details →</a>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="buy" class="final-cta">
+  <div class="wrap">
+    <h2 class="final-cta-title">Stop being managed.<br><span class="gold">Start building.</span></h2>
+    <p class="final-cta-sub">KingMaker launches October 2026 at the National Black Book Festival in Houston — in paperback and Kindle.</p>
+    <span class="btn-primary" style="opacity:0.55; cursor:default; pointer-events:none;">Coming Soon</span>
+  </div>
+</section>
+
+<footer>
+  <div class="nav-mark">KINGMAKER</div>
+  <p>© 2026 Myles Johnson · Mjohnson IGP LLC</p>
+</footer>
+
+
+</body>
+</html>
