@@ -236,18 +236,17 @@ h1 em{color:var(--accent);font-style:normal}
       <div class="result-badge" id="resultBadge">Audit Complete</div>
       <h2 class="result-title" id="resultTitle"></h2>
       <p class="result-text" id="resultCopy"></p>
-      <div class="form-grid">
+      <div class="form-grid" id="resultFormGrid">
         <input type="text" class="input-field" id="auditName" placeholder="First name" required/>
         <input type="email" class="input-field" id="auditEmail" placeholder="Email address" required/>
         <button type="button" class="btn primary full" id="submitBtn">Get My Path &rarr;</button>
       </div>
-    </div>
-
-    <div id="thankYouBox">
-      <div class="ty-eyebrow">The King Maker</div>
-      <h2 class="ty-headline">Thank you. Your audit is in.</h2>
-      <p class="ty-body">We've received your answers and your result. Check your email for the next step.</p>
-      <a class="btn secondary" href="/" id="returnHome">Return Home</a>
+      <div id="thankYouBox">
+        <div class="ty-eyebrow">The King Maker</div>
+        <h2 class="ty-headline">Thank you. Your audit is in.</h2>
+        <p class="ty-body">We've saved your path above and sent a copy to your inbox.</p>
+        <a class="btn secondary" href="/" id="returnHome">Return Home</a>
+      </div>
     </div>
   </form>
 </section>
@@ -325,6 +324,7 @@ const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const resultsBox = document.getElementById('resultsBox');
 const thankYouBox = document.getElementById('thankYouBox');
+const resultFormGrid = document.getElementById('resultFormGrid');
 const form = document.getElementById('auditForm');
 const resultBadge = document.getElementById('resultBadge');
 const resultTitle = document.getElementById('resultTitle');
@@ -460,7 +460,7 @@ submitBtn.addEventListener('click', function () {
     // Silent fail — thank you screen still shows
   });
 
-  resultsBox.style.display = 'none';
+  resultFormGrid.style.display = 'none';
   thankYouBox.style.display = 'block';
   thankYouBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
