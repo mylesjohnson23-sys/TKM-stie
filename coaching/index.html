@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Coaching | The King Maker</title>
+<meta name="description" content="1:1 coaching built on the King Maker Code. Application-only — not for everyone, built for men ready to do the work."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#080c10;
+  --surface:#0e1520;
+  --panel:#111d2a;
+  --text:#f0ede8;
+  --muted:#8a9bae;
+  --accent:#c9a84c;
+  --accent2:#e8c86e;
+  --line:rgba(201,168,76,.18);
+  --line-soft:rgba(255,255,255,.07);
+  --radius:20px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Barlow',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:.45;
+}
+.wrap{max-width:1260px;margin:0 auto;padding:0 24px 80px;position:relative;z-index:1}
+
+/* NAV */
+.nav{
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:18px 0;
+  position:sticky;top:0;
+  background:rgba(8,12,16,.82);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line-soft);
+  z-index:50;
+}
+.brand{
+  font-family:'Barlow Condensed',sans-serif;
+  letter-spacing:.24em;font-weight:800;
+  color:var(--accent);font-size:15px;
+  text-transform:uppercase;
+}
+.navlinks{display:flex;gap:24px;align-items:center;color:var(--muted);font-size:14px;font-weight:500}
+.navlinks a{transition:color .2s}
+.navlinks a:hover{color:var(--accent)}
+.navlinks a.current{color:var(--accent)}
+.nav-cta{
+  padding:10px 20px;border-radius:10px;
+  background:var(--accent);color:#0a0a0a;
+  font-weight:700;font-size:13px;
+  font-family:'Barlow Condensed',sans-serif;
+  letter-spacing:.1em;text-transform:uppercase;
+  transition:background .2s;
+}
+.nav-cta:hover{background:var(--accent2)}
+
+@media (max-width:880px){ .navlinks{display:none} }
+
+/* SHARED */
+.card{
+  background:var(--surface);
+  border:1px solid var(--line-soft);
+  border-radius:var(--radius);
+  box-shadow:0 24px 80px rgba(0,0,0,.5);
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Barlow Condensed',sans-serif;
+  color:var(--accent);text-transform:uppercase;
+  letter-spacing:.22em;font-size:12px;font-weight:700;
+  margin-bottom:18px;
+}
+.eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--accent)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:15px 26px;border-radius:12px;
+  font-weight:700;border:1px solid transparent;cursor:pointer;
+  font-family:'Barlow Condensed',sans-serif;
+  letter-spacing:.08em;text-transform:uppercase;font-size:15px;
+  transition:all .2s;
+}
+.btn.primary{background:var(--accent);color:#0a0a0a}
+.btn.primary:hover{background:var(--accent2);transform:translateY(-1px)}
+.btn.secondary{background:transparent;color:var(--text);border-color:rgba(255,255,255,.2)}
+.btn.secondary:hover{border-color:var(--accent);color:var(--accent)}
+.btn.small{padding:11px 18px;font-size:13px}
+.section{margin-top:20px;padding:48px 50px}
+.section-label{
+  font-family:'Barlow Condensed',sans-serif;
+  color:var(--accent);text-transform:uppercase;
+  letter-spacing:.18em;font-size:11px;font-weight:700;
+  margin-bottom:12px;display:flex;align-items:center;gap:10px;
+}
+.section-label::after{content:'';flex:1;height:1px;background:var(--line)}
+h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(32px,4vw,46px);font-weight:700;
+  line-height:1.1;margin-bottom:14px;
+}
+h2 em{color:var(--accent);font-style:normal}
+.section-intro{color:var(--muted);line-height:1.75;max-width:62ch;font-size:16px;margin-bottom:36px}
+
+@media (max-width:880px){ .section{padding:36px 24px} }
+
+/* HERO */
+.hero{padding:64px 0 8px;text-align:center;margin-top:32px}
+h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(42px,6vw,68px);
+  line-height:1.02;letter-spacing:-.02em;font-weight:700;
+  margin-bottom:18px;
+}
+h1 em{color:var(--accent);font-style:italic}
+.hero-sub{font-size:17px;color:var(--muted);line-height:1.75;max-width:60ch;margin:0 auto 28px}
+.hero-meta{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent2);border:1px solid var(--line);
+  padding:10px 22px;border-radius:999px;
+}
+
+/* FIT SECTION */
+.fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+.fit-col{
+  padding:32px 30px;border-radius:16px;
+  border:1px solid var(--line-soft);
+  background:rgba(255,255,255,.02);
+}
+.fit-col.not-for{background:rgba(255,255,255,.012)}
+.fit-col-label{
+  font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;margin-bottom:20px;
+}
+.fit-col.for-this .fit-col-label{color:var(--accent)}
+.fit-col.not-for .fit-col-label{color:var(--muted)}
+.fit-col ul{list-style:none}
+.fit-col li{
+  display:flex;align-items:flex-start;gap:12px;
+  font-size:14.5px;line-height:1.65;padding:12px 0;
+  border-bottom:1px solid var(--line-soft);
+  color:var(--text);
+}
+.fit-col li:last-child{border-bottom:none}
+.fit-col.not-for li{color:var(--muted)}
+.fit-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:8px;background:var(--accent)}
+.fit-col.not-for .fit-dot{background:var(--muted)}
+.fit-note{
+  margin-top:32px;max-width:680px;
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:19px;color:var(--text);line-height:1.6;
+  border-left:3px solid var(--accent);padding-left:24px;
+}
+
+@media (max-width:880px){ .fit-grid{grid-template-columns:1fr} }
+
+/* OFFERS */
+.offer-block{
+  border:1px solid var(--line-soft);border-radius:18px;
+  margin-bottom:16px;overflow:hidden;background:rgba(255,255,255,.015);
+}
+.offer-block.featured{border-color:var(--accent)}
+.offer-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:0}
+.offer-left{padding:36px 34px}
+.offer-block.featured .offer-left{background:rgba(201,168,76,.04)}
+.offer-right{padding:36px 34px;background:rgba(255,255,255,.015);border-left:1px solid var(--line-soft)}
+.offer-badge{
+  display:inline-block;font-family:'Barlow Condensed',sans-serif;
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:#0a0a0a;background:var(--accent);
+  padding:5px 12px;border-radius:999px;margin-bottom:14px;font-weight:700;
+}
+.offer-eyebrow{
+  font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);
+  margin-bottom:10px;display:block;
+}
+.offer-left h3{
+  font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:700;
+  margin-bottom:14px;line-height:1.15;
+}
+.offer-left > p{color:var(--muted);font-size:15px;line-height:1.75;margin-bottom:20px}
+.offer-changes{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;
+  color:var(--text);line-height:1.6;
+  border-top:1px solid var(--line-soft);padding-top:18px;
+}
+.offer-right-label{
+  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:16px;display:block;
+}
+.offer-details{list-style:none;margin-bottom:24px}
+.offer-details li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:13.5px;color:var(--muted);padding:9px 0;
+  border-bottom:1px solid var(--line-soft);line-height:1.5;
+}
+.offer-details li:last-child{border-bottom:none}
+.offer-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:7px}
+
+@media (max-width:880px){
+  .offer-grid{grid-template-columns:1fr}
+  .offer-right{border-left:none;border-top:1px solid var(--line-soft)}
+}
+
+/* PROCESS */
+.process-steps{list-style:none}
+.process-step{
+  display:grid;grid-template-columns:56px 1fr;gap:22px;
+  padding:26px 0;border-bottom:1px solid var(--line-soft);
+}
+.process-step:first-child{border-top:1px solid var(--line-soft)}
+.process-num{
+  font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;color:var(--accent);
+}
+.process-step h4{font-size:16px;font-weight:600;margin-bottom:6px}
+.process-step p{font-size:14.5px;color:var(--muted);line-height:1.7}
+
+/* FOOTER CTA */
+.footer-cta{
+  margin-top:20px;padding:40px 44px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;
+}
+.footer-cta h2{margin-bottom:4px;font-size:clamp(26px,3.4vw,36px)}
+.footer-cta-sub{color:var(--muted);font-size:13px}
+.footer-links{
+  margin-top:20px;padding:24px 0 0;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+  color:var(--muted);font-size:13px;
+}
+.footer-social{display:flex;gap:18px}
+.footer-social a:hover{color:var(--accent)}
+
+@media (max-width:880px){
+  .hero{padding:44px 0 8px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="nav">
+  <a href="/" class="brand">The King Maker</a>
+  <div class="navlinks">
+    <a href="/book/">Book</a>
+    <a href="/code/">Code</a>
+    <a href="/coaching/" class="current">Coaching</a>
+    <a href="/about/">About</a>
+  </div>
+  <a href="/audit/" class="nav-cta">Take the Audit</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="eyebrow" style="justify-content:center">Work With Me</div>
+  <h1>This is <em>application-only.</em></h1>
+  <p class="hero-sub">The King Maker Code, applied directly to your life — your pillars, your gaps, your standard. Healthcare IT background. Systems thinking. No pitch, no pressure, no room for men who aren't ready to do the work.</p>
+  <div class="hero-meta">Three Tiers &middot; Application Required &middot; No Open Calendar Link</div>
+</header>
+
+<!-- FIT -->
+<section class="card section">
+  <div class="section-label">Before You Apply</div>
+  <h2>This isn't for everyone.<br><em>That's the point.</em></h2>
+  <p class="section-intro">Coaching only works when both sides are actually in it. I'd rather tell you plainly now than waste either of our time later.</p>
+
+  <div class="fit-grid">
+    <div class="fit-col for-this">
+      <div class="fit-col-label">This Is Built For</div>
+      <ul>
+        <li><div class="fit-dot"></div>Men who already know something in their life needs to change — and are done waiting for the right moment to start.</li>
+        <li><div class="fit-dot"></div>Men willing to be told the truth about their own patterns, including the parts that are hard to hear.</li>
+        <li><div class="fit-dot"></div>Men who'll do the work between sessions, not just during them.</li>
+        <li><div class="fit-dot"></div>Men who want a framework and a standard, not a cheerleader.</li>
+      </ul>
+    </div>
+    <div class="fit-col not-for">
+      <div class="fit-col-label">This Is Not Built For</div>
+      <ul>
+        <li><div class="fit-dot"></div>Men looking for motivation, hype, or someone to tell them they're already doing great.</li>
+        <li><div class="fit-dot"></div>Men who want results without changing any behavior.</li>
+        <li><div class="fit-dot"></div>Men in active crisis who need clinical or emergency support — that's not what this is, and I'll tell you so directly.</li>
+        <li><div class="fit-dot"></div>Men who aren't ready to be honest about where they actually stand.</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="fit-note">"If you're not sure which side of this you're on, that's a fair place to start. Take the Audit first — it'll tell you more than this page can."</p>
+</section>
+
+<!-- OFFERS -->
+<section class="card section">
+  <div class="section-label">The Three Ways In</div>
+  <h2>Pick the depth that matches <em>where you are.</em></h2>
+
+  <!-- Identity Intensive -->
+  <div class="offer-block">
+    <div class="offer-grid">
+      <div class="offer-left">
+        <span class="offer-eyebrow">Single Session</span>
+        <h3>Identity Intensive</h3>
+        <p>A single deep-dive session across the five pillars. Walk away with a clear picture of where you're strong and a concrete next step — no ongoing commitment, just clarity.</p>
+        <p class="offer-changes">Best if you need a clear-eyed read on where you actually stand before committing to deeper work.</p>
+      </div>
+      <div class="offer-right">
+        <span class="offer-right-label">What's Included</span>
+        <ul class="offer-details">
+          <li><div class="offer-dot"></div>90-minute 1:1 session</li>
+          <li><div class="offer-dot"></div>Full King Maker Code assessment</li>
+          <li><div class="offer-dot"></div>Personalized action framework</li>
+          <li><div class="offer-dot"></div>Follow-up summary document</li>
+        </ul>
+        <a href="mailto:information.king.maker@gmail.com?subject=Identity Intensive" class="btn secondary small">Apply for This &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 90-Day Engagement -->
+  <div class="offer-block featured">
+    <div class="offer-grid">
+      <div class="offer-left">
+        <span class="offer-badge">Most Popular</span>
+        <span class="offer-eyebrow">3-Month Engagement</span>
+        <h3>90-Day Engagement</h3>
+        <p>Three months of focused work across the pillars that matter most. Built around your schedule, your goals, and your standard — with real accountability between sessions, not just during them.</p>
+        <p class="offer-changes">Best if you're ready to actually rebuild something, not just understand it intellectually.</p>
+      </div>
+      <div class="offer-right">
+        <span class="offer-right-label">What's Included</span>
+        <ul class="offer-details">
+          <li><div class="offer-dot"></div>Bi-weekly 60-minute sessions</li>
+          <li><div class="offer-dot"></div>Accountability check-ins</li>
+          <li><div class="offer-dot"></div>Email access between sessions</li>
+          <li><div class="offer-dot"></div>Custom King Maker roadmap</li>
+          <li><div class="offer-dot"></div>Full resource library</li>
+        </ul>
+        <a href="mailto:information.king.maker@gmail.com?subject=90-Day Coaching" class="btn primary small">Apply Now &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leadership Consulting -->
+  <div class="offer-block">
+    <div class="offer-grid">
+      <div class="offer-left">
+        <span class="offer-eyebrow">For Organizations &amp; Teams</span>
+        <h3>Leadership Consulting</h3>
+        <p>The King Maker framework applied to leadership culture — healthcare IT, project management, high-performance teams. Built from inside the industry, not borrowed from a generic leadership deck.</p>
+        <p class="offer-changes">Best if your team's gap isn't skill — it's standard, ownership, or trust.</p>
+      </div>
+      <div class="offer-right">
+        <span class="offer-right-label">What's Included</span>
+        <ul class="offer-details">
+          <li><div class="offer-dot"></div>Team workshops and offsites</li>
+          <li><div class="offer-dot"></div>Leadership culture assessment</li>
+          <li><div class="offer-dot"></div>Systems design for teams</li>
+          <li><div class="offer-dot"></div>Custom engagement scope</li>
+        </ul>
+        <a href="mailto:information.king.maker@gmail.com?subject=Leadership Consulting" class="btn secondary small">Let's Talk &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="card section">
+  <div class="section-label">What Happens After You Apply</div>
+  <h2>No black box.<br><em>No open calendar link.</em></h2>
+  <p class="section-intro">Applying isn't booking. It's a conversation that starts with a real email, from me, not an autoresponder.</p>
+
+  <ul class="process-steps">
+    <li class="process-step">
+      <span class="process-num">01</span>
+      <div>
+        <h4>You send the application email</h4>
+        <p>Use the subject line for the tier you're applying to. Tell me where you actually are right now — not the polished version, the real one.</p>
+      </div>
+    </li>
+    <li class="process-step">
+      <span class="process-num">02</span>
+      <div>
+        <h4>I respond personally, usually within 2&ndash;3 days</h4>
+        <p>If it's a fit, we set up a short call to confirm scope and make sure this is the right tier for where you're starting from.</p>
+      </div>
+    </li>
+    <li class="process-step">
+      <span class="process-num">03</span>
+      <div>
+        <h4>If it's not a fit, I'll tell you that too</h4>
+        <p>And point you toward what might actually help instead — the book, the Code, or just the next issue of the newsletter.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- FOOTER CTA -->
+<div class="card footer-cta">
+  <div>
+    <h2>Not sure which tier is right?</h2>
+    <div class="footer-cta-sub">Take the Audit first. Ten questions, scored results.</div>
+  </div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap">
+    <a class="btn primary" href="/audit/">Take the Audit</a>
+    <a class="btn secondary" href="mailto:information.king.maker@gmail.com?subject=Coaching Inquiry">Just Ask a Question</a>
+  </div>
+</div>
+
+<div class="footer-links">
+  <span>&copy; 2026 The King Maker. All rights reserved.</span>
+  <div class="footer-social">
+    <a href="https://the-kingmaker-weekly.beehiiv.com" target="_blank">Newsletter</a>
+    <a href="https://www.linkedin.com/in/myles-johnson-92b88028/" target="_blank">LinkedIn</a>
+    <a href="https://www.instagram.com/thekingmaker_2023/" target="_blank">Instagram</a>
+    <a href="mailto:information.king.maker@gmail.com">Contact</a>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

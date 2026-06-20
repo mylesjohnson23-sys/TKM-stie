@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>About | The King Maker</title>
+<meta name="description" content="Myles Johnson built and lost and rebuilt — in business, in fatherhood, and in himself. This is why The King Maker exists."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#080c10;
+  --surface:#0e1520;
+  --panel:#111d2a;
+  --text:#f0ede8;
+  --muted:#8a9bae;
+  --accent:#c9a84c;
+  --accent2:#e8c86e;
+  --line:rgba(201,168,76,.18);
+  --line-soft:rgba(255,255,255,.07);
+  --radius:20px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Barlow',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:.45;
+}
+.wrap{max-width:1260px;margin:0 auto;padding:0 24px 80px;position:relative;z-index:1}
+
+/* NAV */
+.nav{
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:18px 0;
+  position:sticky;top:0;
+  background:rgba(8,12,16,.82);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line-soft);
+  z-index:50;
+}
+.brand{
+  font-family:'Barlow Condensed',sans-serif;
+  letter-spacing:.24em;font-weight:800;
+  color:var(--accent);font-size:15px;
+  text-transform:uppercase;
+}
+.navlinks{display:flex;gap:24px;align-items:center;color:var(--muted);font-size:14px;font-weight:500}
+.navlinks a{transition:color .2s}
+.navlinks a:hover{color:var(--accent)}
+.navlinks a.current{color:var(--accent)}
+.nav-cta{
+  padding:10px 20px;border-radius:10px;
+  background:var(--accent);color:#0a0a0a;
+  font-weight:700;font-size:13px;
+  font-family:'Barlow Condensed',sans-serif;
+  letter-spacing:.1em;text-transform:uppercase;
+  transition:background .2s;
+}
+.nav-cta:hover{background:var(--accent2)}
+
+@media (max-width:880px){ .navlinks{display:none} }
+
+/* SHARED */
+.card{
+  background:var(--surface);
+  border:1px solid var(--line-soft);
+  border-radius:var(--radius);
+  box-shadow:0 24px 80px rgba(0,0,0,.5);
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Barlow Condensed',sans-serif;
+  color:var(--accent);text-transform:uppercase;
+  letter-spacing:.22em;font-size:12px;font-weight:700;
+  margin-bottom:18px;
+}
+.eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--accent)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:15px 26px;border-radius:12px;
+  font-weight:700;border:1px solid transparent;cursor:pointer;
+  font-family:'Barlow Condensed',sans-serif;
+  letter-spacing:.08em;text-transform:uppercase;font-size:15px;
+  transition:all .2s;
+}
+.btn.primary{background:var(--accent);color:#0a0a0a}
+.btn.primary:hover{background:var(--accent2);transform:translateY(-1px)}
+.btn.secondary{background:transparent;color:var(--text);border-color:rgba(255,255,255,.2)}
+.btn.secondary:hover{border-color:var(--accent);color:var(--accent)}
+.btn.small{padding:11px 18px;font-size:13px}
+.section{margin-top:20px;padding:48px 50px}
+.section-label{
+  font-family:'Barlow Condensed',sans-serif;
+  color:var(--accent);text-transform:uppercase;
+  letter-spacing:.18em;font-size:11px;font-weight:700;
+  margin-bottom:12px;display:flex;align-items:center;gap:10px;
+}
+.section-label::after{content:'';flex:1;height:1px;background:var(--line)}
+h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(32px,4vw,46px);font-weight:700;
+  line-height:1.1;margin-bottom:14px;
+}
+h2 em{color:var(--accent);font-style:normal}
+
+@media (max-width:880px){ .section{padding:36px 24px} }
+
+/* HERO — mission, stated hard */
+.hero{padding:60px 0 8px;margin-top:32px}
+.mission-statement{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(30px,3.6vw,44px);
+  font-weight:700;line-height:1.2;
+  max-width:18ch;margin-bottom:22px;
+}
+.mission-statement em{color:var(--accent);font-style:italic}
+.mission-sub{
+  font-size:17px;color:var(--muted);line-height:1.8;max-width:62ch;margin-bottom:8px;
+}
+.mission-sub strong{color:var(--text);font-weight:600}
+
+/* ORIGIN — personal, told soft */
+.origin-grid{display:grid;grid-template-columns:240px 1fr;gap:44px;align-items:start}
+.origin-photo{
+  border-radius:14px;overflow:hidden;border:1px solid var(--line-soft);
+  aspect-ratio:3/4;position:sticky;top:100px;
+}
+.origin-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(10%) contrast(1.04)}
+.origin-copy{max-width:680px;font-size:1.05rem;line-height:1.85;color:var(--muted)}
+.origin-copy p{margin-bottom:22px}
+.origin-copy strong{color:var(--text);font-weight:600}
+.origin-copy em{color:var(--accent2);font-style:italic}
+.origin-copy .pull{
+  font-family:'Cormorant Garamond',serif;font-weight:600;font-style:italic;
+  color:var(--accent);font-size:1.2rem;line-height:1.5;
+  margin:32px 0;padding-left:22px;border-left:3px solid var(--accent);
+}
+
+@media (max-width:880px){
+  .origin-grid{grid-template-columns:1fr}
+  .origin-photo{max-width:220px;margin:0 auto;position:static}
+}
+
+/* THE STANDARD — manifesto, hard */
+.manifesto{max-width:780px}
+.manifesto-line{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(22px,2.6vw,30px);font-weight:600;
+  line-height:1.45;color:var(--text);
+  padding:20px 0;border-bottom:1px solid var(--line-soft);
+}
+.manifesto-line:first-child{border-top:1px solid var(--line-soft)}
+.manifesto-line em{color:var(--accent);font-style:italic}
+.manifesto-close{
+  margin-top:32px;text-align:center;
+  font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;
+  color:var(--accent);
+}
+
+/* CREDENTIALS */
+.cred-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+.cred-card{
+  padding:28px 24px;border-radius:16px;border:1px solid var(--line-soft);
+  background:rgba(255,255,255,.02);
+}
+.cred-card .ce-label{
+  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);margin-bottom:10px;
+}
+.cred-card h4{font-size:16px;font-weight:600;margin-bottom:8px}
+.cred-card p{font-size:13.5px;color:var(--muted);line-height:1.7}
+
+@media (max-width:880px){ .cred-grid{grid-template-columns:1fr} }
+
+/* BRIDGE */
+.bridge-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+.bridge-card{
+  padding:30px 26px;border-radius:16px;border:1px solid var(--line-soft);
+  background:rgba(255,255,255,.02);display:flex;flex-direction:column;
+  transition:border-color .2s, transform .2s;
+}
+.bridge-card:hover{border-color:var(--line);transform:translateY(-2px)}
+.bridge-card.featured{border-color:var(--accent)}
+.bridge-card-label{
+  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);margin-bottom:12px;
+}
+.bridge-card h3{
+  font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;
+  margin-bottom:10px;line-height:1.2;
+}
+.bridge-card p{color:var(--muted);font-size:13.5px;line-height:1.7;margin-bottom:20px;flex:1}
+
+@media (max-width:880px){ .bridge-grid{grid-template-columns:1fr} }
+
+/* FOOTER CTA */
+.footer-cta{
+  margin-top:20px;padding:40px 44px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;
+}
+.footer-cta h2{margin-bottom:4px;font-size:clamp(26px,3.4vw,36px)}
+.footer-cta-sub{color:var(--muted);font-size:13px}
+.footer-links{
+  margin-top:20px;padding:24px 0 0;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+  color:var(--muted);font-size:13px;
+}
+.footer-social{display:flex;gap:18px}
+.footer-social a:hover{color:var(--accent)}
+
+@media (max-width:880px){ .hero{padding:40px 0 8px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="nav">
+  <a href="/" class="brand">The King Maker</a>
+  <div class="navlinks">
+    <a href="/book/">Book</a>
+    <a href="/code/">Code</a>
+    <a href="/coaching/">Coaching</a>
+    <a href="/about/" class="current">About</a>
+  </div>
+  <a href="/audit/" class="nav-cta">Take the Audit</a>
+</nav>
+
+<!-- HERO — MISSION, STATED HARD -->
+<header class="hero">
+  <div class="eyebrow">Why This Exists</div>
+  <h1 class="mission-statement">Making our men into kings <em>through self-love.</em></h1>
+  <p class="mission-sub">Not motivation. Not a brand built to make you feel good for an hour. <strong>The King Maker exists because most men are not failing for lack of talent — they're failing for lack of a standard.</strong> This is the standard. Hold it, and let the world adjust.</p>
+</header>
+
+<!-- ORIGIN — PERSONAL, TOLD SOFT -->
+<section class="card section">
+  <div class="section-label">The Man Behind The Work</div>
+  <div class="origin-grid">
+    <div class="origin-photo">
+      <img src="/images/author-photo.png" alt="Myles Johnson, founder of The King Maker"/>
+    </div>
+    <div class="origin-copy">
+      <p>I built a business and lost myself in it. I led a family and forgot to lead myself first. For years, I knew exactly what I should be doing — and did the opposite anyway.</p>
+      <p>A partnership I'd built my identity around came apart, and for a while I didn't know who I was without it. I'd spent so long being "the guy who builds things" that when the thing fell apart, I fell with it. There was no blueprint for what came next. No map. Just the quiet, unglamorous work of figuring out who I was when the title was gone.</p>
+      <p class="pull">That rebuilding season is where The King Maker actually started — not as a brand, but as the standard I needed and didn't have.</p>
+      <p>I'm a Healthcare IT professional by trade — <strong>years spent inside complex systems, the kind where one broken connection brings down everything downstream.</strong> That's not just a career detail. It's the lens this entire framework runs through. A man's life is a system too. When one part is out of alignment — identity, integrity, intention, investment, impact — everything downstream of it eventually breaks.</p>
+      <p>I didn't become perfect getting through that season. I became consistent. I became a man who holds a standard, not because life got easier, but because the standard is what made the hard seasons worth something.</p>
+    </div>
+  </div>
+</section>
+
+<!-- THE STANDARD — MANIFESTO, HARD -->
+<section class="card section">
+  <div class="section-label">What We Actually Believe</div>
+  <h2>The Standard, <em>Stated Plainly</em></h2>
+  <div class="manifesto">
+    <p class="manifesto-line">We do not sell motivation. <em>Motivation fades by Wednesday.</em> We build standards, because a standard doesn't care how you feel today.</p>
+    <p class="manifesto-line">Self-love is not indulgence. <em>It is the discipline of holding yourself to who you're capable of being</em> — especially when no one is checking.</p>
+    <p class="manifesto-line">A man's circumstances are not his identity. <em>Where you are is not who you are</em> — but your response to where you are is always, completely yours.</p>
+    <p class="manifesto-line">The standard is universal. <em>The power to unleash it is in everyone</em> — this isn't reserved for men who already have it together.</p>
+    <p class="manifesto-line">We hold the standard. <em>And we let the world adjust.</em></p>
+  </div>
+  <p class="manifesto-close">"Stop being managed. Start building."</p>
+</section>
+
+<!-- CREDENTIALS -->
+<section class="card section">
+  <div class="section-label">Where The Framework Comes From</div>
+  <h2>Not theory. <em>Lived, then built.</em></h2>
+  <div class="cred-grid">
+    <div class="cred-card">
+      <div class="ce-label">Healthcare IT</div>
+      <h4>Systems Thinking</h4>
+      <p>Years inside complex, high-stakes systems — where one weak connection brings down everything downstream. The same logic applies to a man's life.</p>
+    </div>
+    <div class="cred-card">
+      <div class="ce-label">Rebuilt, Not Spared</div>
+      <h4>Lived Experience</h4>
+      <p>A business partnership's collapse, a season of not knowing who he was without the title. The King Maker Code came out of getting through it, not avoiding it.</p>
+    </div>
+    <div class="cred-card">
+      <div class="ce-label">Coaching &amp; Speaking</div>
+      <h4>Applied Daily</h4>
+      <p>The framework isn't theoretical — it's tested in real 1:1 coaching engagements and leadership consulting with teams and organizations.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BRIDGE -->
+<section class="card section">
+  <div class="section-label">Where To Go From Here</div>
+  <h2>Read it. <em>Live it. Apply it.</em></h2>
+
+  <div class="bridge-grid">
+    <div class="bridge-card">
+      <span class="bridge-card-label">The Book</span>
+      <h3>KingMaker</h3>
+      <p>The full story — raw, no filter, no self-help script. Career, fatherhood, identity, all of it laid out.</p>
+      <a href="/book/" class="btn secondary small">Read About the Book &rarr;</a>
+    </div>
+    <div class="bridge-card featured">
+      <span class="bridge-card-label" style="color:var(--accent)">The Framework</span>
+      <h3>The Code</h3>
+      <p>Five pillars, real depth. Identity, Integrity, Intention, Investment, Impact — the standard, broken down.</p>
+      <a href="/code/" class="btn primary small">Explore the Code &rarr;</a>
+    </div>
+    <div class="bridge-card">
+      <span class="bridge-card-label">Know Where You Stand</span>
+      <h3>The Audit</h3>
+      <p>Ten honest questions, scored results. Find your path before you decide what's next.</p>
+      <a href="/audit/" class="btn secondary small">Take the Audit &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<div class="card footer-cta">
+  <div>
+    <h2>Ready to find your path?</h2>
+    <div class="footer-cta-sub">Ten questions. Three paths. One standard.</div>
+  </div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap">
+    <a class="btn primary" href="/audit/">Take the Audit</a>
+    <a class="btn secondary" href="/coaching/">Work With Me</a>
+  </div>
+</div>
+
+<div class="footer-links">
+  <span>&copy; 2026 The King Maker. All rights reserved.</span>
+  <div class="footer-social">
+    <a href="https://the-kingmaker-weekly.beehiiv.com" target="_blank">Newsletter</a>
+    <a href="https://www.linkedin.com/in/myles-johnson-92b88028/" target="_blank">LinkedIn</a>
+    <a href="https://www.instagram.com/thekingmaker_2023/" target="_blank">Instagram</a>
+    <a href="mailto:information.king.maker@gmail.com">Contact</a>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

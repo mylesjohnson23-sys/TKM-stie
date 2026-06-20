@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>The Code | The King Maker</title>
+<meta name="description" content="The King Maker Code: five pillars, real depth. Identity, Integrity, Intention, Investment, Impact — the standard, broken down."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#080c10;
+  --surface:#0e1520;
+  --panel:#111d2a;
+  --text:#f0ede8;
+  --muted:#8a9bae;
+  --accent:#c9a84c;
+  --accent2:#e8c86e;
+  --line:rgba(201,168,76,.18);
+  --line-soft:rgba(255,255,255,.07);
+  --radius:20px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Barlow',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:.45;
+}
+.wrap{max-width:1260px;margin:0 auto;padding:0 24px 80px;position:relative;z-index:1}
+
+/* NAV */
+.nav{
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:18px 0;
+  position:sticky;top:0;
+  background:rgba(8,12,16,.82);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line-soft);
+  z-index:50;
+}
+.brand{
+  font-family:'Barlow Condensed',sans-serif;
+  letter-spacing:.24em;font-weight:800;
+  color:var(--accent);font-size:15px;
+  text-transform:uppercase;
+}
+.navlinks{display:flex;gap:24px;align-items:center;color:var(--muted);font-size:14px;font-weight:500}
+.navlinks a{transition:color .2s}
+.navlinks a:hover{color:var(--accent)}
+.navlinks a.current{color:var(--accent)}
+.nav-cta{
+  padding:10px 20px;border-radius:10px;
+  background:var(--accent);color:#0a0a0a;
+  font-weight:700;font-size:13px;
+  font-family:'Barlow Condensed',sans-serif;
+  letter-spacing:.1em;text-transform:uppercase;
+  transition:background .2s;
+}
+.nav-cta:hover{background:var(--accent2)}
+
+@media (max-width:880px){ .navlinks{display:none} }
+
+/* SHARED */
+.card{
+  background:var(--surface);
+  border:1px solid var(--line-soft);
+  border-radius:var(--radius);
+  box-shadow:0 24px 80px rgba(0,0,0,.5);
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Barlow Condensed',sans-serif;
+  color:var(--accent);text-transform:uppercase;
+  letter-spacing:.22em;font-size:12px;font-weight:700;
+  margin-bottom:18px;
+}
+.eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--accent)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:15px 26px;border-radius:12px;
+  font-weight:700;border:1px solid transparent;cursor:pointer;
+  font-family:'Barlow Condensed',sans-serif;
+  letter-spacing:.08em;text-transform:uppercase;font-size:15px;
+  transition:all .2s;
+}
+.btn.primary{background:var(--accent);color:#0a0a0a}
+.btn.primary:hover{background:var(--accent2);transform:translateY(-1px)}
+.btn.secondary{background:transparent;color:var(--text);border-color:rgba(255,255,255,.2)}
+.btn.secondary:hover{border-color:var(--accent);color:var(--accent)}
+.btn.small{padding:11px 18px;font-size:13px}
+.section{margin-top:20px;padding:48px 50px}
+.section-label{
+  font-family:'Barlow Condensed',sans-serif;
+  color:var(--accent);text-transform:uppercase;
+  letter-spacing:.18em;font-size:11px;font-weight:700;
+  margin-bottom:12px;display:flex;align-items:center;gap:10px;
+}
+.section-label::after{content:'';flex:1;height:1px;background:var(--line)}
+h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(32px,4vw,46px);font-weight:700;
+  line-height:1.1;margin-bottom:14px;
+}
+h2 em{color:var(--accent);font-style:normal}
+.section-intro{color:var(--muted);line-height:1.75;max-width:62ch;font-size:16px;margin-bottom:36px}
+
+@media (max-width:880px){ .section{padding:36px 24px} }
+
+/* HERO */
+.hero{padding:64px 0 8px;text-align:center;margin-top:32px}
+h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(42px,6vw,68px);
+  line-height:1.02;letter-spacing:-.02em;font-weight:700;
+  margin-bottom:18px;
+}
+h1 em{color:var(--accent);font-style:italic}
+.hero-sub{font-size:17px;color:var(--muted);line-height:1.75;max-width:60ch;margin:0 auto 28px}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:6px}
+
+/* PILLAR JUMP NAV */
+.pillar-nav{
+  position:sticky;top:65px;z-index:40;
+  margin-top:20px;
+  display:flex;gap:4px;overflow-x:auto;
+  background:rgba(14,21,32,.92);
+  backdrop-filter:blur(14px);
+  border:1px solid var(--line-soft);
+  border-radius:14px;
+  padding:6px;
+  scrollbar-width:none;
+}
+.pillar-nav::-webkit-scrollbar{display:none}
+.pillar-nav a{
+  flex-shrink:0;padding:12px 18px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);border-radius:10px;
+  transition:color .2s, background .2s;
+  white-space:nowrap;
+}
+.pillar-nav a:hover{color:var(--text)}
+.pillar-nav a.active{color:#0a0a0a;background:var(--accent)}
+.pillar-nav a span{color:var(--accent2);margin-right:6px}
+.pillar-nav a.active span{color:#0a0a0a}
+
+/* INTRO STRIP */
+.intro-text{max-width:760px;margin:0 auto;text-align:center}
+.intro-text p{color:var(--muted);font-size:16.5px;line-height:1.85;margin-bottom:1.25rem}
+.intro-text p:last-child{margin-bottom:0}
+.intro-text strong{color:var(--text);font-weight:600}
+
+/* PILLAR SECTIONS */
+.pillar-head-row{display:flex;align-items:baseline;gap:18px;margin-bottom:18px;flex-wrap:wrap}
+.pillar-roman{
+  font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;
+  color:var(--accent);letter-spacing:.08em;
+}
+.pillar-keyword{
+  font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  border:1px solid var(--line-soft);padding:5px 14px;border-radius:999px;
+}
+.pillar-body p{color:var(--muted);font-size:16px;line-height:1.85;margin-bottom:24px;max-width:700px}
+.pillar-body strong{color:var(--text);font-weight:600}
+.pillar-body em{color:var(--accent);font-style:italic}
+
+.contrast-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+  margin:32px 0;
+}
+.contrast-col{padding:26px 24px;border-radius:14px;border:1px solid var(--line-soft);background:rgba(255,255,255,.02)}
+.contrast-col.not-standard{background:rgba(255,255,255,.012)}
+.contrast-label{
+  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;
+}
+.contrast-col.standard .contrast-label{color:var(--accent)}
+.contrast-col.not-standard .contrast-label{color:var(--muted)}
+.contrast-col ul{list-style:none}
+.contrast-col li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:13.5px;line-height:1.6;padding:9px 0;color:var(--text);
+}
+.contrast-col.not-standard li{color:var(--muted)}
+.contrast-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:7px}
+.contrast-col.standard .contrast-dot{background:var(--accent)}
+.contrast-col.not-standard .contrast-dot{background:var(--muted)}
+
+@media (max-width:760px){ .contrast-grid{grid-template-columns:1fr} }
+
+.field-note{
+  background:var(--panel);border:1px solid var(--line-soft);
+  border-left:3px solid var(--accent);padding:22px 26px;
+  border-radius:0 12px 12px 0;margin:28px 0;
+}
+.field-note .fn-label{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:10px;display:block;
+}
+.field-note p{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;
+  color:var(--text);line-height:1.6;margin-bottom:0 !important;
+}
+
+.reflection{
+  margin-top:28px;padding:24px 26px;
+  background:rgba(201,168,76,.06);border:1px solid var(--line);
+  border-radius:14px;
+}
+.reflection .r-label{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:10px;display:block;
+}
+.reflection p{
+  font-family:'Cormorant Garamond',serif;font-weight:600;font-style:italic;font-size:20px;
+  color:var(--text);line-height:1.5;margin-bottom:0 !important;
+}
+
+/* BRIDGE */
+.bridge-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+.bridge-card{
+  padding:30px 26px;border-radius:16px;border:1px solid var(--line-soft);
+  background:rgba(255,255,255,.02);display:flex;flex-direction:column;
+  transition:border-color .2s, transform .2s;
+}
+.bridge-card:hover{border-color:var(--line);transform:translateY(-2px)}
+.bridge-card.featured{border-color:var(--accent)}
+.bridge-card-label{
+  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);margin-bottom:12px;
+}
+.bridge-card h3{
+  font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;
+  margin-bottom:10px;line-height:1.2;
+}
+.bridge-card p{color:var(--muted);font-size:13.5px;line-height:1.7;margin-bottom:20px;flex:1}
+
+@media (max-width:880px){ .bridge-grid{grid-template-columns:1fr} }
+
+.workbook-note{
+  margin-top:36px;padding-top:28px;border-top:1px solid var(--line-soft);
+  text-align:center;
+}
+.workbook-note p{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;
+  color:var(--muted);max-width:560px;margin:0 auto;line-height:1.6;
+}
+
+/* FOOTER CTA */
+.footer-cta{
+  margin-top:20px;padding:40px 44px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;
+}
+.footer-cta h2{margin-bottom:4px;font-size:clamp(26px,3.4vw,36px)}
+.footer-cta-sub{color:var(--muted);font-size:13px}
+.footer-links{
+  margin-top:20px;padding:24px 0 0;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+  color:var(--muted);font-size:13px;
+}
+.footer-social{display:flex;gap:18px}
+.footer-social a:hover{color:var(--accent)}
+
+@media (max-width:880px){
+  .hero{padding:44px 0 8px}
+  .pillar-nav{top:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="nav">
+  <a href="/" class="brand">The King Maker</a>
+  <div class="navlinks">
+    <a href="/book/">Book</a>
+    <a href="/code/" class="current">Code</a>
+    <a href="/coaching/">Coaching</a>
+    <a href="/about/">About</a>
+  </div>
+  <a href="/audit/" class="nav-cta">Take the Audit</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="eyebrow" style="justify-content:center">The Framework, In Full</div>
+  <h1>The King Maker <em>Code</em></h1>
+  <p class="hero-sub">Five pillars. One standard. This isn't a list of values to admire — it's a standard to hold, pillar by pillar, until holding it is just who you are.</p>
+  <div class="cta-row">
+    <a href="#identity" class="btn primary">Start With Pillar One &rarr;</a>
+    <a href="/audit/" class="btn secondary">Take the Audit</a>
+  </div>
+</header>
+
+<!-- PILLAR JUMP NAV -->
+<nav class="pillar-nav" aria-label="Pillar navigation" id="pillarNav">
+  <a href="#identity"><span>I</span>Identity</a>
+  <a href="#integrity"><span>II</span>Integrity</a>
+  <a href="#intention"><span>III</span>Intention</a>
+  <a href="#investment"><span>IV</span>Investment</a>
+  <a href="#impact"><span>V</span>Impact</a>
+</nav>
+
+<!-- INTRO -->
+<section class="card section">
+  <div class="intro-text">
+    <p>Most frameworks are built backward — a marketing team picks five words that sound good together, and the content gets reverse-engineered to fit. <strong>The King Maker Code didn't start as words. It started as a season.</strong></p>
+    <p>Each pillar below came out of a place where the old version of the man had to die for the next one to show up. They're listed in an order on purpose — not because life moves in a straight line, but because each one builds the ground the next one needs to stand on.</p>
+  </div>
+</section>
+
+<!-- PILLAR I — IDENTITY -->
+<section class="card section" id="identity">
+  <div class="pillar-head-row">
+    <span class="pillar-roman">Pillar I</span>
+    <span class="pillar-keyword">Know Who You Are</span>
+  </div>
+  <h2>Identity</h2>
+  <div class="pillar-body">
+    <p>Identity is the pillar everything else stands on, and it has nothing to do with what you do for a living or what title sits on your business card. <strong>Identity is the answer to a question most men never sit still long enough to ask: who are you before the world tries to define you?</strong></p>
+    <p>Most men inherit an identity instead of building one — a role handed down by a father, a culture, a job, a relationship status. It works fine until it doesn't, until the role gets stripped away and there's nothing underneath it. This pillar is about doing the slower, harder work of knowing yourself well enough that no title, no job loss, no failed relationship can take it from you.</p>
+
+    <div class="contrast-grid">
+      <div class="contrast-col standard">
+        <div class="contrast-label">Identity Looks Like</div>
+        <ul>
+          <li><div class="contrast-dot"></div>Knowing who you are in the room and who you are alone — and them being the same person.</li>
+          <li><div class="contrast-dot"></div>Defining yourself by your standard, not your circumstances.</li>
+          <li><div class="contrast-dot"></div>Being able to lose a job, a title, or a relationship without losing yourself.</li>
+        </ul>
+      </div>
+      <div class="contrast-col not-standard">
+        <div class="contrast-label">It Does Not Look Like</div>
+        <ul>
+          <li><div class="contrast-dot"></div>Letting your job title answer the question of who you are.</li>
+          <li><div class="contrast-dot"></div>Needing other people's approval to know your own worth.</li>
+          <li><div class="contrast-dot"></div>A sense of self that collapses the moment circumstances change.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="field-note">
+      <span class="fn-label">From the Standard</span>
+      <p>"For years I was 'the guy who builds the business.' When the business changed, I didn't know who I was anymore. That gap is where this pillar was born."</p>
+    </div>
+
+    <div class="reflection">
+      <span class="r-label">Sit With This</span>
+      <p>If you lost the thing you lead with when you introduce yourself — what would still be true about you?</p>
+    </div>
+  </div>
+</section>
+
+<!-- PILLAR II — INTEGRITY -->
+<section class="card section" id="integrity">
+  <div class="pillar-head-row">
+    <span class="pillar-roman">Pillar II</span>
+    <span class="pillar-keyword">No Exceptions</span>
+  </div>
+  <h2>Integrity</h2>
+  <div class="pillar-body">
+    <p>Integrity gets thrown around as a synonym for "honesty," but that's only half of it. <strong>Integrity is structural — it's whether your stated values and your actual actions are built from the same material, with no daylight between them.</strong> A man can be honest in conversation and still be out of integrity, if what he says he values and what he actually does don't match.</p>
+    <p>Most men don't lose integrity in one dramatic collapse. They lose it in inches — the standard they hold for everyone except themselves, the value they'll defend in a conversation but quietly compromise on Tuesday. This pillar is about closing that gap, permanently, until your word and your action stop needing to be reconciled because they were never separate.</p>
+
+    <div class="contrast-grid">
+      <div class="contrast-col standard">
+        <div class="contrast-label">Integrity Looks Like</div>
+        <ul>
+          <li><div class="contrast-dot"></div>Doing the thing you said you'd do, on the day you said you'd do it.</li>
+          <li><div class="contrast-dot"></div>Holding the same standard whether or not anyone's watching.</li>
+          <li><div class="contrast-dot"></div>Telling people the truth before they have to ask for it.</li>
+        </ul>
+      </div>
+      <div class="contrast-col not-standard">
+        <div class="contrast-label">It Does Not Look Like</div>
+        <ul>
+          <li><div class="contrast-dot"></div>A standard that bends depending on who's in the room.</li>
+          <li><div class="contrast-dot"></div>Stating values you don't actually act on.</li>
+          <li><div class="contrast-dot"></div>Explaining why this time was different, again.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="field-note">
+      <span class="fn-label">From the Standard</span>
+      <p>"The first time I told a client the project was behind schedule before they noticed, something shifted. I'd rather be the man who says the hard thing on time than the one who gets caught."</p>
+    </div>
+
+    <div class="reflection">
+      <span class="r-label">Sit With This</span>
+      <p>Where's the gap right now between what you said and what you've actually done — and what would it cost you to close it this week?</p>
+    </div>
+  </div>
+</section>
+
+<!-- PILLAR III — INTENTION -->
+<section class="card section" id="intention">
+  <div class="pillar-head-row">
+    <span class="pillar-roman">Pillar III</span>
+    <span class="pillar-keyword">By Design, Not by Default</span>
+  </div>
+  <h2>Intention</h2>
+  <div class="pillar-body">
+    <p>Intention is the difference between a life that happens to you and a life you actually build. <strong>Most men aren't failing because they're lazy — they're drifting because no one taught them that a life requires the same deliberate design as anything else worth building.</strong> Without intention, the days fill themselves in, one default decision at a time, and a year passes that nobody actually chose.</p>
+    <p>This pillar isn't about rigid five-year plans or hustle-culture scheduling. It's about putting purpose before action, every time, so that what you do each day is something you decided rather than something that simply occurred. <em>A man living by design can tell you why he's doing what he's doing. A man living by default can only tell you how he got here.</em></p>
+
+    <div class="contrast-grid">
+      <div class="contrast-col standard">
+        <div class="contrast-label">Intention Looks Like</div>
+        <ul>
+          <li><div class="contrast-dot"></div>Knowing why you're doing something before you start doing it.</li>
+          <li><div class="contrast-dot"></div>Choosing direction over comfort when the two conflict.</li>
+          <li><div class="contrast-dot"></div>Saying no to things that don't serve the life you're actually building.</li>
+        </ul>
+      </div>
+      <div class="contrast-col not-standard">
+        <div class="contrast-label">It Does Not Look Like</div>
+        <ul>
+          <li><div class="contrast-dot"></div>Letting your calendar fill up with other people's priorities.</li>
+          <li><div class="contrast-dot"></div>Drifting from one default decision to the next.</li>
+          <li><div class="contrast-dot"></div>Waking up a year later and not knowing how you got there.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="field-note">
+      <span class="fn-label">From the Standard</span>
+      <p>"I spent years saying yes to whatever showed up — meetings, obligations, other people's emergencies. None of it was a decision. It was just the absence of one."</p>
+    </div>
+
+    <div class="reflection">
+      <span class="r-label">Sit With This</span>
+      <p>What's one thing on your calendar this week that you never actually chose — it just showed up and you let it stay?</p>
+    </div>
+  </div>
+</section>
+
+<!-- PILLAR IV — INVESTMENT -->
+<section class="card section" id="investment">
+  <div class="pillar-head-row">
+    <span class="pillar-roman">Pillar IV</span>
+    <span class="pillar-keyword">What Actually Matters</span>
+  </div>
+  <h2>Investment</h2>
+  <div class="pillar-body">
+    <p>Investment is the pillar that separates men who talk about priorities from men who actually have them. <strong>You can tell what a man values by looking at where his time, his money, and his energy actually go — not by what he says matters to him.</strong> Those three resources are finite, and where they flow is the truest statement of priority any man makes, whether he intends it or not.</p>
+    <p>This pillar isn't about working harder or earning more. It's about closing the gap between your stated priorities and your actual allocation — so the man who says family matters most is the same man whose calendar, bank account, and attention reflect that. Misalignment here doesn't announce itself. It just quietly accumulates until the gap is too wide to ignore.</p>
+
+    <div class="contrast-grid">
+      <div class="contrast-col standard">
+        <div class="contrast-label">Investment Looks Like</div>
+        <ul>
+          <li><div class="contrast-dot"></div>Your calendar and your bank statement matching what you say matters.</li>
+          <li><div class="contrast-dot"></div>Spending energy on what compounds, not just what's urgent.</li>
+          <li><div class="contrast-dot"></div>Treating your own growth as a real line item, not an afterthought.</li>
+        </ul>
+      </div>
+      <div class="contrast-col not-standard">
+        <div class="contrast-label">It Does Not Look Like</div>
+        <ul>
+          <li><div class="contrast-dot"></div>Saying family matters while your calendar says otherwise.</li>
+          <li><div class="contrast-dot"></div>Spending every dollar and every hour on what's loudest, not what's important.</li>
+          <li><div class="contrast-dot"></div>Investing in everything except yourself.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="field-note">
+      <span class="fn-label">From the Standard</span>
+      <p>"I looked at my calendar one week and realized I'd given more hours to other people's businesses than to my own family. The numbers don't lie, even when you do."</p>
+    </div>
+
+    <div class="reflection">
+      <span class="r-label">Sit With This</span>
+      <p>If someone audited your last 30 days of time and money with no context — what would they conclude actually matters to you?</p>
+    </div>
+  </div>
+</section>
+
+<!-- PILLAR V — IMPACT -->
+<section class="card section" id="impact">
+  <div class="pillar-head-row">
+    <span class="pillar-roman">Pillar V</span>
+    <span class="pillar-keyword">Leave It Better</span>
+  </div>
+  <h2>Impact</h2>
+  <div class="pillar-body">
+    <p>Impact is the pillar that closes the loop on the other four — because identity, integrity, intention, and investment can all be held privately, for yourself alone, and still leave the world around you completely unchanged. <strong>Impact asks a different question: who is better off because you were in the room?</strong></p>
+    <p>This isn't about legacy in the grand sense — a building with your name on it, a company that outlives you. It's smaller and more immediate than that: the people and places you touch today, left even slightly better than you found them. A son who inherits a standard instead of an absence. A team that trusts you because you've earned it, one decision at a time. <em>Impact is the proof that the other four pillars were ever real.</em></p>
+
+    <div class="contrast-grid">
+      <div class="contrast-col standard">
+        <div class="contrast-label">Impact Looks Like</div>
+        <ul>
+          <li><div class="contrast-dot"></div>People around you being better off, specifically because of you.</li>
+          <li><div class="contrast-dot"></div>Leaving every room, project, and relationship a little better than you found it.</li>
+          <li><div class="contrast-dot"></div>Building something that outlasts your attention on it.</li>
+        </ul>
+      </div>
+      <div class="contrast-col not-standard">
+        <div class="contrast-label">It Does Not Look Like</div>
+        <ul>
+          <li><div class="contrast-dot"></div>Keeping your growth entirely private, with no ripple effect on anyone else.</li>
+          <li><div class="contrast-dot"></div>Taking more from rooms and relationships than you give back.</li>
+          <li><div class="contrast-dot"></div>Confusing being impressive with actually being useful to someone.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="field-note">
+      <span class="fn-label">From the Standard</span>
+      <p>"When my son was born, I realized the first four pillars were just preparation. They didn't mean anything until they showed up in how I showed up for him."</p>
+    </div>
+
+    <div class="reflection">
+      <span class="r-label">Sit With This</span>
+      <p>Name one person who is measurably better off this year because of how you showed up for them — if you can't, where does that leave you?</p>
+    </div>
+  </div>
+</section>
+
+<!-- BRIDGE -->
+<section class="card section">
+  <div class="section-label">Where This Goes Next</div>
+  <h2>The Code is the framework.<br><em>Here's where it gets applied.</em></h2>
+
+  <div class="bridge-grid">
+    <div class="bridge-card">
+      <span class="bridge-card-label">The Book</span>
+      <h3>The King Maker</h3>
+      <p>The full account — five pillars, real stories, and the rebuilding season that produced them. A deeper, fuller read than any single page can hold.</p>
+      <a href="/book/" class="btn secondary small">Read About the Book &rarr;</a>
+    </div>
+    <div class="bridge-card featured">
+      <span class="bridge-card-label" style="color:var(--accent)">Work With Me</span>
+      <h3>1:1 Coaching</h3>
+      <p>The Code applied directly to your life — your pillars, your gaps, your standard. Not theory. A working session with someone who's lived it.</p>
+      <a href="/coaching/" class="btn primary small">See Coaching Options &rarr;</a>
+    </div>
+    <div class="bridge-card">
+      <span class="bridge-card-label">Know Where You Stand</span>
+      <h3>The Audit</h3>
+      <p>Ten honest questions, scored results. Find out exactly whether the Book, the Code, or Coaching is your right next step.</p>
+      <a href="/audit/" class="btn secondary small">Take the Audit &rarr;</a>
+    </div>
+  </div>
+
+  <div class="workbook-note">
+    <p>Pillar Deep-Dive Workbooks — one per pillar, built for the real work — are currently in development. Subscribers will hear first.</p>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<div class="card footer-cta">
+  <div>
+    <h2>Hold the standard.</h2>
+    <div class="footer-cta-sub">Let the world adjust.</div>
+  </div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap">
+    <a class="btn primary" href="/audit/">Take the Audit</a>
+    <a class="btn secondary" href="/coaching/">Work With Me</a>
+  </div>
+</div>
+
+<div class="footer-links">
+  <span>&copy; 2026 The King Maker. All rights reserved.</span>
+  <div class="footer-social">
+    <a href="https://the-kingmaker-weekly.beehiiv.com" target="_blank">Newsletter</a>
+    <a href="https://www.linkedin.com/in/myles-johnson-92b88028/" target="_blank">LinkedIn</a>
+    <a href="https://www.instagram.com/thekingmaker_2023/" target="_blank">Instagram</a>
+    <a href="mailto:information.king.maker@gmail.com">Contact</a>
+  </div>
+</div>
+
+</div>
+
+<script>
+const navLinks = document.querySelectorAll('.pillar-nav a');
+const sections = Array.from(navLinks).map(a => document.querySelector(a.getAttribute('href')));
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = '#' + entry.target.id;
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+    }
+  });
+}, { threshold: 0.3, rootMargin: '-120px 0px -50% 0px' });
+sections.forEach(s => s && obs.observe(s));
+</script>
+</body>
+</html>
