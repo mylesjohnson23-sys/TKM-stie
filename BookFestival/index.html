@@ -5,20 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KingMaker — Myles Johnson</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --black: #0d0c09;
-    --panel: #161410;
-    --panel-2: #1c1914;
-    --rule: #38332a;
-    --rule-soft: #2a261f;
+    --black: #080c10;
+    --panel: #0e1520;
+    --panel-2: #111d2a;
+    --rule: rgba(201,168,76,.18);
+    --rule-soft: rgba(255,255,255,.07);
     --gold: #c9a84c;
     --gold-deep: #8a6f2e;
-    --gold-bright: #ddc274;
-    --ink: #ece6d6;
-    --ink-soft: #b9b2a0;
-    --ink-dim: #837c6c;
+    --gold-bright: #e8c86e;
+    --ink: #f0ede8;
+    --ink-soft: #c7c2b8;
+    --ink-dim: #8a9bae;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,17 +28,17 @@
   body {
     background: var(--black);
     color: var(--ink);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Barlow', sans-serif;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
 
   .display {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
   }
 
   .eyebrow {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Barlow', sans-serif;
     font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0.22em;
@@ -72,7 +72,7 @@
     height: 68px;
   }
   .nav-mark {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-weight: 800;
     font-size: 1.1rem;
     letter-spacing: 0.04em;
@@ -141,7 +141,7 @@
     margin: 28px 0 24px;
   }
   .hero-subtitle {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-weight: 500;
     font-size: 1.32rem;
@@ -195,8 +195,8 @@
     position: relative;
     width: 340px;
     aspect-ratio: 0.66/1;
-    background: linear-gradient(155deg, #131110 0%, #0d0c09 55%, #0a0908 100%);
-    border: 1px solid #2c2820;
+    background: linear-gradient(155deg, #131a22 0%, #0e1520 55%, #080c10 100%);
+    border: 1px solid #1c2935;
     border-radius: 2px;
     box-shadow: 0 30px 70px -20px rgba(0,0,0,0.85), 0 0 0 1px rgba(201,168,76,0.06);
     display: flex;
@@ -220,7 +220,7 @@
     user-select: none;
   }
   .cover-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-weight: 800;
     text-align: center;
     letter-spacing: 0.12em;
@@ -236,7 +236,7 @@
     text-align: center;
     margin-top: 18px;
     font-style: italic;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     max-width: 220px;
     line-height: 1.5;
     position: relative;
@@ -274,7 +274,7 @@
   }
   .section-head .eyebrow { display: block; margin-bottom: 16px; }
   .section-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-weight: 700;
     font-size: clamp(1.9rem, 3.4vw, 2.6rem);
     color: var(--ink);
@@ -291,7 +291,7 @@
   .book-copy p { margin-bottom: 26px; }
   .book-copy strong { color: var(--ink); font-weight: 700; }
   .book-copy .standalone {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-weight: 700;
     font-style: italic;
     color: var(--gold);
@@ -309,7 +309,7 @@
   .book-copy .sign {
     text-align: center;
     margin-top: 16px;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     color: var(--ink);
     letter-spacing: 0.04em;
   }
@@ -332,14 +332,14 @@
     background: linear-gradient(180deg, var(--gold), var(--gold-deep));
   }
   .excerpt-label {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: 0.92rem;
     color: var(--ink-dim);
     margin-bottom: 28px;
   }
   .excerpt-body p {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: 1.32rem;
     line-height: 1.75;
@@ -360,7 +360,7 @@
     border-radius: 0 4px 4px 0;
   }
   .your-move .ym-label {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Barlow', sans-serif;
     font-weight: 700;
     font-size: 0.78rem;
     letter-spacing: 0.14em;
@@ -370,7 +370,7 @@
     display: block;
   }
   .your-move p {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Barlow', sans-serif;
     font-style: normal;
     font-size: 1.02rem;
     color: var(--ink-soft);
@@ -401,7 +401,7 @@
     z-index: -1;
   }
   .author-name {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 1.9rem;
     font-weight: 700;
     color: var(--gold);
@@ -441,7 +441,7 @@
   }
   .event-info .eyebrow { margin-bottom: 12px; display: block; }
   .event-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 1.7rem;
     font-weight: 700;
     color: var(--ink);
@@ -472,7 +472,7 @@
     text-align: center;
   }
   .final-cta-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: clamp(2rem, 4vw, 2.8rem);
     font-weight: 700;
     margin-bottom: 18px;
@@ -597,7 +597,7 @@
 <section id="author">
   <div class="wrap author-grid">
     <div class="author-photo-frame">
-      <img src="/images/author-photo.png" alt="Myles Johnson, author of KingMaker">
+      <img src="/BookFestival/images/author-photo.png" alt="Myles Johnson, author of KingMaker">
     </div>
     <div class="author-bio">
       <div class="author-name">Myles Johnson</div>
