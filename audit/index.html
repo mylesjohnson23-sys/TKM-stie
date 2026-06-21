@@ -454,7 +454,7 @@ submitBtn.addEventListener('click', function () {
 
   fetch(WEBHOOK_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'text/plain' },
     body: JSON.stringify(payload)
   }).catch(function () {
     // Silent fail — thank you screen still shows
