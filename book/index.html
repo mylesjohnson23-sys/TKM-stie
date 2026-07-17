@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>The King Maker | Hold the Standard</title>
-<meta name="description" content="A standard for men who lead themselves first — Book, Code, and Coaching built on Identity, Integrity, Intention, Investment, and Impact."/>
+<title>The Book | The King Maker</title>
+<meta name="description" content="KingMaker by Myles Johnson — the blueprint for men who are done being managed by their own life. Available now on Amazon in paperback and Kindle."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet"/>
@@ -59,6 +59,7 @@ body::before{
 .navlinks{display:flex;gap:24px;align-items:center;color:var(--muted);font-size:14px;font-weight:500}
 .navlinks a{transition:color .2s}
 .navlinks a:hover{color:var(--accent)}
+.navlinks a.current{color:var(--accent)}
 .nav-cta{
   padding:10px 20px;border-radius:10px;
   background:var(--accent);color:#0a0a0a;
@@ -68,7 +69,8 @@ body::before{
   transition:background .2s;
 }
 .nav-cta:hover{background:var(--accent2)}
-.nav-toggle{display:none}
+
+@media (max-width:880px){ .navlinks{display:none} }
 
 /* SHARED */
 .card{
@@ -97,7 +99,7 @@ body::before{
 .btn.primary:hover{background:var(--accent2);transform:translateY(-1px)}
 .btn.secondary{background:transparent;color:var(--text);border-color:rgba(255,255,255,.2)}
 .btn.secondary:hover{border-color:var(--accent);color:var(--accent)}
-.btn.small{padding:11px 18px;font-size:13px}
+.btn.disabled{opacity:.5;cursor:default;pointer-events:none}
 .section{margin-top:20px;padding:48px 50px}
 .section-label{
   font-family:'Barlow Condensed',sans-serif;
@@ -112,203 +114,130 @@ h2{
   line-height:1.1;margin-bottom:14px;
 }
 h2 em{color:var(--accent);font-style:normal}
-.section-intro{color:var(--muted);line-height:1.75;max-width:62ch;font-size:16px;margin-bottom:36px}
+
+@media (max-width:880px){ .section{padding:36px 24px} }
 
 /* HERO */
 .hero{
   display:grid;
-  grid-template-columns:1.25fr .75fr;
+  grid-template-columns:.85fr 1.15fr;
   gap:20px;
   align-items:stretch;
   margin-top:32px;
 }
-.hero-copy{padding:58px 52px}
-h1{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(50px,6.2vw,82px);
-  line-height:.98;
-  letter-spacing:-.03em;
-  font-weight:700;
-  margin-bottom:18px;
-}
-h1 em{color:var(--accent);font-style:normal}
-.sub{
-  font-size:18px;line-height:1.75;
-  color:var(--muted);max-width:50ch;
-  margin-bottom:30px;
-  font-weight:400;
-}
-.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
-.hero-quote{
-  margin-top:36px;padding-top:24px;
-  border-top:1px solid var(--line-soft);
-  font-family:'Cormorant Garamond',serif;
-  font-style:italic;font-size:17px;color:var(--muted);
-}
-.hero-side{
-  padding:28px;
-  display:flex;flex-direction:column;justify-content:space-between;
-  gap:14px;
-}
-.hero-side-panel{
-  padding:22px;border:1px solid var(--line-soft);border-radius:16px;
-  background:rgba(255,255,255,.025);flex:1;
-  display:flex;flex-direction:column;justify-content:center;
-}
-.hero-side-label{
-  font-family:'Barlow Condensed',sans-serif;
-  color:var(--accent);text-transform:uppercase;
-  letter-spacing:.14em;font-size:11px;font-weight:700;
-  margin-bottom:10px;
-}
-.hero-side-panel h3{
-  font-family:'Cormorant Garamond',serif;
-  font-size:23px;font-weight:600;margin-bottom:8px;
-}
-.hero-side-panel p{color:var(--muted);line-height:1.6;font-size:14.5px}
-.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.hero-stat{
-  padding:16px 10px;border:1px solid var(--line-soft);border-radius:14px;
-  background:rgba(255,255,255,.025);text-align:center;
-}
-.hero-stat b{
-  display:block;font-size:24px;color:var(--accent);
-  font-family:'Cormorant Garamond',serif;font-weight:700;
-}
-.hero-stat span{color:var(--muted);font-size:10.5px;font-family:'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase}
-
-/* PILLARS */
-.pillars-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-.pillar{
-  padding:24px 18px;border:1px solid var(--line-soft);border-radius:16px;
-  background:rgba(255,255,255,.025);text-align:center;
-  transition:border-color .2s, background .2s;
-}
-.pillar:hover{border-color:var(--line);background:rgba(255,255,255,.04)}
-.pillar-num{
-  font-family:'Cormorant Garamond',serif;
-  font-size:34px;color:var(--accent);font-weight:700;
-  line-height:1;margin-bottom:12px;
-}
-.pillar h4{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:14px;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--text);font-weight:700;margin-bottom:8px;
-}
-.pillar p{color:var(--muted);font-size:13px;line-height:1.55}
-.section-cta-row{margin-top:32px;display:flex;justify-content:center}
-
-/* AUDIT TEASER (signature element) */
-.audit-teaser-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:32px;
-}
-.preview-q{
-  padding:22px;border:1px solid var(--line-soft);border-radius:16px;
-  background:rgba(255,255,255,.02);
+.hero-visual{
+  padding:40px;
+  display:flex;align-items:center;justify-content:center;
   position:relative;overflow:hidden;
 }
-.preview-q::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(180deg, transparent 0%, rgba(8,12,16,.5) 75%, rgba(8,12,16,.92) 100%);
-  pointer-events:none;
+.book-cover{
+  position:relative;
+  width:260px;aspect-ratio:.66/1;
+  background:linear-gradient(155deg, #0d1620 0%, #080c10 55%, #060809 100%);
+  border:1px solid var(--line);
+  border-radius:3px;
+  box-shadow:0 30px 70px -18px rgba(0,0,0,.8);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:30px 22px;overflow:hidden;
 }
-.preview-q-num{
-  font-family:'Barlow Condensed',sans-serif;
-  color:var(--accent);font-size:11px;font-weight:700;
-  letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;
+.book-cover .king-mark{
+  position:absolute;font-size:11rem;opacity:.06;color:var(--accent);
+  top:48%;left:50%;transform:translate(-50%,-50%);line-height:1;pointer-events:none;
 }
-.preview-q-title{
+.book-cover-title{
+  font-family:'Cormorant Garamond',serif;font-weight:700;
+  text-align:center;letter-spacing:.1em;position:relative;z-index:1;
+}
+.book-cover-title .l1{font-size:2rem;color:var(--text);display:block}
+.book-cover-title .l2{font-size:2rem;color:var(--accent);display:block;margin-top:2px}
+.book-cover-sub{
+  font-size:.6rem;letter-spacing:.06em;color:var(--muted);text-align:center;
+  margin-top:16px;font-style:italic;font-family:'Cormorant Garamond',serif;
+  max-width:190px;line-height:1.5;position:relative;z-index:1;
+}
+.book-cover-author{
+  position:absolute;bottom:24px;font-size:.68rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);z-index:1;
+}
+.hero-copy{padding:54px 50px}
+h1{
   font-family:'Cormorant Garamond',serif;
-  font-size:18px;font-weight:600;line-height:1.3;margin-bottom:16px;
+  font-size:clamp(46px,5.6vw,72px);
+  line-height:.98;letter-spacing:-.02em;font-weight:700;
+  margin-bottom:16px;
 }
-.preview-choice{
-  display:block;width:100%;text-align:left;
-  padding:11px 14px;margin-bottom:8px;
-  border:1px solid var(--line-soft);border-radius:10px;
-  background:rgba(255,255,255,.02);
-  color:var(--muted);font-size:13px;font-family:'Barlow',sans-serif;
-  cursor:default;
+h1 em{color:var(--accent);font-style:normal}
+.hero-sub{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:19px;color:var(--muted);line-height:1.5;
+  max-width:46ch;margin-bottom:28px;
 }
-.preview-locked{
-  position:absolute;bottom:18px;left:22px;right:22px;
-  text-align:center;z-index:2;
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--accent2);font-weight:700;
-}
-.audit-stat-row{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:32px;
-}
-.audit-stat{
-  padding:24px;border:1px solid var(--line-soft);border-radius:16px;
-  background:rgba(255,255,255,.025);text-align:center;
-}
-.audit-stat b{
-  display:block;font-size:32px;color:var(--accent);
-  font-family:'Cormorant Garamond',serif;font-weight:700;margin-bottom:6px;
-}
-.audit-stat span{color:var(--muted);font-size:12px;font-family:'Barlow Condensed',sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
+.hero-note{font-size:13px;color:var(--muted);margin-top:14px}
 
-/* THREE TIERS */
-.tiers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.tier{
-  padding:32px 28px;border:1px solid var(--line-soft);border-radius:18px;
-  background:rgba(255,255,255,.025);
-  display:flex;flex-direction:column;
-  transition:border-color .2s, transform .2s;
+@media (max-width:880px){
+  .hero{grid-template-columns:1fr}
+  .hero-visual{order:1;padding:32px}
+  .hero-copy{order:2;padding:36px 28px}
 }
-.tier:hover{border-color:var(--line);transform:translateY(-2px)}
-.tier-label{
-  font-family:'Barlow Condensed',sans-serif;
-  color:var(--accent);text-transform:uppercase;
-  letter-spacing:.16em;font-size:11px;font-weight:700;margin-bottom:14px;
-}
-.tier h3{
-  font-family:'Cormorant Garamond',serif;
-  font-size:28px;font-weight:700;margin-bottom:12px;line-height:1.15;
-}
-.tier p{color:var(--muted);font-size:14.5px;line-height:1.7;margin-bottom:24px;flex:1}
 
-/* BRIEFING + NEWSLETTER */
-.briefing-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
-.briefing-copy blockquote{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(20px,2.6vw,28px);
-  line-height:1.5;font-style:italic;color:var(--text);
-  margin-bottom:20px;font-weight:400;
+/* BOOK COPY */
+.book-copy{max-width:680px;margin:0 auto;font-size:1.08rem;line-height:1.85;color:var(--muted)}
+.book-copy p{margin-bottom:24px}
+.book-copy strong{color:var(--text);font-weight:600}
+.book-copy .standalone{
+  font-family:'Cormorant Garamond',serif;font-weight:600;font-style:italic;
+  color:var(--accent);font-size:1.25rem;text-align:center;margin:40px 0;line-height:1.5;
 }
-.briefing-copy cite{
-  color:var(--accent);
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:13px;letter-spacing:.16em;text-transform:uppercase;
-  font-style:normal;display:block;margin-bottom:24px;
+.book-copy .closer{text-align:center;font-style:italic;color:var(--muted);margin-top:36px}
+.book-copy .sign{
+  text-align:center;margin-top:14px;font-family:'Cormorant Garamond',serif;
+  color:var(--text);letter-spacing:.04em;
 }
-.briefing-copy p.body{color:var(--muted);line-height:1.75;font-size:15px}
-.newsletter-panel{
-  padding:32px;border:1px solid var(--line-soft);border-radius:18px;
-  background:rgba(255,255,255,.025);
+
+/* EXCERPT */
+.excerpt-wrap{max-width:700px;margin:0 auto;position:relative;padding-left:32px}
+.excerpt-wrap::before{
+  content:'';position:absolute;left:0;top:4px;bottom:4px;width:3px;
+  background:linear-gradient(180deg, var(--accent), var(--accent2));
 }
-.newsletter-panel h3{
-  font-family:'Cormorant Garamond',serif;
-  font-size:24px;font-weight:600;margin-bottom:10px;
+.excerpt-body p{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.28rem;line-height:1.75;color:var(--text);margin-bottom:20px;
 }
-.newsletter-panel p{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:20px}
-.nl-form{display:flex;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
-.nl-form input{
-  flex:1;background:transparent;border:none;
-  padding:13px 16px;color:var(--text);
-  font-family:'Barlow',sans-serif;font-size:14px;outline:none;
+.excerpt-body strong{font-style:normal;color:var(--accent2);font-weight:700}
+.your-move{
+  margin-top:36px;background:var(--panel);border:1px solid var(--line-soft);
+  border-left:3px solid var(--accent);padding:22px 26px;border-radius:0 12px 12px 0;
 }
-.nl-form input::placeholder{color:var(--muted)}
-.nl-form button{
-  background:var(--accent);border:none;
-  padding:13px 20px;color:#0a0a0a;
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  cursor:pointer;transition:background .2s;white-space:nowrap;
+.your-move .ym-label{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:10px;display:block;
 }
-.nl-form button:hover{background:var(--accent2)}
-.nl-note{font-size:12px;color:var(--muted);margin-top:10px}
+.your-move p{font-family:'Barlow',sans-serif;font-style:normal;font-size:15px;color:var(--muted);line-height:1.65}
+
+/* AUTHOR */
+.author-grid{display:grid;grid-template-columns:240px 1fr;gap:44px;align-items:center}
+.author-photo{
+  border-radius:14px;overflow:hidden;border:1px solid var(--line-soft);
+  aspect-ratio:3/4;
+}
+.author-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(10%) contrast(1.04)}
+.author-name{
+  font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:700;
+  color:var(--accent);margin-bottom:4px;
+}
+.author-role{
+  font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:18px;
+}
+.author-bio p{color:var(--muted);line-height:1.8;margin-bottom:14px;font-size:15px}
+
+@media (max-width:880px){
+  .author-grid{grid-template-columns:1fr;text-align:center}
+  .author-photo{max-width:220px;margin:0 auto}
+}
 
 /* FOOTER CTA */
 .footer-cta{
@@ -323,20 +252,7 @@ h1 em{color:var(--accent);font-style:normal}
   color:var(--muted);font-size:13px;
 }
 .footer-social{display:flex;gap:18px}
-.footer-social a{transition:color .2s}
 .footer-social a:hover{color:var(--accent)}
-
-@media (max-width:880px){
-  .hero{grid-template-columns:1fr}
-  .pillars-grid{grid-template-columns:repeat(2,1fr)}
-  .audit-teaser-grid{grid-template-columns:1fr}
-  .audit-stat-row{grid-template-columns:1fr}
-  .tiers-grid{grid-template-columns:1fr}
-  .briefing-grid{grid-template-columns:1fr}
-  .navlinks{display:none}
-  .section{padding:36px 24px}
-  .hero-copy{padding:40px 28px}
-}
 </style>
 </head>
 <body>
@@ -345,7 +261,7 @@ h1 em{color:var(--accent);font-style:normal}
 <nav class="nav">
   <a href="/" class="brand">The King Maker</a>
   <div class="navlinks">
-    <a href="/book/">Book</a>
+    <a href="/book/" class="current">Book</a>
     <a href="/code/">Code</a>
     <a href="/coaching/">Coaching</a>
     <a href="/about/">About</a>
@@ -355,135 +271,75 @@ h1 em{color:var(--accent);font-style:normal}
 
 <!-- HERO -->
 <section class="hero">
+  <div class="card hero-visual">
+    <div class="book-cover">
+      <div class="king-mark">♔</div>
+      <div class="book-cover-title">
+        <span class="l1">KING</span>
+        <span class="l2">MAKER</span>
+      </div>
+      <p class="book-cover-sub">The Blueprint for Men Who Are Done Being Managed by Their Own Life</p>
+      <div class="book-cover-author">Myles Johnson</div>
+    </div>
+  </div>
   <div class="card hero-copy">
-    <div class="eyebrow">A Standard for Men</div>
-    <h1>Not a niche.<br><em>A standard.</em></h1>
-    <p class="sub">The King Maker is built for men who lead themselves first — with discipline, identity, and direction. A book, a code, and a coaching path, built on one standard that doesn't bend.</p>
+    <div class="eyebrow">Available Now · Paperback &amp; Kindle</div>
+    <h1>King<em>Maker</em></h1>
+    <p class="hero-sub">The Blueprint for Men Who Are Done Being Managed by Their Own Life.</p>
     <div class="cta-row">
-      <a href="/audit/" class="btn primary">Take the Audit →</a>
-      <a href="/book/" class="btn secondary">Get the Book</a>
+      <a href="https://www.amazon.com/dp/B0H7NYS9V9" target="_blank" rel="noopener" class="btn primary">Buy on Amazon →</a>
+      <a href="/audit/" class="btn secondary">Take the Audit →</a>
     </div>
-    <div class="hero-quote">"Hold the standard — and let the world adjust."</div>
+    <p class="hero-note">Paperback $14.99 · Kindle edition available — included with Kindle Unlimited.</p>
   </div>
-  <div class="card hero-side">
-    <div class="hero-side-panel">
-      <div class="hero-side-label">Where to Start</div>
-      <h3>10 questions.<br>One clear path.</h3>
-      <p>Answer honestly. We'll tell you whether to start with the Book, the Code, or Coaching.</p>
+</section>
+
+<!-- BOOK COPY -->
+<section class="card section">
+  <div class="section-label">The Book</div>
+  <h2>Knowing better.<br>Doing nothing.<br><em>That's the trap.</em></h2>
+  <div class="book-copy">
+    <p>I built a business and lost myself in it. I led a family and forgot to lead myself first. I knew exactly what I should be doing — and did the opposite, for years.</p>
+    <p>That's the trap. Knowing better. Doing nothing.</p>
+    <p><strong>KingMaker</strong> is what I learned getting out. Career. Fatherhood. Discipline. Identity. All of it, laid out raw — no filter, no self-help script.</p>
+    <p>Every chapter ends with <strong>Your Move</strong>: the one thing you do next, today, before you close the book and go back to managing everyone else's life but your own.</p>
+    <p class="standalone">This isn't motivation. Motivation fades.<br>This is a blueprint. Blueprints get followed.</p>
+    <p class="closer">"Stop being managed. Start building."</p>
+    <p class="sign">— Myles Johnson</p>
+  </div>
+</section>
+
+<!-- EXCERPT -->
+<section class="card section">
+  <div class="section-label">From the Book</div>
+  <h2>A Passage From <em>KingMaker</em></h2>
+  <div class="excerpt-wrap">
+    <div class="excerpt-body">
+      <p>When my son was born, I was lost. Not lost like I didn't know the road — lost like I didn't know I was supposed to be going anywhere.</p>
+      <p>I grew up with no blueprint. No map. No compass for what the standard looked like. Just survival, dressed up as living.</p>
+      <p>Then I held him.</p>
+      <p>And I knew: <strong>if I build the man I'm supposed to be, he inherits that. If I drift, he inherits that too.</strong></p>
+      <p>I didn't become perfect. I became consistent. I became a man who holds a standard — not because life got easier, but because the standard is what makes the hard seasons worth something.</p>
     </div>
-    <div class="hero-stats">
-      <div class="hero-stat"><b>1</b><span>Standard</span></div>
-      <div class="hero-stat"><b>3</b><span>Paths</span></div>
-      <div class="hero-stat"><b>5</b><span>Pillars</span></div>
+    <div class="your-move">
+      <span class="ym-label">Your Move</span>
+      <p>Stop waiting for the moment that forces your hand. Pick one standard you're not currently holding. Hold it today — before life makes you.</p>
     </div>
   </div>
 </section>
 
-<!-- AUDIT TEASER (signature element) -->
+<!-- AUTHOR -->
 <section class="card section">
-  <div class="section-label">Find Your Path</div>
-  <h2>Where do <em>you</em> stand?</h2>
-  <p class="section-intro">Ten honest questions about discipline, direction, and where you actually are right now — not where you wish you were.</p>
-
-  <div class="audit-teaser-grid">
-    <div class="preview-q">
-      <div class="preview-q-num">Question 01</div>
-      <div class="preview-q-title">How do you start your morning, most days?</div>
-      <div class="preview-choice">Phone first, drifting into the day</div>
-      <div class="preview-choice">Some structure, but it slips</div>
-      <div class="preview-choice">Same standard, every day</div>
-      <div class="preview-locked">Unlock to Continue</div>
+  <div class="section-label">The Man Behind The Work</div>
+  <div class="author-grid">
+    <div class="author-photo">
+      <img src="/images/author-photo.png" alt="Myles Johnson, author of KingMaker"/>
     </div>
-    <div class="preview-q">
-      <div class="preview-q-num">Question 05</div>
-      <div class="preview-q-title">When conflict shows up, what do you do?</div>
-      <div class="preview-choice">Avoid it until it forces my hand</div>
-      <div class="preview-choice">Engage, but lose my composure</div>
-      <div class="preview-choice">Stay grounded, say what's true</div>
-      <div class="preview-locked">Unlock to Continue</div>
-    </div>
-    <div class="preview-q">
-      <div class="preview-q-num">Question 10</div>
-      <div class="preview-q-title">What do you want true 12 months from now?</div>
-      <div class="preview-choice">A clear standard and a foundation</div>
-      <div class="preview-choice">A proven system to build on</div>
-      <div class="preview-choice">The hardest work, already done</div>
-      <div class="preview-locked">Unlock to Continue</div>
-    </div>
-  </div>
-
-  <div class="audit-stat-row">
-    <div class="audit-stat"><b>10</b><span>Questions</span></div>
-    <div class="audit-stat"><b>3</b><span>Possible Paths</span></div>
-    <div class="audit-stat"><b>2 min</b><span>To Complete</span></div>
-  </div>
-
-  <div class="section-cta-row">
-    <a href="/audit/" class="btn primary">Take the Full Audit →</a>
-  </div>
-</section>
-
-<!-- PILLARS TEASER -->
-<section class="card section">
-  <div class="section-label">The Standard</div>
-  <h2>The King Maker <em>Code</em></h2>
-  <p class="section-intro">Five pillars. No exceptions. Everything in the Book, the Code, and Coaching is built on these.</p>
-  <div class="pillars-grid">
-    <div class="pillar"><div class="pillar-num">I</div><h4>Identity</h4><p>Know who you are before the world defines you.</p></div>
-    <div class="pillar"><div class="pillar-num">II</div><h4>Integrity</h4><p>Align your actions with your stated values.</p></div>
-    <div class="pillar"><div class="pillar-num">III</div><h4>Intention</h4><p>Live by design, not by default.</p></div>
-    <div class="pillar"><div class="pillar-num">IV</div><h4>Investment</h4><p>Commit time, money, and energy to what matters.</p></div>
-    <div class="pillar"><div class="pillar-num">V</div><h4>Impact</h4><p>Leave people and places better than you found them.</p></div>
-  </div>
-  <div class="section-cta-row">
-    <a href="/code/" class="btn secondary">Explore The Code →</a>
-  </div>
-</section>
-
-<!-- THREE TIERS -->
-<section class="card section">
-  <div class="section-label">The Path</div>
-  <h2>Book. <em>Code.</em> Coaching.</h2>
-  <p class="section-intro">Three ways in, depending on where you're starting from. Most men begin with the Book.</p>
-  <div class="tiers-grid">
-    <div class="tier">
-      <div class="tier-label">Tier One</div>
-      <h3>The Book</h3>
-      <p>The foundation. Names the problem, introduces the standard, and makes every next step feel obvious. Available now on Amazon — paperback &amp; Kindle.</p>
-      <a href="/book/" class="btn secondary small">Get the Book →</a>
-    </div>
-    <div class="tier">
-      <div class="tier-label">Tier Two</div>
-      <h3>The Code</h3>
-      <p>The system. A working method built on the five pillars — the bridge from inspiration to implementation.</p>
-      <a href="/code/" class="btn secondary small">Explore the Code →</a>
-    </div>
-    <div class="tier">
-      <div class="tier-label">Tier Three</div>
-      <h3>Coaching</h3>
-      <p>Direct, high-touch support for men ready to do the hardest work with someone pushing them further.</p>
-      <a href="/coaching/" class="btn secondary small">See Coaching →</a>
-    </div>
-  </div>
-</section>
-
-<!-- BRIEFING + NEWSLETTER -->
-<section class="card section">
-  <div class="section-label">The Briefing</div>
-  <div class="briefing-grid">
-    <div class="briefing-copy">
-      <blockquote>"Most men are not failing because they lack talent. They are drifting because they lack a standard."</blockquote>
-      <cite>— Myles Johnson, The King Maker</cite>
-      <p class="body">A short, direct briefing on discipline, identity, and direction — no filler, no fluff. The same thinking behind the Book and the Code, delivered straight to your inbox.</p>
-    </div>
-    <div class="newsletter-panel">
-      <h3>Get the Briefing</h3>
-      <p>Real standards, no noise. Sent straight to your inbox.</p>
-      <form class="nl-form" onsubmit="event.preventDefault(); window.open('https://newsletter.the-king-maker.com/subscribe','_blank');">
-        <input type="email" placeholder="Your email address" required/>
-        <button type="submit">Subscribe</button>
-      </form>
-      <p class="nl-note">Free. No spam. Unsubscribe anytime.</p>
+    <div class="author-bio">
+      <div class="author-name">Myles Johnson</div>
+      <div class="author-role">Author · KingMaker</div>
+      <p>Myles Johnson built and lost and rebuilt — in business, in fatherhood, and in himself. KingMaker is the blueprint he wishes someone had handed him: no theory, no filler, just the standard it takes to stop being managed by your own life and start building one on purpose.</p>
+      <p>He lives by one rule: hold the standard, and let the world adjust.</p>
     </div>
   </div>
 </section>
@@ -491,12 +347,12 @@ h1 em{color:var(--accent);font-style:normal}
 <!-- FOOTER CTA -->
 <div class="card footer-cta">
   <div>
-    <h2>Hold the standard.</h2>
-    <div class="footer-cta-sub">Let the world adjust.</div>
+    <h2>Stop being managed. Start building.</h2>
+    <div class="footer-cta-sub">Paperback &amp; Kindle. Available now on Amazon.</div>
   </div>
   <div style="display:flex;gap:12px;flex-wrap:wrap">
-    <a class="btn primary" href="/audit/">Take the Audit</a>
-    <a class="btn secondary" href="/code/">The King Maker Code</a>
+    <a class="btn primary" href="https://www.amazon.com/dp/B0H7NYS9V9" target="_blank" rel="noopener">Buy on Amazon</a>
+    <a class="btn secondary" href="/audit/">Take the Audit</a>
   </div>
 </div>
 
