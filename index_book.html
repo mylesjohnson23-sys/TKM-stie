@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>The King Maker | Hold the Standard</title>
+<meta name="description" content="A standard for men who lead themselves first — Book, Code, and Coaching built on Identity, Integrity, Intention, Investment, and Impact."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#080c10;
+  --surface:#0e1520;
+  --panel:#111d2a;
+  --text:#f0ede8;
+  --muted:#8a9bae;
+  --accent:#c9a84c;
+  --accent2:#e8c86e;
+  --line:rgba(201,168,76,.18);
+  --line-soft:rgba(255,255,255,.07);
+  --radius:20px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Barlow',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:.45;
+}
+.wrap{max-width:1260px;margin:0 auto;padding:0 24px 80px;position:relative;z-index:1}
+
+/* NAV */
+.nav{
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:18px 0;
+  position:sticky;top:0;
+  background:rgba(8,12,16,.82);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line-soft);
+  z-index:50;
+}
+.brand{
+  font-family:'Barlow Condensed',sans-serif;
+  letter-spacing:.24em;font-weight:800;
+  color:var(--accent);font-size:15px;
+  text-transform:uppercase;
+}
+.navlinks{display:flex;gap:24px;align-items:center;color:var(--muted);font-size:14px;font-weight:500}
+.navlinks a{transition:color .2s}
+.navlinks a:hover{color:var(--accent)}
+.nav-cta{
+  padding:10px 20px;border-radius:10px;
+  background:var(--accent);color:#0a0a0a;
+  font-weight:700;font-size:13px;
+  font-family:'Barlow Condensed',sans-serif;
+  letter-spacing:.1em;text-transform:uppercase;
+  transition:background .2s;
+}
+.nav-cta:hover{background:var(--accent2)}
+.nav-toggle{display:none}
+
+/* SHARED */
+.card{
+  background:var(--surface);
+  border:1px solid var(--line-soft);
+  border-radius:var(--radius);
+  box-shadow:0 24px 80px rgba(0,0,0,.5);
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Barlow Condensed',sans-serif;
+  color:var(--accent);text-transform:uppercase;
+  letter-spacing:.22em;font-size:12px;font-weight:700;
+  margin-bottom:18px;
+}
+.eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--accent)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:15px 26px;border-radius:12px;
+  font-weight:700;border:1px solid transparent;cursor:pointer;
+  font-family:'Barlow Condensed',sans-serif;
+  letter-spacing:.08em;text-transform:uppercase;font-size:15px;
+  transition:all .2s;
+}
+.btn.primary{background:var(--accent);color:#0a0a0a}
+.btn.primary:hover{background:var(--accent2);transform:translateY(-1px)}
+.btn.secondary{background:transparent;color:var(--text);border-color:rgba(255,255,255,.2)}
+.btn.secondary:hover{border-color:var(--accent);color:var(--accent)}
+.btn.small{padding:11px 18px;font-size:13px}
+.section{margin-top:20px;padding:48px 50px}
+.section-label{
+  font-family:'Barlow Condensed',sans-serif;
+  color:var(--accent);text-transform:uppercase;
+  letter-spacing:.18em;font-size:11px;font-weight:700;
+  margin-bottom:12px;display:flex;align-items:center;gap:10px;
+}
+.section-label::after{content:'';flex:1;height:1px;background:var(--line)}
+h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(32px,4vw,46px);font-weight:700;
+  line-height:1.1;margin-bottom:14px;
+}
+h2 em{color:var(--accent);font-style:normal}
+.section-intro{color:var(--muted);line-height:1.75;max-width:62ch;font-size:16px;margin-bottom:36px}
+
+/* HERO */
+.hero{
+  display:grid;
+  grid-template-columns:1.25fr .75fr;
+  gap:20px;
+  align-items:stretch;
+  margin-top:32px;
+}
+.hero-copy{padding:58px 52px}
+h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(50px,6.2vw,82px);
+  line-height:.98;
+  letter-spacing:-.03em;
+  font-weight:700;
+  margin-bottom:18px;
+}
+h1 em{color:var(--accent);font-style:normal}
+.sub{
+  font-size:18px;line-height:1.75;
+  color:var(--muted);max-width:50ch;
+  margin-bottom:30px;
+  font-weight:400;
+}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
+.hero-quote{
+  margin-top:36px;padding-top:24px;
+  border-top:1px solid var(--line-soft);
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:17px;color:var(--muted);
+}
+.hero-side{
+  padding:28px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  gap:14px;
+}
+.hero-side-panel{
+  padding:22px;border:1px solid var(--line-soft);border-radius:16px;
+  background:rgba(255,255,255,.025);flex:1;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.hero-side-label{
+  font-family:'Barlow Condensed',sans-serif;
+  color:var(--accent);text-transform:uppercase;
+  letter-spacing:.14em;font-size:11px;font-weight:700;
+  margin-bottom:10px;
+}
+.hero-side-panel h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:23px;font-weight:600;margin-bottom:8px;
+}
+.hero-side-panel p{color:var(--muted);line-height:1.6;font-size:14.5px}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.hero-stat{
+  padding:16px 10px;border:1px solid var(--line-soft);border-radius:14px;
+  background:rgba(255,255,255,.025);text-align:center;
+}
+.hero-stat b{
+  display:block;font-size:24px;color:var(--accent);
+  font-family:'Cormorant Garamond',serif;font-weight:700;
+}
+.hero-stat span{color:var(--muted);font-size:10.5px;font-family:'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase}
+
+/* PILLARS */
+.pillars-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.pillar{
+  padding:24px 18px;border:1px solid var(--line-soft);border-radius:16px;
+  background:rgba(255,255,255,.025);text-align:center;
+  transition:border-color .2s, background .2s;
+}
+.pillar:hover{border-color:var(--line);background:rgba(255,255,255,.04)}
+.pillar-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:34px;color:var(--accent);font-weight:700;
+  line-height:1;margin-bottom:12px;
+}
+.pillar h4{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:14px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text);font-weight:700;margin-bottom:8px;
+}
+.pillar p{color:var(--muted);font-size:13px;line-height:1.55}
+.section-cta-row{margin-top:32px;display:flex;justify-content:center}
+
+/* AUDIT TEASER (signature element) */
+.audit-teaser-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:32px;
+}
+.preview-q{
+  padding:22px;border:1px solid var(--line-soft);border-radius:16px;
+  background:rgba(255,255,255,.02);
+  position:relative;overflow:hidden;
+}
+.preview-q::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg, transparent 0%, rgba(8,12,16,.5) 75%, rgba(8,12,16,.92) 100%);
+  pointer-events:none;
+}
+.preview-q-num{
+  font-family:'Barlow Condensed',sans-serif;
+  color:var(--accent);font-size:11px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;
+}
+.preview-q-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:600;line-height:1.3;margin-bottom:16px;
+}
+.preview-choice{
+  display:block;width:100%;text-align:left;
+  padding:11px 14px;margin-bottom:8px;
+  border:1px solid var(--line-soft);border-radius:10px;
+  background:rgba(255,255,255,.02);
+  color:var(--muted);font-size:13px;font-family:'Barlow',sans-serif;
+  cursor:default;
+}
+.preview-locked{
+  position:absolute;bottom:18px;left:22px;right:22px;
+  text-align:center;z-index:2;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent2);font-weight:700;
+}
+.audit-stat-row{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:32px;
+}
+.audit-stat{
+  padding:24px;border:1px solid var(--line-soft);border-radius:16px;
+  background:rgba(255,255,255,.025);text-align:center;
+}
+.audit-stat b{
+  display:block;font-size:32px;color:var(--accent);
+  font-family:'Cormorant Garamond',serif;font-weight:700;margin-bottom:6px;
+}
+.audit-stat span{color:var(--muted);font-size:12px;font-family:'Barlow Condensed',sans-serif;letter-spacing:.1em;text-transform:uppercase}
+
+/* THREE TIERS */
+.tiers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tier{
+  padding:32px 28px;border:1px solid var(--line-soft);border-radius:18px;
+  background:rgba(255,255,255,.025);
+  display:flex;flex-direction:column;
+  transition:border-color .2s, transform .2s;
+}
+.tier:hover{border-color:var(--line);transform:translateY(-2px)}
+.tier-label{
+  font-family:'Barlow Condensed',sans-serif;
+  color:var(--accent);text-transform:uppercase;
+  letter-spacing:.16em;font-size:11px;font-weight:700;margin-bottom:14px;
+}
+.tier h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;font-weight:700;margin-bottom:12px;line-height:1.15;
+}
+.tier p{color:var(--muted);font-size:14.5px;line-height:1.7;margin-bottom:24px;flex:1}
+
+/* BRIEFING + NEWSLETTER */
+.briefing-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.briefing-copy blockquote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(20px,2.6vw,28px);
+  line-height:1.5;font-style:italic;color:var(--text);
+  margin-bottom:20px;font-weight:400;
+}
+.briefing-copy cite{
+  color:var(--accent);
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+  font-style:normal;display:block;margin-bottom:24px;
+}
+.briefing-copy p.body{color:var(--muted);line-height:1.75;font-size:15px}
+.newsletter-panel{
+  padding:32px;border:1px solid var(--line-soft);border-radius:18px;
+  background:rgba(255,255,255,.025);
+}
+.newsletter-panel h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;font-weight:600;margin-bottom:10px;
+}
+.newsletter-panel p{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:20px}
+.nl-form{display:flex;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.nl-form input{
+  flex:1;background:transparent;border:none;
+  padding:13px 16px;color:var(--text);
+  font-family:'Barlow',sans-serif;font-size:14px;outline:none;
+}
+.nl-form input::placeholder{color:var(--muted)}
+.nl-form button{
+  background:var(--accent);border:none;
+  padding:13px 20px;color:#0a0a0a;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  cursor:pointer;transition:background .2s;white-space:nowrap;
+}
+.nl-form button:hover{background:var(--accent2)}
+.nl-note{font-size:12px;color:var(--muted);margin-top:10px}
+
+/* FOOTER CTA */
+.footer-cta{
+  margin-top:20px;padding:40px 44px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;
+}
+.footer-cta h2{margin-bottom:4px;font-size:clamp(26px,3.4vw,36px)}
+.footer-cta-sub{color:var(--muted);font-size:13px}
+.footer-links{
+  margin-top:20px;padding:24px 0 0;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+  color:var(--muted);font-size:13px;
+}
+.footer-social{display:flex;gap:18px}
+.footer-social a{transition:color .2s}
+.footer-social a:hover{color:var(--accent)}
+
+@media (max-width:880px){
+  .hero{grid-template-columns:1fr}
+  .pillars-grid{grid-template-columns:repeat(2,1fr)}
+  .audit-teaser-grid{grid-template-columns:1fr}
+  .audit-stat-row{grid-template-columns:1fr}
+  .tiers-grid{grid-template-columns:1fr}
+  .briefing-grid{grid-template-columns:1fr}
+  .navlinks{display:none}
+  .section{padding:36px 24px}
+  .hero-copy{padding:40px 28px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="nav">
+  <a href="/" class="brand">The King Maker</a>
+  <div class="navlinks">
+    <a href="/book/">Book</a>
+    <a href="/code/">Code</a>
+    <a href="/coaching/">Coaching</a>
+    <a href="/about/">About</a>
+  </div>
+  <a href="/audit/" class="nav-cta">Take the Audit</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="card hero-copy">
+    <div class="eyebrow">A Standard for Men</div>
+    <h1>Not a niche.<br><em>A standard.</em></h1>
+    <p class="sub">The King Maker is built for men who lead themselves first — with discipline, identity, and direction. A book, a code, and a coaching path, built on one standard that doesn't bend.</p>
+    <div class="cta-row">
+      <a href="/audit/" class="btn primary">Take the Audit →</a>
+      <a href="/book/" class="btn secondary">Get the Book</a>
+    </div>
+    <div class="hero-quote">"Hold the standard — and let the world adjust."</div>
+  </div>
+  <div class="card hero-side">
+    <div class="hero-side-panel">
+      <div class="hero-side-label">Where to Start</div>
+      <h3>10 questions.<br>One clear path.</h3>
+      <p>Answer honestly. We'll tell you whether to start with the Book, the Code, or Coaching.</p>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><b>1</b><span>Standard</span></div>
+      <div class="hero-stat"><b>3</b><span>Paths</span></div>
+      <div class="hero-stat"><b>5</b><span>Pillars</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIT TEASER (signature element) -->
+<section class="card section">
+  <div class="section-label">Find Your Path</div>
+  <h2>Where do <em>you</em> stand?</h2>
+  <p class="section-intro">Ten honest questions about discipline, direction, and where you actually are right now — not where you wish you were.</p>
+
+  <div class="audit-teaser-grid">
+    <div class="preview-q">
+      <div class="preview-q-num">Question 01</div>
+      <div class="preview-q-title">How do you start your morning, most days?</div>
+      <div class="preview-choice">Phone first, drifting into the day</div>
+      <div class="preview-choice">Some structure, but it slips</div>
+      <div class="preview-choice">Same standard, every day</div>
+      <div class="preview-locked">Unlock to Continue</div>
+    </div>
+    <div class="preview-q">
+      <div class="preview-q-num">Question 05</div>
+      <div class="preview-q-title">When conflict shows up, what do you do?</div>
+      <div class="preview-choice">Avoid it until it forces my hand</div>
+      <div class="preview-choice">Engage, but lose my composure</div>
+      <div class="preview-choice">Stay grounded, say what's true</div>
+      <div class="preview-locked">Unlock to Continue</div>
+    </div>
+    <div class="preview-q">
+      <div class="preview-q-num">Question 10</div>
+      <div class="preview-q-title">What do you want true 12 months from now?</div>
+      <div class="preview-choice">A clear standard and a foundation</div>
+      <div class="preview-choice">A proven system to build on</div>
+      <div class="preview-choice">The hardest work, already done</div>
+      <div class="preview-locked">Unlock to Continue</div>
+    </div>
+  </div>
+
+  <div class="audit-stat-row">
+    <div class="audit-stat"><b>10</b><span>Questions</span></div>
+    <div class="audit-stat"><b>3</b><span>Possible Paths</span></div>
+    <div class="audit-stat"><b>2 min</b><span>To Complete</span></div>
+  </div>
+
+  <div class="section-cta-row">
+    <a href="/audit/" class="btn primary">Take the Full Audit →</a>
+  </div>
+</section>
+
+<!-- PILLARS TEASER -->
+<section class="card section">
+  <div class="section-label">The Standard</div>
+  <h2>The King Maker <em>Code</em></h2>
+  <p class="section-intro">Five pillars. No exceptions. Everything in the Book, the Code, and Coaching is built on these.</p>
+  <div class="pillars-grid">
+    <div class="pillar"><div class="pillar-num">I</div><h4>Identity</h4><p>Know who you are before the world defines you.</p></div>
+    <div class="pillar"><div class="pillar-num">II</div><h4>Integrity</h4><p>Align your actions with your stated values.</p></div>
+    <div class="pillar"><div class="pillar-num">III</div><h4>Intention</h4><p>Live by design, not by default.</p></div>
+    <div class="pillar"><div class="pillar-num">IV</div><h4>Investment</h4><p>Commit time, money, and energy to what matters.</p></div>
+    <div class="pillar"><div class="pillar-num">V</div><h4>Impact</h4><p>Leave people and places better than you found them.</p></div>
+  </div>
+  <div class="section-cta-row">
+    <a href="/code/" class="btn secondary">Explore The Code →</a>
+  </div>
+</section>
+
+<!-- THREE TIERS -->
+<section class="card section">
+  <div class="section-label">The Path</div>
+  <h2>Book. <em>Code.</em> Coaching.</h2>
+  <p class="section-intro">Three ways in, depending on where you're starting from. Most men begin with the Book.</p>
+  <div class="tiers-grid">
+    <div class="tier">
+      <div class="tier-label">Tier One</div>
+      <h3>The Book</h3>
+      <p>The foundation. Names the problem, introduces the standard, and makes every next step feel obvious. Available now on Amazon — paperback &amp; Kindle.</p>
+      <a href="/book/" class="btn secondary small">Get the Book →</a>
+    </div>
+    <div class="tier">
+      <div class="tier-label">Tier Two</div>
+      <h3>The Code</h3>
+      <p>The system. A working method built on the five pillars — the bridge from inspiration to implementation.</p>
+      <a href="/code/" class="btn secondary small">Explore the Code →</a>
+    </div>
+    <div class="tier">
+      <div class="tier-label">Tier Three</div>
+      <h3>Coaching</h3>
+      <p>Direct, high-touch support for men ready to do the hardest work with someone pushing them further.</p>
+      <a href="/coaching/" class="btn secondary small">See Coaching →</a>
+    </div>
+  </div>
+</section>
+
+<!-- BRIEFING + NEWSLETTER -->
+<section class="card section">
+  <div class="section-label">The Briefing</div>
+  <div class="briefing-grid">
+    <div class="briefing-copy">
+      <blockquote>"Most men are not failing because they lack talent. They are drifting because they lack a standard."</blockquote>
+      <cite>— Myles Johnson, The King Maker</cite>
+      <p class="body">A short, direct briefing on discipline, identity, and direction — no filler, no fluff. The same thinking behind the Book and the Code, delivered straight to your inbox.</p>
+    </div>
+    <div class="newsletter-panel">
+      <h3>Get the Briefing</h3>
+      <p>Real standards, no noise. Sent straight to your inbox.</p>
+      <form class="nl-form" onsubmit="event.preventDefault(); window.open('https://newsletter.the-king-maker.com/subscribe','_blank');">
+        <input type="email" placeholder="Your email address" required/>
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="nl-note">Free. No spam. Unsubscribe anytime.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<div class="card footer-cta">
+  <div>
+    <h2>Hold the standard.</h2>
+    <div class="footer-cta-sub">Let the world adjust.</div>
+  </div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap">
+    <a class="btn primary" href="/audit/">Take the Audit</a>
+    <a class="btn secondary" href="/code/">The King Maker Code</a>
+  </div>
+</div>
+
+<div class="footer-links">
+  <span>© 2026 The King Maker. All rights reserved.</span>
+  <div class="footer-social">
+    <a href="https://newsletter.the-king-maker.com" target="_blank">Newsletter</a>
+    <a href="https://www.linkedin.com/in/myles-johnson-92b88028/" target="_blank">LinkedIn</a>
+    <a href="https://www.instagram.com/thekingmaker_2023/" target="_blank">Instagram</a>
+    <a href="mailto:information.king.maker@gmail.com">Contact</a>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
