@@ -5,6 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>The King Maker | Hold the Standard</title>
 <meta name="description" content="A standard for men who lead themselves first — Book, Code, and Coaching built on Identity, Integrity, Intention, Investment, and Impact."/>
+<link rel="canonical" href="https://the-king-maker.com/"/>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="/favicon.png" type="image/png" sizes="64x64"/>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+<meta name="theme-color" content="#080c10"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="The King Maker"/>
+<meta property="og:title" content="The King Maker | Hold the Standard"/>
+<meta property="og:description" content="A standard for men who lead themselves first — Book, Code, and Coaching built on Identity, Integrity, Intention, Investment, and Impact."/>
+<meta property="og:url" content="https://the-king-maker.com/"/>
+<meta property="og:image" content="https://the-king-maker.com/images/og-image.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="The King Maker | Hold the Standard"/>
+<meta name="twitter:description" content="A standard for men who lead themselves first — Book, Code, and Coaching built on Identity, Integrity, Intention, Investment, and Impact."/>
+<meta name="twitter:image" content="https://the-king-maker.com/images/og-image.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet"/>
@@ -479,11 +496,11 @@ h1 em{color:var(--accent);font-style:normal}
     <div class="newsletter-panel">
       <h3>Get the Briefing</h3>
       <p>Real standards, no noise. Sent straight to your inbox.</p>
-      <form class="nl-form" onsubmit="event.preventDefault(); window.open('https://newsletter.the-king-maker.com/subscribe','_blank');">
-        <input type="email" placeholder="Your email address" required/>
-        <button type="submit">Subscribe</button>
+      <form class="nl-form" id="nlForm">
+        <input type="email" id="nlEmail" placeholder="Your email address" autocomplete="email" required/>
+        <button type="submit" id="nlBtn">Subscribe</button>
       </form>
-      <p class="nl-note">Free. No spam. Unsubscribe anytime.</p>
+      <p class="nl-note" id="nlNote">Free. No spam. Unsubscribe anytime.</p>
     </div>
   </div>
 </section>
@@ -506,10 +523,28 @@ h1 em{color:var(--accent);font-style:normal}
     <a href="https://newsletter.the-king-maker.com" target="_blank">Newsletter</a>
     <a href="https://www.linkedin.com/in/myles-johnson-92b88028/" target="_blank">LinkedIn</a>
     <a href="https://www.instagram.com/thekingmaker_2023/" target="_blank">Instagram</a>
-    <a href="mailto:information.king.maker@gmail.com">Contact</a>
+    <a href="mailto:information.the.king.maker@gmail.com">Contact</a>
   </div>
 </div>
 
 </div>
+<script>
+(function(){
+  var f=document.getElementById('nlForm'); if(!f) return;
+  var e=document.getElementById('nlEmail'), b=document.getElementById('nlBtn'), n=document.getElementById('nlNote');
+  f.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var email=e.value.trim(); if(!email||email.indexOf('@')<1) return;
+    b.disabled=true; b.textContent='Sending...';
+    fetch('https://script.google.com/macros/s/AKfycbwxgSyveSCSKXtqQNhVJVvA79VLII5lue0zI1hI-JmEea3NcLXObb-pxB-XOIbwiSsbJg/exec',{method:'POST',headers:{'Content-Type':'text/plain'},
+      body:JSON.stringify({name:'Newsletter Subscriber',email:email,result:'Newsletter Signup',source:'homepage_newsletter',submitted_at:new Date().toISOString()})
+    }).catch(function(){}).finally(function(){
+      f.style.display='none';
+      n.innerHTML='You\u2019re in. The King Maker Weekly lands in your inbox \u2014 check spam once and mark it safe.';
+      n.style.color='var(--accent)';
+    });
+  });
+})();
+</script>
 </body>
 </html>
